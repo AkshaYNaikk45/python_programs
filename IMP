@@ -1,3 +1,212 @@
+ASSIGNMENT NO.1: - BASIC PYTHON 
+1) Write a Python Program to Calculate the Average of Numbers in a Given List. 
+Number=[4,5,6,7,8,9] 
+Average=sum(Number)/len(Number) 
+print("Average is:",Average) 
+
+2) Write a program which accepts 6 integer values and prints “DUPLICATES” if any of the values 
+entered are duplicates otherwise it prints “ALL UNIQUE”. Example: Let 5 integers are (32, 10, 45, 90, 
+45, 6) then output “DUPLICATES” to be printed. 
+Number=[] 
+for i in range(6): 
+num=int(input(f"Enter a Number {i+1}:")) 
+Number.append(num) 
+if len(Number)!=len(set(Number)): 
+print("DUBLICATE") 
+else: 
+print("ALL UNIQUE") 
+
+3) Write a program to display following pattern.  
+1 
+2  3 
+4  5   6 
+7  8   9  10  
+num=1 
+for row in range(1,5): 
+for col in range(row): 
+print(num, end=" ") 
+num +=1 
+print() 
+
+
+ASSIGNMENT NO 2: - PYTHON TUPLES 
+1. Reverse the following tuple a Tup = (10, 20, 30, 40, 50) 
+By using reversed function 
+Tup = (10,20,30,40,50) 
+rev_tup =tuple(reversed(Tup)) 
+print(rev_tup) 
+By using slicing method 
+Tup = (10,20,30,40,50) 
+rev_tup =Tup[::-1] 
+print(rev_tup) 
+
+
+2. Write a Python program to create a list of tuples with the first element as the number and second element 
+as the square of the number. 
+numbers = range(1, 11) 
+result = [] 
+for num in numbers: 
+result.append((num,num**2)) 
+print(result) 
+
+
+3. Copy element 44 and 55 from the following tuple into a new tuple tuple1 = (11, 22, 33, 44, 55, 66)  
+tuple1 = (11, 22, 33, 44, 55, 66)  
+new_tuple = (tuple1[3], tuple1[4]) 
+print(“New tuple:”,new_tuple)  
+
+4. Write a Python program to get the 5th element from front and 5th element from last of a tuple. 
+my_tuple=(10,20,30,40,50,60,70,80,90,100) 
+fith_from_front=(my_tuple[4]) 
+fith_from_last =(my_tuple[-5]) 
+print("fith_from_front:", fith_from_front) 
+print("fith_from_last:", fith_from_last) 
+
+5. Write a Python program to find the repeated items of a tuple. 
+First Method 
+my_tuple = (10, 20, 30, 20, 40, 50, 10, 60, 30, 10) 
+repeated = [] 
+for item in my_tuple: 
+if my_tuple.count(item) > 1 and item not in repeated: 
+repeated.append(item) 
+print("Repeated items are:", tuple(repeated)) 
+By Using Set Function 
+my_tuple = (10, 20, 30, 20, 40, 50, 10, 60, 30, 10) 
+repeated = tuple(set([num for num in my_tuple if my_tuple.count(num) > 1])) 
+print("Repeated items are:", repeated) 
+
+6. Write a Python program to check whether an element exists within a tuple. 
+First method 
+my_tuple = (10, 20, 30, 40, 50) 
+element = 30 
+if element in my_tuple: 
+print(f"{element} exists in the tuple") 
+else: 
+print(f"{element} does not exist in the tuple") 
+By using Count Function 
+my_tuple = (10, 20, 30, 40, 50) 
+element = 30 
+if my_tuple.count(element) > 0: 
+print(f"{element} exists in the tuple") 
+else: 
+print(f"{element} does not exist in the tuple") 
+
+
+ASSIGNMENT NO 3:- PYTHON SETS 
+1. What is the output of following program: sets = {1, 2, 3, 4, 4} print(sets) 
+sets = {1, 2, 3, 4, 4} 
+print(sets) 
+Output: {1, 2, 3, 4} 
+
+2. Write a Python program to do iteration over sets.  
+my_set = {10, 20, 30, 40} 
+for item in my_set: 
+print(item) 
+
+3. Write a Python program to add and remove operation on set.  
+my_set = {1, 2, 3} 
+my_set.add(4) 
+print("After adding 4:", my_set) 
+my_set.remove(2) 
+print("After removing 2:", my_set) 
+
+4. Write a Python program to find maximum and the minimum value in a set.  
+my_set = {5, 10, 15, 20} 
+print("Maximum:", max(my_set)) 
+print("Minimum:", min(my_set)) 
+
+ASSIGNMENT NO.4:- PYTHON DICTIONARY 
+1. Write a Python program to combine two dictionary adding values for common keys. Sample 
+Dictionary: d1={'a':100,'b':200,'c':300} d2={'a':300,'b':200,'d':400} Sample output: Counter({'a': 
+400, 'b': 400, 'd': 400, 'c': 300})  
+from collections import Counter 
+d1 = {'a': 100, 'b': 200, 'c': 300} 
+d2 = {'a': 300, 'b': 200, 'd': 400} 
+result = Counter(d1) + Counter(d2) 
+print(result) 
+
+
+2. Write a Python script to generate and print a dictionary that contains a number (Between 1 and 
+n) in the form (x, x*x). Sample Dictionary (n = 5) Expected Output : {1: 1, 2: 4, 3: 9, 4: 16, 5: 25} 
+n = 5 
+result = {x: x*x for x in range(1, n+1)} 
+print(result) 
+
+
+3. Write a Python program to create a dictionary from a string. Sample-String:’W3resource’ 
+Expected output: {'3': 1, 's': 1, 'r': 2, 'u': 1, 'w': 1, 'c': 1, 'e': 2, 'o': 1 
+from collections import Counter 
+sample_str = 'W3resource' 
+sample_str_lower = sample_str.lower() 
+result = {} 
+for char in sample_str_lower: 
+result[char] = result.get(char, 0) + 1 
+print(result) 
+
+
+ASSIGNMENT NO.5:-PYTHON ARRAY 
+1. Write a python program to create an array of 5 integers and display the array elements. Access 
+individual elements through indexes 
+import array 
+arr = array.array('i', [10, 20, 30, 40, 50]) 
+print("Array elements:", arr) 
+for i in range(len(arr)): 
+print(f"Element at index {i}:", arr[i]) 
+
+
+2. write a python program to get the number of occurrences of specified elements in an array 
+import array 
+arr = array.array('i', [1, 2, 3, 2, 4, 2, 5]) 
+element = 2 
+count = arr.count(element) 
+print(f"Number of occurrences of {element}:", count) 
+
+
+3. Write a python program to reverse the order of the items in the array. 
+import array 
+arr = array.array('i', [1, 2, 3, 4, 5]) 
+print("Original array:", arr) 
+arr.reverse() 
+print("Reversed array:", arr) 
+
+
+ASSIGNMENT NO.6: -PYTHON FUNCTIONS 
+1. Write a python function to sum of all the elements in a list 
+def sum_of_list(lst): 
+return sum(lst) 
+numbers = [1, 2, 3, 4, 5] 
+print("Sum:", sum_of_list(numbers)) 
+
+2. Write a python function to calculate  the factorial of a number. the function accept the number 
+as an argument. 
+def factorial(n): 
+if n == 0 or n == 1: 
+return 1 
+else: 
+return n * factorial(n - 1) 
+num = 5 
+print(f"Factorial of {num}:", factorial(num)) 
+
+3. Write a python function to check whether a number falls within a given range. 
+def is_in_range(num, start, end): 
+return start <= num <= end 
+print(is_in_range(5, 1, 10))   
+print(is_in_range(15, 1, 10))  
+
+4. Write a python function that takes a list and returns a new list with distict elements from the 
+first list 
+Sample list:[1, 2 , 2, 3, 3, 3, 3, 4, 5] 
+Unique list:[1, 2, 3, 4, 5] 
+def distinct_elements(lst): 
+unique = [] 
+for item in lst: 
+if item not in unique: 
+unique.append(item) 
+return unique 
+sample_list = [1, 2, 2, 3, 3, 3, 3, 4, 5] 
+print("Unique list:", distinct_elements(sample_list)) 
+
+
 Assignment 1 
 
 DATA STRUCTURES 
