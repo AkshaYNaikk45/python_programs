@@ -1,0 +1,1294 @@
+Assignment 1 
+
+DATA STRUCTURES 
+
+Searching Algorithms - Implementation of searching algorithms to search an element using: Linear 
+Search, Binary Search  
+
+1) Write a program to search an element using Linear Search. 
+
+# Linear Search 
+def linear_search(arr, target): 
+for i in range(len(arr)): 
+if arr[i] == target: 
+return i  # Element found at index i 
+return -1  # Element not found 
+# Example usage 
+arr = [10, 20, 30, 40, 50] 
+target = 30 
+result = linear_search(arr, target) 
+if result != -1: 
+print(f"{target} found at index {result}") 
+else: 
+print(f"{target} not found in the array") 
+
+
+2) Write a program to search an element using Binary Search.  
+
+Note: Binary Search requires a sorted array. 
+# Binary Search 
+def binary_search(arr, target): 
+low = 0 
+high = len(arr) - 1 
+while low <= high: 
+mid = (low + high) // 2 
+if arr[mid] == target: 
+return mid  # Element found 
+elif arr[mid] < target: 
+low = mid + 1 
+else: 
+high = mid - 1 
+return -1  # Element not found 
+# Example usage 
+arr = [10, 20, 30, 40, 50]  # Must be sorted 
+target = 40 
+result = binary_search(arr, target) 
+if result != -1: 
+print(f"{target} found at index {result}") 
+else: 
+print(f"{target} not found in the array") 
+
+
+3) Write a Python program to search an element in an integer array using Binary Search. 
+
+# Binary Search 
+def binary_search(arr, target): 
+low = 0 
+high = len(arr) - 1 
+while low <= high: 
+mid = (low + high) // 2 
+if arr[mid] == target: 
+return mid  # Element found 
+elif arr[mid] < target: 
+low = mid + 1 
+else: 
+high = mid - 1 
+return -1  # Element not found 
+# Example usage 
+arr = [10, 20, 30, 40, 50]  # Must be sorted 
+target = 40 
+result = binary_search(arr, target) 
+if result != -1: 
+print(f"{target} found at index {result}") 
+else: 
+print(f"{target} not found in the array") 
+
+
+
+Assignment 2 
+
+Sorting Algorithms - Implementation of sorting algorithms: Bubble Sort, Insertion Sort , Quick Sort, 
+Merge Sort  
+
+
+1) Write a Python program to sort given numbers using Bubble Sort algorithms. 
+# Bubble Sort 
+def bubble_sort(arr): 
+n = len(arr) 
+for i in range(n): 
+for j in range(0, n-i-1): 
+if arr[j] > arr[j+1]: 
+arr[j], arr[j+1] = arr[j+1], arr[j] 
+# Example usage 
+arr = [64, 34, 25, 12, 22, 11, 90] 
+bubble_sort(arr) 
+print("Sorted array using Bubble Sort:", arr) 
+
+
+2) Write a Python program to implement sorting Merge Sort algorithms. 
+# Merge Sort 
+def merge_sort(arr): 
+if len(arr) > 1: 
+        mid = len(arr) // 2 
+        L = arr[:mid] 
+        R = arr[mid:] 
+ 
+        merge_sort(L) 
+        merge_sort(R) 
+ 
+        i = j = k = 0 
+        while i < len(L) and j < len(R): 
+            if L[i] < R[j]: 
+                arr[k] = L[i] 
+                i += 1 
+            else: 
+                arr[k] = R[j] 
+                j += 1 
+            k += 1 
+ 
+        while i < len(L): 
+            arr[k] = L[i] 
+            i += 1 
+            k += 1 
+ 
+        while j < len(R): 
+            arr[k] = R[j] 
+            j += 1 
+            k += 1 
+ 
+# Example usage 
+arr = [38, 27, 43, 3, 9, 82, 10] 
+merge_sort(arr) 
+print("Sorted array using Merge Sort:", arr) 
+ 
+
+3) Write a Python program to implement sorting Quick Sort algorithms. 
+ 
+# Quick Sort 
+def quick_sort(arr): 
+    if len(arr) <= 1: 
+        return arr 
+    pivot = arr[len(arr) // 2] 
+    left = [x for x in arr if x < pivot] 
+    middle = [x for x in arr if x == pivot] 
+    right = [x for x in arr if x > pivot] 
+    return quick_sort(left) + middle + quick_sort(right) 
+ 
+# Example usage 
+arr = [10, 7, 8, 9, 1, 5] 
+sorted_arr = quick_sort(arr) 
+print("Sorted array using Quick Sort:", sorted_arr) 
+ 
+4) Write a Python program to implement sorting Insertion Sort algorithms. 
+ 
+# Insertion Sort 
+def insertion_sort(arr): 
+    for i in range(1, len(arr)): 
+        key = arr[i] 
+        j = i - 1 
+        while j >= 0 and arr[j] > key: 
+            arr[j+1] = arr[j] 
+            j -= 1 
+arr[j+1] = key 
+# Example usage 
+arr = [12, 11, 13, 5, 6] 
+insertion_sort(arr) 
+print("Sorted array using Insertion Sort:", arr) 
+
+
+Assignment 3 
+
+Singly Linked List -1. Dynamic implementation of Singly Linked List to perform following 
+operations: Create, Insert, Delete, Display, Search, Reverse 2. Create a list in the sorted order. 
+
+1) Python program for static implementation of Singly Linked List to perform Insert and Display 
+operations. 
+# Static Singly Linked List using Python list 
+class StaticSinglyLinkedList: 
+def __init__(self): 
+self.list = [] 
+# Insert element at the end 
+def insert(self, data): 
+self.list.append(data) 
+# Display elements 
+def display(self): 
+for item in self.list: 
+print(item, end=" -> ") 
+print("None") 
+# Example usage 
+sll = StaticSinglyLinkedList() 
+sll.insert(10) 
+sll.insert(20) 
+sll.insert(30) 
+print("Singly Linked List:") 
+sll.display() 
+
+
+2) Python program to create a linked list in the sorted order. 
+# Node class 
+class Node: 
+def __init__(self, data): 
+self.data = data 
+self.next = None 
+# Singly Linked List 
+class SortedLinkedList: 
+def __init__(self): 
+self.head = None 
+# Insert in sorted order 
+def insert_sorted(self, data): 
+new_node = Node(data) 
+if self.head is None or self.head.data >= data: 
+new_node.next = self.head 
+self.head = new_node 
+return 
+current = self.head 
+while current.next and current.next.data < data: 
+current = current.next 
+new_node.next = current.next 
+current.next = new_node 
+# Display elements 
+def display(self): 
+temp = self.head 
+while temp: 
+print(temp.data, end=" -> ") 
+temp = temp.next 
+print("None") 
+# Example usage 
+sll = SortedLinkedList() 
+sll.insert_sorted(30) 
+sll.insert_sorted(10) 
+sll.insert_sorted(20) 
+print("Sorted Singly Linked List:") 
+sll.display() 
+
+
+3) Python program to create singly linked list and search the given node in the Linked list. 
+# Node class 
+class Node: 
+def __init__(self, data): 
+self.data = data 
+self.next = None 
+# Singly Linked List 
+class SinglyLinkedList: 
+def __init__(self): 
+self.head = None 
+# Insert at end 
+def insert(self, data): 
+new_node = Node(data) 
+if self.head is None: 
+self.head = new_node 
+return 
+current = self.head 
+while current.next: 
+current = current.next 
+current.next = new_node 
+# Search element 
+def search(self, key): 
+current = self.head 
+index = 0 
+while current: 
+if current.data == key: 
+return index 
+current = current.next 
+index += 1 
+return -1 
+# Display elements 
+def display(self): 
+temp = self.head 
+while temp: 
+print(temp.data, end=" -> ") 
+temp = temp.next 
+print("None") 
+# Example usage 
+sll = SinglyLinkedList() 
+sll.insert(10) 
+sll.insert(20) 
+sll.insert(30) 
+print("Singly Linked List:") 
+sll.display() 
+key = 20 
+index = sll.search(key) 
+if index != -1: 
+print(f"{key} found at position {index}") 
+else: 
+print(f"{key} not found in the list") 
+
+
+4) Python program to create singly linked list and reverse the Linked list. 
+# Node class 
+class Node: 
+def __init__(self, data): 
+self.data = data 
+self.next = None 
+# Singly Linked List 
+class SinglyLinkedList: 
+def __init__(self): 
+self.head = None 
+# Insert at end 
+def insert(self, data): 
+new_node = Node(data) 
+if self.head is None: 
+self.head = new_node 
+return 
+current = self.head 
+while current.next: 
+current = current.next 
+current.next = new_node 
+# Reverse the linked list 
+def reverse(self): 
+prev = None 
+current = self.head 
+while current: 
+next_node = current.next 
+current.next = prev 
+prev = current 
+current = next_node 
+self.head = prev 
+# Display elements 
+def display(self): 
+temp = self.head 
+while temp: 
+print(temp.data, end=" -> ") 
+temp = temp.next 
+print("None") 
+# Example usage 
+sll = SinglyLinkedList() 
+sll.insert(10) 
+sll.insert(20) 
+sll.insert(30) 
+print("Original Linked List:") 
+sll.display() 
+sll.reverse() 
+print("Reversed Linked List:") 
+sll.display() 
+
+
+Assignment 4 
+
+Doubly Linked List - Dynamic implementation of Doubly circular Linked List to perform following 
+operations: Create, Insert, Delete, Display, Search  
+
+
+1) Write a python program for implementation of Doubly Linked List to perform Insert and 
+Display operations. 
+# Node class for Doubly Linked List 
+class Node: 
+def __init__(self, data): 
+self.data = data 
+self.prev = None 
+self.next = None 
+# Doubly Linked List class 
+class DoublyLinkedList: 
+def __init__(self): 
+self.head = None 
+# Insert at end 
+def insert(self, data): 
+new_node = Node(data) 
+if self.head is None: 
+self.head = new_node 
+return 
+current = self.head 
+while current.next: 
+current = current.next 
+current.next = new_node 
+new_node.prev = current 
+# Display elements forward 
+def display(self): 
+current = self.head 
+while current: 
+print(current.data, end=" <-> ") 
+current = current.next 
+print("None") 
+# Example usage 
+dll = DoublyLinkedList() 
+dll.insert(10) 
+dll.insert(20) 
+dll.insert(30) 
+print("Doubly Linked List:") 
+dll.display() 
+
+2) Python program to create doubly linked list and search the given node in the Linked list. 
+# Node class 
+class Node: 
+def __init__(self, data): 
+self.data = data 
+self.prev = None 
+self.next = None 
+# Doubly Linked List 
+class DoublyLinkedList: 
+def __init__(self): 
+self.head = None 
+# Insert at end 
+def insert(self, data): 
+new_node = Node(data) 
+if self.head is None: 
+self.head = new_node 
+return 
+current = self.head 
+while current.next: 
+current = current.next 
+current.next = new_node 
+new_node.prev = current 
+# Search for a node 
+def search(self, key): 
+current = self.head 
+position = 0 
+while current: 
+if current.data == key: 
+return position 
+current = current.next 
+position += 1 
+return -1 
+# Display elements 
+def display(self): 
+current = self.head 
+while current: 
+print(current.data, end=" <-> ") 
+current = current.next 
+print("None") 
+# Example usage 
+dll = DoublyLinkedList() 
+dll.insert(10) 
+dll.insert(20) 
+dll.insert(30) 
+print("Doubly Linked List:") 
+dll.display() 
+key = 20 
+pos = dll.search(key) 
+if pos != -1: 
+print(f"{key} found at position {pos}") 
+else: 
+print(f"{key} not found in the list") 
+
+
+Assignment 5 
+Linked List Applications - Merge two sorted lists.  
+
+
+1) Python program to merge two sorted linked lists. 
+# Node class 
+class Node: 
+def __init__(self, data): 
+self.data = data 
+self.next = None 
+# Linked List class 
+class LinkedList: 
+def __init__(self): 
+self.head = None 
+# Insert at end 
+def insert(self, data): 
+new_node = Node(data) 
+if not self.head: 
+self.head = new_node 
+return 
+current = self.head 
+while current.next: 
+current = current.next 
+current.next = new_node 
+# Display linked list 
+def display(self): 
+current = self.head 
+while current: 
+print(current.data, end=" -> ") 
+current = current.next 
+print("None") 
+# Function to merge two sorted linked lists 
+def merge_sorted_lists(l1, l2): 
+dummy = Node(0) 
+tail = dummy 
+while l1 and l2: 
+if l1.data <= l2.data: 
+tail.next = l1 
+l1 = l1.next 
+else: 
+tail.next = l2 
+l2 = l2.next 
+tail = tail.next 
+if l1: 
+tail.next = l1 
+if l2: 
+tail.next = l2 
+return dummy.next 
+# Example usage 
+list1 = LinkedList() 
+list1.insert(1) 
+list1.insert(3) 
+list1.insert(5) 
+list2 = LinkedList() 
+list2.insert(2) 
+list2.insert(4) 
+list2.insert(6) 
+print("First Sorted List:") 
+list1.display() 
+print("Second Sorted List:") 
+list2.display() 
+merged_list = LinkedList() 
+merged_list.head = merge_sorted_lists(list1.head, list2.head) 
+print("Merged Sorted Linked List:") 
+merged_list.display() 
+
+
+Assignment 6 
+Stack - Static and Dynamic implementation of Stack to perform following operations: Init, Push, 
+Pop, Isempty, Isfull 
+
+
+1) Write a python code for static implementation of stack. 
+# Static Stack using Python list with fixed size 
+class StaticStack: 
+def __init__(self, size): 
+self.stack = [None] * size 
+self.top = -1 
+self.size = size 
+# Push element 
+def push(self, data): 
+if self.top >= self.size - 1: 
+print("Stack Overflow") 
+return 
+self.top += 1 
+self.stack[self.top] = data 
+# Pop element 
+def pop(self): 
+if self.top == -1: 
+print("Stack Underflow") 
+return None 
+data = self.stack[self.top] 
+self.top -= 1 
+return data 
+# Check if empty 
+def is_empty(self): 
+return self.top == -1 
+# Check if full 
+def is_full(self): 
+return self.top == self.size - 1 
+# Display stack 
+def display(self): 
+if self.top == -1: 
+print("Stack is empty") 
+else: 
+for i in range(self.top, -1, -1): 
+print(self.stack[i], end=" ") 
+print() 
+# Example usage 
+stack = StaticStack(5) 
+stack.push(10) 
+stack.push(20) 
+stack.push(30) 
+print("Static Stack:") 
+stack.display() 
+print("Popped element:", stack.pop()) 
+stack.display() 
+
+
+2) Write a python code for dynamic implementation of Stack to perform following operations: 
+Init, Push, Pop, Isempty, Isfull. 
+# Dynamic Stack using Python list (no fixed size) 
+class DynamicStack: 
+def __init__(self): 
+self.stack = [] 
+# Push element 
+def push(self, data): 
+self.stack.append(data) 
+# Pop element 
+def pop(self): 
+if self.is_empty(): 
+print("Stack Underflow") 
+return None 
+return self.stack.pop() 
+# Check if empty 
+def is_empty(self): 
+return len(self.stack) == 0 
+# Check if full (not applicable for dynamic stack) 
+def is_full(self): 
+return False 
+# Display stack 
+def display(self): 
+if self.is_empty(): 
+print("Stack is empty") 
+else: 
+for item in reversed(self.stack): 
+print(item, end=" ") 
+print() 
+# Example usage 
+stack = DynamicStack() 
+stack.push(10) 
+stack.push(20) 
+stack.push(30) 
+print("Dynamic Stack:") 
+stack.display() 
+print("Popped element:", stack.pop()) 
+stack.display() 
+
+
+3) Show the static implementation of stack using python. 
+# Static Stack with fixed size 
+stack = [None] * 5  # Size 5 
+top = -1 
+# Push function 
+def push(data): 
+global top 
+if top >= len(stack) - 1: 
+print("Stack Overflow") 
+else: 
+top += 1 
+stack[top] = data 
+# Pop function 
+def pop(): 
+global top 
+if top == -1: 
+print("Stack Underflow") 
+return None 
+data = stack[top] 
+top -= 1 
+return data 
+# Display function 
+def display(): 
+if top == -1: 
+print("Stack is empty") 
+else: 
+for i in range(top, -1, -1): 
+print(stack[i], end=" ") 
+print() 
+# Example usage 
+push(10) 
+push(20) 
+push(30) 
+print("Static Stack:") 
+display() 
+print("Popped element:", pop()) 
+display() 
+
+
+Assignment 7 
+Applications of Stack - 1. Implementation of an algorithm that reverses string of characters using 
+stack and checks whether a string is a palindrome. 2. Infix to Postfix conversion. Evaluation of postfix 
+expression. 
+
+
+1) Write a Python program for Evaluation of postfix expression. 
+# Evaluate Postfix Expression 
+def evaluate_postfix(expression): 
+stack = [] 
+for char in expression: 
+if char.isdigit(): 
+stack.append(int(char)) 
+else: 
+b = stack.pop() 
+a = stack.pop() 
+if char == '+': 
+stack.append(a + b) 
+elif char == '-': 
+stack.append(a - b) 
+elif char == '*': 
+stack.append(a * b) 
+elif char == '/': 
+stack.append(a / b) 
+return stack.pop() 
+# Example usage 
+expr = "231*+9-" 
+result = evaluate_postfix(expr) 
+print("Result of postfix expression:", result) 
+
+
+2) Write a Python program to convert infix to postfix conversion using stack. 
+# Infix to Postfix Conversion 
+def precedence(op): 
+if op in ('+', '-'): 
+return 1 
+if op in ('*', '/'): 
+return 2 
+return 0 
+def infix_to_postfix(expression): 
+stack = [] 
+output = '' 
+for char in expression: 
+if char.isalnum():  # Operand 
+output += char 
+elif char == '(': 
+stack.append(char) 
+elif char == ')': 
+while stack and stack[-1] != '(': 
+output += stack.pop() 
+stack.pop() 
+else:  # Operator 
+while stack and precedence(stack[-1]) >= precedence(char): 
+output += stack.pop() 
+stack.append(char) 
+while stack: 
+output += stack.pop() 
+return output 
+# Example usage 
+infix_expr = "A*(B+C)/D" 
+postfix_expr = infix_to_postfix(infix_expr) 
+print("Postfix expression:", postfix_expr) 
+
+
+3) Write a python code for Implementation an of algorithm that reverses string of characters 
+using stack and checks whether string a is a palindrome or not.  
+# Reverse string using stack and check palindrome 
+def reverse_string(s): 
+stack = list(s) 
+reversed_s = '' 
+while stack: 
+reversed_s += stack.pop() 
+return reversed_s 
+def is_palindrome(s): 
+return s == reverse_string(s) 
+# Example usage 
+string = "radar" 
+reversed_str = reverse_string(string) 
+print("Reversed string:", reversed_str) 
+if is_palindrome(string): 
+print(f"{string} is a palindrome") 
+else: 
+print(f"{string} is not a palindrome") 
+
+
+Assignment 8 
+
+Linear Queue - Static and Dynamic implementation of linear Queue to perform following 
+operations: Init, enqueue, dequeue, IsEmpty, IsFull.  
+
+
+1) Write a python code for dynamic implementation linear of Queue to perform following 
+operations: init, enqueue, dequeue, isEmpty, isFul. 
+# Dynamic Linear Queue using Python list 
+class DynamicQueue: 
+def __init__(self): 
+self.queue = [] 
+# Enqueue element 
+def enqueue(self, data): 
+self.queue.append(data) 
+# Dequeue element 
+def dequeue(self): 
+if self.is_empty(): 
+print("Queue Underflow") 
+return None 
+return self.queue.pop(0) 
+# Check if empty 
+def is_empty(self): 
+return len(self.queue) == 0 
+# Check if full (not applicable for dynamic queue) 
+def is_full(self): 
+return False 
+# Display queue 
+def display(self): 
+if self.is_empty(): 
+print("Queue is empty") 
+else: 
+print(" <- ".join(map(str, self.queue))) 
+# Example usage 
+dq = DynamicQueue() 
+dq.enqueue(10) 
+dq.enqueue(20) 
+dq.enqueue(30) 
+print("Dynamic Queue:") 
+dq.display() 
+print("Dequeued element:", dq.dequeue()) 
+dq.display() 
+
+
+2) Show the static implementation queue of using Python. 
+# Static Queue with fixed size 
+queue = [None] * 5 
+front = -1 
+rear = -1 
+size = len(queue) 
+# Enqueue function 
+def enqueue(data): 
+global rear, front 
+if rear == size - 1: 
+print("Queue Overflow") 
+else: 
+if front == -1: 
+front = 0 
+rear += 1 
+queue[rear] = data 
+# Dequeue function 
+def dequeue(): 
+global front, rear 
+if front == -1 or front > rear: 
+print("Queue Underflow") 
+return None 
+data = queue[front] 
+front += 1 
+if front > rear: 
+front = rear = -1 
+return data 
+# Display function 
+def display(): 
+if front == -1: 
+print("Queue is empty") 
+else: 
+for i in range(front, rear+1): 
+print(queue[i], end=" <- ") 
+print() 
+# Example usage 
+enqueue(10) 
+enqueue(20) 
+enqueue(30) 
+print("Static Queue:") 
+display() 
+print("Dequeued element:", dequeue()) 
+display() 
+
+
+3) Write the code for static queue implementation in Python. 
+# Static Queue Class 
+class StaticQueue: 
+def __init__(self, size): 
+self.queue = [None] * size 
+self.front = -1 
+self.rear = -1 
+self.size = size 
+# Enqueue 
+def enqueue(self, data): 
+if self.rear == self.size - 1: 
+print("Queue Overflow") 
+else: 
+if self.front == -1: 
+self.front = 0 
+self.rear += 1 
+self.queue[self.rear] = data 
+# Dequeue 
+def dequeue(self): 
+if self.front == -1 or self.front > self.rear: 
+print("Queue Underflow") 
+return None 
+data = self.queue[self.front] 
+self.front += 1 
+if self.front > self.rear: 
+self.front = self.rear = -1 
+return data 
+# Check empty 
+def is_empty(self): 
+return self.front == -1 
+# Check full 
+def is_full(self): 
+return self.rear == self.size - 1 
+# Display 
+def display(self): 
+if self.is_empty(): 
+print("Queue is empty") 
+else: 
+for i in range(self.front, self.rear+1): 
+print(self.queue[i], end=" <- ") 
+print() 
+# Example usage 
+sq = StaticQueue(5) 
+sq.enqueue(10) 
+sq.enqueue(20) 
+sq.enqueue(30) 
+print("Static Queue:") 
+sq.display() 
+print("Dequeued element:", sq.dequeue()) 
+sq.display() 
+
+
+Assignment 9 
+Circular and Priority Queue 1. Implementation of circular queue 2. Implementation of priority 
+queue 
+
+
+1) Write a python code for simple implementation of priority queue. 
+# Priority Queue using list 
+class PriorityQueue: 
+def __init__(self): 
+self.queue = [] 
+# Enqueue element with priority 
+def enqueue(self, data, priority): 
+self.queue.append((data, priority)) 
+# Sort based on priority (lower number = higher priority) 
+self.queue.sort(key=lambda x: x[1]) 
+# Dequeue element 
+def dequeue(self): 
+if self.is_empty(): 
+print("Queue Underflow") 
+return None 
+return self.queue.pop(0)[0] 
+# Check if empty 
+def is_empty(self): 
+return len(self.queue) == 0 
+# Display queue 
+def display(self): 
+if self.is_empty(): 
+print("Priority Queue is empty") 
+else: 
+print("Queue elements with priority:") 
+for item, pr in self.queue: 
+print(f"{item} (Priority: {pr})", end=" <- ") 
+print() 
+# Example usage 
+pq = PriorityQueue() 
+pq.enqueue("Task1", 2) 
+pq.enqueue("Task2", 1) 
+pq.enqueue("Task3", 3) 
+print("Priority Queue:") 
+pq.display() 
+print("Dequeued element:", pq.dequeue()) 
+pq.display() 
+
+
+2) Write a python code for implementation of circular queue. 
+# Circular Queue class 
+class CircularQueue: 
+def __init__(self, size): 
+self.queue = [None] * size 
+self.size = size 
+self.front = -1 
+self.rear = -1 
+# Check if full 
+def is_full(self): 
+return (self.rear + 1) % self.size == self.front 
+# Check if empty 
+def is_empty(self): 
+return self.front == -1 
+# Enqueue element 
+def enqueue(self, data): 
+if self.is_full(): 
+print("Queue Overflow") 
+return 
+if self.is_empty(): 
+self.front = 0 
+self.rear = (self.rear + 1) % self.size 
+self.queue[self.rear] = data 
+# Dequeue element 
+def dequeue(self): 
+if self.is_empty(): 
+print("Queue Underflow") 
+return None 
+data = self.queue[self.front] 
+if self.front == self.rear: 
+# Queue has only one element 
+self.front = self.rear = -1 
+else: 
+self.front = (self.front + 1) % self.size 
+return data 
+# Display elements 
+def display(self): 
+if self.is_empty(): 
+print("Circular Queue is empty") 
+return 
+i = self.front 
+while True: 
+print(self.queue[i], end=" <- ") 
+if i == self.rear: 
+break 
+i = (i + 1) % self.size 
+print() 
+# Example usage 
+cq = CircularQueue(5) 
+cq.enqueue(10) 
+cq.enqueue(20) 
+cq.enqueue(30) 
+cq.enqueue(40) 
+print("Circular Queue:") 
+cq.display() 
+print("Dequeued element:", cq.dequeue()) 
+cq.display() 
+
+
+Assignment 10 
+Tree Travarsals, operations etc  
+Insert, 
+
+
+1) Write a python program to perform following operations on BST. 
+i)  
+ii)  
+Display 
+ 
+class Node: 
+    def __init__(self, data): 
+        self.data = data 
+        self.left = None 
+        self.right = None 
+ 
+class BST: 
+    def __init__(self): 
+        self.root = None 
+ 
+    # Insert 
+    def insert(self, data): 
+        if self.root is None: 
+            self.root = Node(data) 
+        else: 
+            self._insert(self.root, data) 
+ 
+    def _insert(self, node, data): 
+        if data < node.data: 
+            if node.left: 
+                self._insert(node.left, data) 
+            else: 
+                node.left = Node(data) 
+        else: 
+            if node.right: 
+                self._insert(node.right, data) 
+            else: 
+                node.right = Node(data) 
+ 
+    # Display Inorder 
+    def inorder(self, node): 
+        if node: 
+            self.inorder(node.left) 
+            print(node.data, end=" ") 
+            self.inorder(node.right) 
+ 
+# Example usage 
+bst = BST() 
+bst.insert(50) 
+bst.insert(30) 
+ 
+
+2) Write a python program to perform following operations on BST.  
+Create Search Display (Preorder / Inorder / Postorder) 
+ 
+class Node: 
+    def __init__(self, data): 
+        self.data = data 
+        self.left = None 
+        self.right = None 
+ 
+class BST: 
+    def __init__(self): 
+        self.root = None 
+ 
+    # Insert 
+    def insert(self, data): 
+        if not self.root: 
+            self.root = Node(data) 
+        else: 
+            self._insert(self.root, data) 
+ 
+    def _insert(self, node, data): 
+        if data < node.data: 
+            if node.left: 
+                self._insert(node.left, data) 
+            else: 
+                node.left = Node(data) 
+        else: 
+            if node.right: 
+                self._insert(node.right, data) 
+            else: 
+                node.right = Node(data) 
+ 
+    # Search 
+    def search(self, node, key): 
+        if node is None: 
+            return False 
+        if node.data == key: 
+            return True 
+        elif key < node.data: 
+            return self.search(node.left, key) 
+        else: 
+            return self.search(node.right, key) 
+ 
+    # Traversals 
+    def preorder(self, node): 
+        if node: 
+            print(node.data, end=" ") 
+            self.preorder(node.left) 
+            self.preorder(node.right) 
+ 
+    def inorder(self, node): 
+        if node: 
+            self.inorder(node.left) 
+            print(node.data, end=" ") 
+            self.inorder(node.right) 
+ 
+    def postorder(self, node): 
+        if node: 
+            self.postorder(node.left) 
+            self.postorder(node.right) 
+            print(node.data, end=" ") 
+ 
+# Example usage 
+bst = BST() 
+for val in [50, 30, 70, 20, 40, 60, 80]: 
+    bst.insert(val) 
+ 
+print("Search 40:", bst.search(bst.root, 40)) 
+print("Preorder:") 
+bst.preorder(bst.root) 
+print("\nInorder:") 
+bst.inorder(bst.root) 
+print("\nPostorder:") 
+bst.postorder(bst.root) 
+print() 
+Create  
+
+
+3) Write a python program to perform following operations on Binary Search Tree  
+i. 
+ii. 
+iii. 
+Count non-leaf nodes 
+Traversal (Prorder / Inorder / Postorder) 
+def count_non_leaf(node): 
+if node is None or (node.left is None and node.right is None): 
+return 0 
+return 1 + count_non_leaf(node.left) + count_non_leaf(node.right) 
+# Using BST from previous example 
+print("Non-leaf nodes count:", count_non_leaf(bst.root)) 
+
+Create 
+
+
+4) Write a python program to perform following operations on Binary Search Tree  
+i. 
+ii. 
+iii. 
+Count total nodes  
+Traversal (Prorder / Inorder / Postorder) 
+def count_total_nodes(node): 
+if node is None: 
+return 0 
+return 1 + count_total_nodes(node.left) + count_total_nodes(node.right) 
+# Using BST from previous example 
+print("Total nodes count:", count_total_nodes(bst.root)) 
+Create  
+
+
+5) Write a python program to perform following operations on BST.  
+i) 
+ii) 
+Display 
+Insert 
+
+
+6) Write a python program to perform following operations on BST. 
+i. 
+ii. 
+iii. 
+Delete   
+Display (Preorder / Inorder/ Postorder) 
+# Delete node function 
+def delete_node(root, key): 
+if root is None: 
+return root 
+if key < root.data: 
+root.left = delete_node(root.left, key) 
+elif key > root.data: 
+root.right = delete_node(root.right, key) 
+else: 
+# Node with only one child or no child 
+if root.left is None: 
+return root.right 
+elif root.right is None: 
+return root.left 
+# Node with two children: get inorder successor 
+temp = root.right 
+while temp.left: 
+temp = temp.left 
+root.data = temp.data 
+root.right = delete_node(root.right, temp.data) 
+return root 
+# Example usage 
+bst.root = delete_node(bst.root, 20) 
+print("BST Inorder after deleting 20:") 
+bst.inorder(bst.root) 
+print() 
+
+
+Assignment 11  
+Calculate indegree and out degree of a given graph 
+
+
+1) Write a program to calculate indegree of a graph using adjacency matrix. 
+def indegree(adj_matrix, vertex): 
+indeg = 0 
+n = len(adj_matrix) 
+for i in range(n): 
+indeg += adj_matrix[i][vertex] 
+return indeg 
+# Example usage 
+graph = [ 
+[0, 1, 0], 
+[0, 0, 1], 
+[1, 0, 0] 
+] 
+vertex = 0 
+print(f"Indegree of vertex {vertex} is:", indegree(graph, vertex)) 
+
+
+2) Write a Python program to calculate outdegree of a graph using adjacency matrix. 
+def outdegree(adj_matrix, vertex): 
+return sum(adj_matrix[vertex]) 
+# Example usage 
+vertex = 0 
+print(f"Outdegree of vertex {vertex} is:", outdegree(graph, vertex)) 
+
+
+3) Write a program to calculate indegree of a graph. 
+# Function to calculate indegrees of all vertices 
+def indegrees_all(adj_matrix): 
+n = len(adj_matrix) 
+indeg_list = [] 
+for v in range(n): 
+indeg = sum(adj_matrix[i][v] for i in range(n)) 
+indeg_list.append(indeg) 
+return indeg_list 
+# Example usage 
+indeg_list = indegrees_all(graph) 
+for v, deg in enumerate(indeg_list): 
+print(f"Indegree of vertex {v} is {deg}") 
+
+
+4) Write a program to calculate outdegree of a graph 
+# Function to calculate outdegrees of all vertices 
+def outdegrees_all(adj_matrix): 
+n = len(adj_matrix) 
+outdeg_list = [] 
+for v in range(n): 
+outdeg = sum(adj_matrix[v]) 
+outdeg_list.append(outdeg) 
+return outdeg_list 
+# Example usage 
+outdeg_list = outdegrees_all(graph) 
+for v, deg in enumerate(outdeg_list): 
+print(f"Outdegree of vertex {v} is {deg}") 
+
+
+PYTHON EXTRA PRACTICE QUESTIONS   
+1) Write a Python class named Circle constructed by a radius and two methods which will 
+compute the area and the perimeter of a circle 
+import math 
+class Circle: 
+def __init__(self, radius): 
+self.radius = radius 
+def area(self): 
+return math.pi * self.radius ** 2 
+def perimeter(self): 
+return 2 * math.pi * self.radius 
+# Example usage 
+c = Circle(5) 
+print("Area of Circle:", round(c.area(), 2)) 
+print("Perimeter of Circle:", round(c.perimeter(), 2)) 
+
+
+2) Write a Python program to create a class representing a shopping cart. Include methods for 
+adding and removing items, and calculating the total price. 
+class ShoppingCart: 
+def __init__(self): 
+self.items = {} 
+def add_item(self, item, price): 
+self.items[item] = price 
+def remove_item(self, item): 
+if item in self.items: 
+del self.items[item] 
+def total_price(self): 
+return sum(self.items.values()) 
+# Example usage 
+cart = ShoppingCart() 
+cart.add_item("Apple", 50) 
+cart.add_item("Banana", 20) 
+cart.add_item("Orange", 30) 
+print("Total Price:", cart.total_price()) 
+cart.remove_item("Banana") 
+print("Total Price after removing Banana:", cart.total_price()) 
+
+
+3) Write a Python class named Rectangle constructed by length and width, and two methods 
+which will compute the area and the perimeter of the rectangle. 
+class Rectangle: 
+def __init__(self, length, width): 
+self.length = length 
+self.width = width 
+def area(self): 
+return self.length * self.width 
+def perimeter(self): 
+return 2 * (self.length + self.width) 
+# Example usage 
+r = Rectangle(5, 3) 
+print("Area of Rectangle:", r.area()) 
+print("Perimeter of Rectangle:", r.perimeter()) 
+
+
+4) Write a Python script to sort (ascending and descending) a dictionary by value. 
+data = {'Apple': 50, 'Banana': 20, 'Orange': 30} 
+# Sort ascending 
+asc_sorted = dict(sorted(data.items(), key=lambda item: item[1])) 
+print("Ascending:", asc_sorted) 
+# Sort descending 
+desc_sorted = dict(sorted(data.items(), key=lambda item: item[1], reverse=True)) 
+print("Descending:", desc_sorted) 
+
+
+5) Write a program to generate Fibonacci numbers using function. 
+data = {'Apple': 50, 'Banana': 20, 'Orange': 30} 
+# Sort ascending 
+asc_sorted = dict(sorted(data.items(), key=lambda item: item[1])) 
+print("Ascending:", asc_sorted) 
+# Sort descending 
+desc_sorted = dict(sorted(data.items(), key=lambda item: item[1], reverse=True)) 
+print("Descending:", desc_sorted) 
