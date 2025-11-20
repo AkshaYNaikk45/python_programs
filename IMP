@@ -1068,6 +1068,63 @@ public class LoginPageGUI extends JFrame implements ActionListener {
 
 17) maingame
 
+package Games;
+
+public class Indoor {
+    String gameName;
+    String[] players;
+
+    // Default constructor
+    public Indoor() {
+        gameName = "Chess";
+        players = new String[]{"Amit", "Sneha", "Rahul"};
+    }
+
+    // Parameterized constructor
+    public Indoor(String gameName, String[] players) {
+        this.gameName = gameName;
+        this.players = players;
+    }
+
+    public void display() {
+        System.out.println("Indoor Game: " + gameName);
+        System.out.println("Players:");
+        for (String p : players) {
+            System.out.println("- " + p);
+        }
+    }
+}
+
+
+package Games;
+
+public class Outdoor {
+    String gameName;
+    String[] players;
+
+    // Default constructor
+    public Outdoor() {
+        gameName = "Cricket";
+        players = new String[]{"Rohit", "Virat", "Dhoni"};
+    }
+
+    // Parameterized constructor
+    public Outdoor(String gameName, String[] players) {
+        this.gameName = gameName;
+        this.players = players;
+    }
+
+    public void display() {
+        System.out.println("Outdoor Game: " + gameName);
+        System.out.println("Players:");
+        for (String p : players) {
+            System.out.println("- " + p);
+        }
+    }
+}
+
+
+
 import Games.*;   // Import package
 
 public class MainGame {
