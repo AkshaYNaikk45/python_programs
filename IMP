@@ -1,1503 +1,1509 @@
-ASSIGNMENT NO.1: - BASIC PYTHON 
-1) Write a Python Program to Calculate the Average of Numbers in a Given List. 
-Number=[4,5,6,7,8,9] 
-Average=sum(Number)/len(Number) 
-print("Average is:",Average) 
+Accountsort.java
 
-2) Write a program which accepts 6 integer values and prints “DUPLICATES” if any of the values 
-entered are duplicates otherwise it prints “ALL UNIQUE”. Example: Let 5 integers are (32, 10, 45, 90, 
-45, 6) then output “DUPLICATES” to be printed. 
-Number=[] 
-for i in range(6): 
-num=int(input(f"Enter a Number {i+1}:")) 
-Number.append(num) 
-if len(Number)!=len(set(Number)): 
-print("DUBLICATE") 
-else: 
-print("ALL UNIQUE") 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-3) Write a program to display following pattern.  
-1 
-2  3 
-4  5   6 
-7  8   9  10  
-num=1 
-for row in range(1,5): 
-for col in range(row): 
-print(num, end=" ") 
-num +=1 
-print() 
+class Account {
+    int acno;            
+    String acname;       
+    float bal;          
+    static int count;   
 
+    // Default constructor
+    Account() {}
 
-ASSIGNMENT NO 2: - PYTHON TUPLES 
-1. Reverse the following tuple a Tup = (10, 20, 30, 40, 50) 
-By using reversed function 
-Tup = (10,20,30,40,50) 
-rev_tup =tuple(reversed(Tup)) 
-print(rev_tup) 
-By using slicing method 
-Tup = (10,20,30,40,50) 
-rev_tup =Tup[::-1] 
-print(rev_tup) 
+    // Parameterized constructor
+    Account(String n, float p) {
+        count++;          
+        acno = count;     
+        acname = n;
+        bal = p;
+    }
 
+    // Method to display account details
+    void display() {
+        System.out.println(acno + "\t" + acname + "\t" + bal);
+    }
 
-2. Write a Python program to create a list of tuples with the first element as the number and second element 
-as the square of the number. 
-numbers = range(1, 11) 
-result = [] 
-for num in numbers: 
-result.append((num,num**2)) 
-print(result) 
+    // Method to return balance
+    float getbal() {
+        return bal;
+    }
 
+    // Static method to show how many objects are created
+    static void counter() {
+        System.out.println(count + " object is created");
+    }
 
-3. Copy element 44 and 55 from the following tuple into a new tuple tuple1 = (11, 22, 33, 44, 55, 66)  
-tuple1 = (11, 22, 33, 44, 55, 66)  
-new_tuple = (tuple1[3], tuple1[4]) 
-print(“New tuple:”,new_tuple)  
+    // Static method to sort accounts by balance in ascending order using Bubble Sort
+    public static void sortAccount(Account a[], int n) {
+        // Outer loop for number of passes (starts from last index and moves to 0)
+        for (int i = n - 1; i >= 0; i--) {
+            // Inner loop for comparing adjacent elements from start to i
+            for (int j = 0; j < i; j++) {
+                // If current account's balance is greater than next, swap them
+                if (a[j].getbal() > a[j + 1].getbal()) {                    
+                    Account t = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = t;
+                }
+            }
+        }
 
-4. Write a Python program to get the 5th element from front and 5th element from last of a tuple. 
-my_tuple=(10,20,30,40,50,60,70,80,90,100) 
-fith_from_front=(my_tuple[4]) 
-fith_from_last =(my_tuple[-5]) 
-print("fith_from_front:", fith_from_front) 
-print("fith_from_last:", fith_from_last) 
+        // Display sorted accounts
+        System.out.println("\nAccounts sorted by balance:");
+        for (int i = 0; i < n; i++) {
+            a[i].display();
+        }
+    }
+}
 
-5. Write a Python program to find the repeated items of a tuple. 
-First Method 
-my_tuple = (10, 20, 30, 20, 40, 50, 10, 60, 30, 10) 
-repeated = [] 
-for item in my_tuple: 
-if my_tuple.count(item) > 1 and item not in repeated: 
-repeated.append(item) 
-print("Repeated items are:", tuple(repeated)) 
-By Using Set Function 
-my_tuple = (10, 20, 30, 20, 40, 50, 10, 60, 30, 10) 
-repeated = tuple(set([num for num in my_tuple if my_tuple.count(num) > 1])) 
-print("Repeated items are:", repeated) 
+// Main class to test the Account functionality
+public class AccountSort {
+    public static void main(String args[]) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));        
+        
+        System.out.println("Enter number of Accounts:");
+        int n = Integer.parseInt(br.readLine());
 
-6. Write a Python program to check whether an element exists within a tuple. 
-First method 
-my_tuple = (10, 20, 30, 40, 50) 
-element = 30 
-if element in my_tuple: 
-print(f"{element} exists in the tuple") 
-else: 
-print(f"{element} does not exist in the tuple") 
-By using Count Function 
-my_tuple = (10, 20, 30, 40, 50) 
-element = 30 
-if my_tuple.count(element) > 0: 
-print(f"{element} exists in the tuple") 
-else: 
-print(f"{element} does not exist in the tuple") 
+        Account p[] = new Account[n];
 
+        // Accept account details from user
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter Name: ");
+            String name = br.readLine();
+            System.out.print("Enter Balance: ");
+            float bal = Float.parseFloat(br.readLine());
 
-ASSIGNMENT NO 3:- PYTHON SETS 
-1. What is the output of following program: sets = {1, 2, 3, 4, 4} print(sets) 
-sets = {1, 2, 3, 4, 4} 
-print(sets) 
-Output: {1, 2, 3, 4} 
+            // Create account object and store it in array
+            p[i] = new Account(name, bal);
+            p[i].counter();  // Display count after each creation
+        }
 
-2. Write a Python program to do iteration over sets.  
-my_set = {10, 20, 30, 40} 
-for item in my_set: 
-print(item) 
-
-3. Write a Python program to add and remove operation on set.  
-my_set = {1, 2, 3} 
-my_set.add(4) 
-print("After adding 4:", my_set) 
-my_set.remove(2) 
-print("After removing 2:", my_set) 
-
-4. Write a Python program to find maximum and the minimum value in a set.  
-my_set = {5, 10, 15, 20} 
-print("Maximum:", max(my_set)) 
-print("Minimum:", min(my_set)) 
-
-ASSIGNMENT NO.4:- PYTHON DICTIONARY 
-1. Write a Python program to combine two dictionary adding values for common keys. Sample 
-Dictionary: d1={'a':100,'b':200,'c':300} d2={'a':300,'b':200,'d':400} Sample output: Counter({'a': 
-400, 'b': 400, 'd': 400, 'c': 300})  
-from collections import Counter 
-d1 = {'a': 100, 'b': 200, 'c': 300} 
-d2 = {'a': 300, 'b': 200, 'd': 400} 
-result = Counter(d1) + Counter(d2) 
-print(result) 
-
-
-2. Write a Python script to generate and print a dictionary that contains a number (Between 1 and 
-n) in the form (x, x*x). Sample Dictionary (n = 5) Expected Output : {1: 1, 2: 4, 3: 9, 4: 16, 5: 25} 
-n = 5 
-result = {x: x*x for x in range(1, n+1)} 
-print(result) 
-
-
-3. Write a Python program to create a dictionary from a string. Sample-String:’W3resource’ 
-Expected output: {'3': 1, 's': 1, 'r': 2, 'u': 1, 'w': 1, 'c': 1, 'e': 2, 'o': 1 
-from collections import Counter 
-sample_str = 'W3resource' 
-sample_str_lower = sample_str.lower() 
-result = {} 
-for char in sample_str_lower: 
-result[char] = result.get(char, 0) + 1 
-print(result) 
-
-
-ASSIGNMENT NO.5:-PYTHON ARRAY 
-1. Write a python program to create an array of 5 integers and display the array elements. Access 
-individual elements through indexes 
-import array 
-arr = array.array('i', [10, 20, 30, 40, 50]) 
-print("Array elements:", arr) 
-for i in range(len(arr)): 
-print(f"Element at index {i}:", arr[i]) 
-
-
-2. write a python program to get the number of occurrences of specified elements in an array 
-import array 
-arr = array.array('i', [1, 2, 3, 2, 4, 2, 5]) 
-element = 2 
-count = arr.count(element) 
-print(f"Number of occurrences of {element}:", count) 
-
-
-3. Write a python program to reverse the order of the items in the array. 
-import array 
-arr = array.array('i', [1, 2, 3, 4, 5]) 
-print("Original array:", arr) 
-arr.reverse() 
-print("Reversed array:", arr) 
-
-
-ASSIGNMENT NO.6: -PYTHON FUNCTIONS 
-1. Write a python function to sum of all the elements in a list 
-def sum_of_list(lst): 
-return sum(lst) 
-numbers = [1, 2, 3, 4, 5] 
-print("Sum:", sum_of_list(numbers)) 
-
-2. Write a python function to calculate  the factorial of a number. the function accept the number 
-as an argument. 
-def factorial(n): 
-if n == 0 or n == 1: 
-return 1 
-else: 
-return n * factorial(n - 1) 
-num = 5 
-print(f"Factorial of {num}:", factorial(num)) 
-
-3. Write a python function to check whether a number falls within a given range. 
-def is_in_range(num, start, end): 
-return start <= num <= end 
-print(is_in_range(5, 1, 10))   
-print(is_in_range(15, 1, 10))  
-
-4. Write a python function that takes a list and returns a new list with distict elements from the 
-first list 
-Sample list:[1, 2 , 2, 3, 3, 3, 3, 4, 5] 
-Unique list:[1, 2, 3, 4, 5] 
-def distinct_elements(lst): 
-unique = [] 
-for item in lst: 
-if item not in unique: 
-unique.append(item) 
-return unique 
-sample_list = [1, 2, 2, 3, 3, 3, 3, 4, 5] 
-print("Unique list:", distinct_elements(sample_list)) 
-
-
-Assignment 1 
-
-DATA STRUCTURES 
-
-Searching Algorithms - Implementation of searching algorithms to search an element using: Linear 
-Search, Binary Search  
-
-1) Write a program to search an element using Linear Search. 
-
-# Linear Search 
-def linear_search(arr, target): 
-for i in range(len(arr)): 
-if arr[i] == target: 
-return i  # Element found at index i 
-return -1  # Element not found 
-# Example usage 
-arr = [10, 20, 30, 40, 50] 
-target = 30 
-result = linear_search(arr, target) 
-if result != -1: 
-print(f"{target} found at index {result}") 
-else: 
-print(f"{target} not found in the array") 
-
-
-2) Write a program to search an element using Binary Search.  
-
-Note: Binary Search requires a sorted array. 
-# Binary Search 
-def binary_search(arr, target): 
-low = 0 
-high = len(arr) - 1 
-while low <= high: 
-mid = (low + high) // 2 
-if arr[mid] == target: 
-return mid  # Element found 
-elif arr[mid] < target: 
-low = mid + 1 
-else: 
-high = mid - 1 
-return -1  # Element not found 
-# Example usage 
-arr = [10, 20, 30, 40, 50]  # Must be sorted 
-target = 40 
-result = binary_search(arr, target) 
-if result != -1: 
-print(f"{target} found at index {result}") 
-else: 
-print(f"{target} not found in the array") 
-
-
-3) Write a Python program to search an element in an integer array using Binary Search. 
-
-# Binary Search 
-def binary_search(arr, target): 
-low = 0 
-high = len(arr) - 1 
-while low <= high: 
-mid = (low + high) // 2 
-if arr[mid] == target: 
-return mid  # Element found 
-elif arr[mid] < target: 
-low = mid + 1 
-else: 
-high = mid - 1 
-return -1  # Element not found 
-# Example usage 
-arr = [10, 20, 30, 40, 50]  # Must be sorted 
-target = 40 
-result = binary_search(arr, target) 
-if result != -1: 
-print(f"{target} found at index {result}") 
-else: 
-print(f"{target} not found in the array") 
+        // Sort and display accounts based on balance
+        Account.sortAccount(p, Account.count);
+    }
+}
 
 
 
-Assignment 2 
 
-Sorting Algorithms - Implementation of sorting algorithms: Bubble Sort, Insertion Sort , Quick Sort, 
-Merge Sort  
+2) Area calculation.java
+
+import java.io.*;
+abstract class Shape{
+ abstract public void calc_area();
+ abstract public void calc_volume();
+ final float pi=3.14f;
+}
+
+class Sphere extends Shape{
+ double r;
+ private double area;
+ private double volume;
+ public void accept() throws IOException{
+  System.out.println("Enter the radius of the Sphere: ");
+  BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+  r=Double.parseDouble(br.readLine());
+ }
+ public void calc_area(){
+  area=4*pi*r*r;
+ }
+ public void calc_volume(){
+  
+  volume=1.33333333334*pi*r*r*r;
+ }
+ public void display(){
+  calc_area();
+  calc_volume();
+  System.out.println("The area of sphere is: "+area);
+  System.out.println("The volume of sphere is: "+volume);
+ }
+}
+
+class Cone extends Shape{
+ double h,r,area,volume;
+
+ public void accept() throws IOException{
+  System.out.println("Enter radius and height of the Cone: ");
+  BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+  r=Double.parseDouble(br.readLine());
+  h=Double.parseDouble(br.readLine());
+ }
+ public void calc_area(){
+  
+  double sq=h*h+r*r;
+  area=pi*r*(r+ java.lang.Math.sqrt(sq));
+ }
+ public void calc_volume(){
+  double d=h/3;
+  volume=pi*r*r*d;
+ }
+ public void display(){
+  calc_area();
+  calc_volume();
+  System.out.println("The area of Cone is: "+area);
+  System.out.println("The volume of Cone is: "+volume);
+ }
+}
+
+class Cylinder extends Shape{
+ double r,h,area,volume;
+ public void accept() throws IOException{
+  System.out.println("Enter radius and height of the Cylinder: ");
+  BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+  r=Double.parseDouble(br.readLine());
+  h=Double.parseDouble(br.readLine());
+ }
+ public void calc_area(){
+  area=(2*pi*r*h)+(2*pi*r*r);
+ }
+ public void calc_volume(){
+  volume=pi*r*r*h;
+ }
+ public void display(){
+  calc_area();
+  calc_volume();
+  System.out.println("The area of Cylinder is: "+area);
+  System.out.println("The volume of Cylinder is: "+volume);
+ }
+}
+
+class Box extends Shape{
+ double l,b,h,area,volume;
+ public void accept() throws IOException{
+  System.out.println("Enter length, breadth and height of the Box: ");
+  BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+  l=Double.parseDouble(br.readLine());
+  b=Double.parseDouble(br.readLine());
+  h=Double.parseDouble(br.readLine());
+ }
+ public void calc_area(){
+  area=(2*l*b)+(2*b*h)+(2*l*h);
+ }
+ public void calc_volume(){
+  volume=l*b*h;
+ }
+ public void display(){
+  calc_area();
+  calc_volume();
+  System.out.println("The area of Box is: "+area);
+  System.out.println("The volume of Box is: "+volume);
+ }
+}
+
+public class AreaCalculation {
+ public static void main(String [] args)throws IOException{
+  Sphere s=new Sphere();
+  s.accept();
+  s.display();
+  Cone co=new Cone();
+  co.accept();
+  co.display();
+  Cylinder cy=new Cylinder();
+  cy.accept();
+  cy.display();
+  Box b=new Box();
+  b.accept();
+  b.display(); 
+ }
+}
 
 
-1) Write a Python program to sort given numbers using Bubble Sort algorithms. 
-# Bubble Sort 
-def bubble_sort(arr): 
-n = len(arr) 
-for i in range(n): 
-for j in range(0, n-i-1): 
-if arr[j] > arr[j+1]: 
-arr[j], arr[j+1] = arr[j+1], arr[j] 
-# Example usage 
-arr = [64, 34, 25, 12, 22, 11, 90] 
-bubble_sort(arr) 
-print("Sorted array using Bubble Sort:", arr) 
+3) ARMSTRONGnumber
+
+import java.util.Scanner;
+
+public class ArmstrongandFactors {
+    
+    // Function to check Armstrong number
+    static boolean isArmstrong(int n) {
+        int temp = n, sum = 0, digits = 0;
+        while (temp > 0) {
+            digits++;
+            temp /= 10;
+        }
+        temp = n;
+        while (temp > 0) {
+            int d = temp % 10;
+            sum += Math.pow(d, digits);
+            temp /= 10;
+        }
+        return sum == n;
+    }
+
+    // Function to print factors of a number
+    static void printFactors(int n) {
+        System.out.print("Factors of " + n + ": ");
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    // Function to print Armstrong numbers up to a given range
+    static void printArmstrongRange(int range) {
+        System.out.println("Armstrong numbers up to " + range + ":");
+        for (int i = 1; i <= range; i++) {
+            if (isArmstrong(i)) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int num = sc.nextInt();
+
+        System.out.print("Enter range: ");
+        int range = sc.nextInt();
+
+        if (isArmstrong(num)) {
+            System.out.println(num + " is an Armstrong number.");
+        } else {
+            System.out.println(num + " is NOT an Armstrong number.");
+        }
+
+        printFactors(num);
+        printArmstrongRange(range);
+
+        sc.close();
+    }
+}
 
 
-2) Write a Python program to implement sorting Merge Sort algorithms. 
-# Merge Sort 
-def merge_sort(arr): 
-if len(arr) > 1: 
-        mid = len(arr) // 2 
-        L = arr[:mid] 
-        R = arr[mid:] 
+4)Arraylist
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ArrayListExample {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Integer> list = new ArrayList<>();
+
+        System.out.print("Enter number of integers: ");
+        int n = sc.nextInt();
+
+        System.out.println("Enter " + n + " integers:");
+        for (int i = 0; i < n; i++) {
+            int num = sc.nextInt();
+            list.add(num);
+        }
+
+        System.out.println("\nArrayList elements: " + list);
+        sc.close();
+    }
+}
+
+
+
+5)CitySTDapp
+
+import java.util.*;
+
+public class CitySTDApp {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        HashMap<String, String> cityMap = new HashMap<>();
+
+        while (true) {
+            System.out.println("\n--- City STD Code App ---");
+            System.out.println("1. Add City & STD Code");
+            System.out.println("2. Remove City");
+            System.out.println("3. Search City");
+            System.out.println("4. Display All");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = sc.nextInt();
+            sc.nextLine(); // consume newline
+
+            switch (choice) {
+                case 1: // Add
+                    System.out.print("Enter City Name: ");
+                    String city = sc.nextLine();
+                    if (cityMap.containsKey(city)) {
+                        System.out.println("City already exists! Duplicate not allowed.");
+                    } else {
+                        System.out.print("Enter STD Code: ");
+                        String code = sc.nextLine();
+                        cityMap.put(city, code);
+                        System.out.println("City added successfully!");
+                    }
+                    break;
+
+                case 2: // Remove
+                    System.out.print("Enter City to Remove: ");
+                    String remCity = sc.nextLine();
+                    if (cityMap.remove(remCity) != null) {
+                        System.out.println(remCity + " removed successfully!");
+                    } else {
+                        System.out.println("City not found!");
+                    }
+                    break;
+
+                case 3: // Search
+                    System.out.print("Enter City to Search: ");
+                    String searchCity = sc.nextLine();
+                    if (cityMap.containsKey(searchCity)) {
+                        System.out.println("STD Code of " + searchCity + " = " + cityMap.get(searchCity));
+                    } else {
+                        System.out.println("City not found!");
+                    }
+                    break;
+
+                case 4: // Display all
+                    System.out.println("\n--- City List ---");
+                    for (Map.Entry<String, String> entry : cityMap.entrySet()) {
+                        System.out.println(entry.getKey() + " -> " + entry.getValue());
+                    }
+                    break;
+
+                case 5: // Exit
+                    System.out.println("Exiting...");
+                    sc.close();
+                    return;
+
+                default:
+                    System.out.println("Invalid choice! Try again.");
+            }
+        }
+    }
+}
+
+
+6)combobox
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class ComboBoxExampleGUI extends JFrame implements ActionListener {
+    JComboBox<String> comboBox;
+    JButton showButton;
+    JLabel resultLabel;
+
+    public ComboBoxExampleGUI() {
+        setTitle("Java Swing Examples");
+        setSize(400, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+
+        JLabel label = new JLabel("Control in action: JComboBox");
+
+        // ComboBox with programming languages
+        String languages[] = {"Java", "C", "C++", "Python", "Perl"};
+        comboBox = new JComboBox<>(languages);
+
+        showButton = new JButton("Show");
+        resultLabel = new JLabel("Language Selected: ");
+
+        add(label);
+        add(comboBox);
+        add(showButton);
+        add(resultLabel);
+
+        showButton.addActionListener(this);
+
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String selected = (String) comboBox.getSelectedItem();
+        resultLabel.setText("Language Selected: " + selected);
+    }
+
+    public static void main(String[] args) {
+        new ComboBoxExampleGUI();
+    }
+}
+
+
+
+7)customerfile
+
+
+import java.io.*;
+import java.util.Scanner;
+
+class CustomerFile {
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+
+        FileOutputStream fos = new FileOutputStream("customers.dat");
+        DataOutputStream dos = new DataOutputStream(fos);
+
+        System.out.print("Enter number of customers: ");
+        int n = sc.nextInt();
+        sc.nextLine(); // consume newline
+
+        for (int i = 1; i <= n; i++) {
+            System.out.println("\nEnter details of customer " + i + ":");
+            System.out.print("Customer ID: ");
+            int cid = sc.nextInt();
+            sc.nextLine();
+            System.out.print("Name: ");
+            String name = sc.nextLine();
+            System.out.print("Address: ");
+            String address = sc.nextLine();
+            System.out.print("Mobile No: ");
+            String mobile = sc.nextLine();
+
+            dos.writeInt(cid);
+            dos.writeUTF(name);
+            dos.writeUTF(address);
+            dos.writeUTF(mobile);
+        }
+
+        dos.close();
+        fos.close();
+
+        System.out.println("\nData written successfully to customers.dat");
+
+        FileInputStream fis = new FileInputStream("customers.dat");
+        DataInputStream dis = new DataInputStream(fis);
+
+        System.out.println("\n***** Customer Details *****");
+        for (int i = 1; i <= n; i++) {
+            int cid = dis.readInt();
+            String name = dis.readUTF();
+            String address = dis.readUTF();
+            String mobile = dis.readUTF();
+
+            System.out.println("\nCustomer " + i + ":");
+            System.out.println("ID: " + cid);
+            System.out.println("Name: " + name);
+            System.out.println("Address: " + address);
+            System.out.println("Mobile: " + mobile);
+        }
+
+        dis.close();
+        fis.close();
+        sc.close();
+    }
+}
+
+
+8)doctorname exception
+
+
+import java.util.*;
+
+// User-defined Exception
+class InvalidNameException extends Exception {
+}
+
+class DoctorNameException {
+    public static void main(String args[]) {
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter the Doctor Name ");
+        String name = s.next();
+
+        try {
+            for (int i = 0; i < name.length(); i++) {
+                int ch = (int) name.charAt(i);
+
+                if ((ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122)) {
+                } 
+                else {
+                    throw new InvalidNameException();
+                }
+            }
+            System.out.println("Doctor Name is : " + name);
+        } 
+        catch (InvalidNameException e) {
+            System.out.println("Invalid Name ");
+        }
+    }
+}
+
+
+
+9) employeearray
+
+
+import java.util.Scanner;
+
+class Employee {
+    String name;
+    double salary;
+
+    // Constructor
+    Employee(String name, double salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    // Method to display employee details
+    void displayInfo() {
+        System.out.println("Name: " + name + ", Salary: " + salary);
+    }
+}
+
+public class EmployeeArray1 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Create an array to store 5 Employee objects
+        Employee[] employees = new Employee[5];
+
+        // Input employee data
+        for (int i = 0; i < employees.length; i++) {
+            System.out.println("Enter details for Employee " + (i + 1) + ":");
+
+            System.out.print("Name: ");
+            String name = scanner.nextLine();
+
+            System.out.print("Salary: ");
+            double salary = scanner.nextDouble();
+            scanner.nextLine(); // consume newline
+
+            // Create new Employee object and store in array
+            employees[i] = new Employee(name, salary);
+ }
+
+        // Display employee data
+        System.out.println("\nEmployee Details:");
+        for (int i = 0; i < employees.length; i++) {
+            System.out.print("Employee " + (i + 1) + ": ");
+            employees[i].displayInfo();
+        }
+
+        scanner.close();
+    }
+}
+
+
+10) empmaxsal
+
+import java.io.*;
+
+class Emp {
+    private int id;
+    private double salary;
+    private String name, dept;
+    double total; // total salary (salary + bonus if any)
+
+    public Emp() {
+        id = 0;
+        salary = 0.0;
+        name = "";
+        dept = "";
+        total = 0.0;
+    }
+
+    public Emp(int id, double salary, String name, String dept) {
+        this.id = id;
+        this.salary = salary;
+        this.name = name;
+        this.dept = dept;
+        this.total = salary;
+    }
+
+    public void accept() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Enter id of employee: ");
+        id = Integer.parseInt(br.readLine());
+        System.out.print("Enter name of employee: ");
+        name = br.readLine();
+        System.out.print("Enter salary of employee: ");
+        salary = Double.parseDouble(br.readLine());
+        System.out.print("Enter department of employee: ");
+        dept = br.readLine();
+        total = salary; // initialize total with salary
+    }
+
+    public void display() {
+        System.out.println("Emp Id: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Salary: " + salary);
+        System.out.println("Department: " + dept);
+    }
+}
+
+class Manager extends Emp {
+    private double bonus;
+
+    public void accept() throws IOException {
+        super.accept(); // take basic emp details
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Enter Bonus of employee: ");
+        bonus = Double.parseDouble(br.readLine());
+        super.total = super.total + bonus; // add bonus to total salary
+    }
+
+    public void display() {
+        super.display();
+        System.out.println("Bonus: " + bonus);
+        System.out.println("Total Salary: " + total);
+    }
+}
+
+public class EmpMaxSalary {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Enter the number of employees: ");
+        int n = Integer.parseInt(br.readLine());
+
+        Manager[] m = new Manager[n];
+
+        // Accept employees
+        for (int i = 0; i < n; i++) {
+            m[i] = new Manager();
+            m[i].accept();
+        }
+
+        // Display employees
+        for (int i = 0; i < n; i++) {
+            m[i].display();
+            System.out.println("---------------------------------");
+        }
+
+        // Find max salary employee
+        double max = m[0].total;
+        int index = 0;
+        for (int i = 1; i < n; i++) {
+            if (m[i].total > max) {
+                max = m[i].total;
+                index = i;
+            }
+        }
+
+        System.out.println("The Employee having the maximum Total salary is:");
+        m[index].display();
+    }
+}
+
+
+11) Fibonacci
+
+import java.util.Scanner;
+
+public class FibonacciSeries {
+
+    // Function to print Fibonacci series
+    static void printFibonacci(int n) {
+        int a = 0, b = 1, c;
+        System.out.print("Fibonacci Series: " + a + " " + b);
+
+        for (int i = 2; i < n; i++) {
+            c = a + b;
+            System.out.print(" " + c);
+            a = b;
+            b = c;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter number of terms: ");
+        int n = sc.nextInt();
+
+        printFibonacci(n);
+        sc.close();
+    }
+}
+
+
+12) fileinfo
+
+import java.io.File;
+import java.util.Scanner;
+
+public class FileInfo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Accept file name from user
+        System.out.print("Enter file name with path: ");
+        String fileName = sc.nextLine();
+
+        File f = new File(fileName);
+
+        if (f.exists()) {
+            System.out.println("\nFile Information:");
+            System.out.println("File Name: " + f.getName());
+            System.out.println("Absolute Path: " + f.getAbsolutePath());
+            System.out.println("Readable: " + f.canRead());
+            System.out.println("Writable: " + f.canWrite());
+            
+            // Checking type (file or directory)
+            if (f.isFile()) {
+                System.out.println("Type: Regular File");
+            } else if (f.isDirectory()) {
+                System.out.println("Type: Directory");
+            }
+            
+            System.out.println("File Size: " + f.length() + " bytes");
+        } else {
+            System.out.println("\nFile does not exist!");
+        }
+
+        sc.close();
+    }
+}
+
+
+14) hashtable
+
+import java.io.*;
+import java.util.*;
+
+class Hashtable1 {
+    public static void main(String args[]) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Hashtable ht = new Hashtable();
+        float sal;
+        String name = null;
+
+        System.out.println("\nEnter number of Employees : ");
+        int n = Integer.parseInt(br.readLine());
+
+        // Input employee details
+        for (int i = 1; i <= n; i++) {
+            System.out.print("Enter Employee name : ");
+            name = br.readLine();
+
+            System.out.print("Enter Employee Salary : ");
+            sal = Float.parseFloat(br.readLine());
+
+            ht.put(name, sal);   // store name & salary in Hashtable
+        }
+
+        // Display complete Hashtable
+        System.out.println("Hash table = " + ht);
+
+        // Display using Enumeration
+        Enumeration nameEnum = ht.keys();
+        Enumeration salaryEnum = ht.elements();
+
+        System.out.println("Name\tSalary");
+
+        while (nameEnum.hasMoreElements()) {
+            System.out.println(nameEnum.nextElement() + "\t" + salaryEnum.nextElement());
+        }
+
+        // Search employee
+        System.out.println("Enter name to be searched : ");
+        String snm = br.readLine();
+
+        nameEnum = ht.keys();
+        salaryEnum = ht.elements();
+        int cnt = 0;
+
+        while (nameEnum.hasMoreElements()) {
+            name = (String) nameEnum.nextElement();
+            if (snm.equals(name)) {
+                cnt++;
+                System.out.println("Salary = " + ht.get(name));
+            }
+        }
+
+        if (cnt == 0) {
+            System.out.println("Employee not found");
+        }
+    }
+}
+
+
+
+15) interfaceshape
+
+
+import java.io.*;
+
+// Interface
+interface Shape {
+    void calc_area();
+    void calc_volume();
+    float pi = 3.14f;   // final and static by default in interface
+}
+
+class Sphere implements Shape {
+    double r;
+    private double area;
+    private double volume;
+
+    public void accept() throws IOException {
+        System.out.println("Enter the radius of the Sphere: ");
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        r = Double.parseDouble(br.readLine());
+    }
+
+    public void calc_area() {
+        area = 4 * pi * r * r;
+    }
+
+    public void calc_volume() {
+        volume = (4.0 / 3.0) * pi * r * r * r;
+    }
+
+    public void display() {
+        calc_area();
+        calc_volume();
+        System.out.println("The area of Sphere is: " + area);
+        System.out.println("The volume of Sphere is: " + volume);
+    }
+}
+
+class Cone implements Shape {
+    double h, r, area, volume;
+
+    public void accept() throws IOException {
+        System.out.println("Enter radius and height of the Cone: ");
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        r = Double.parseDouble(br.readLine());
+        h = Double.parseDouble(br.readLine());
+    }
+
+    public void calc_area() {
+        double sq = h * h + r * r;
+        area = pi * r * (r + Math.sqrt(sq));
+    }
+
+    public void calc_volume() {
+        volume = (pi * r * r * h) / 3;
+    }
+
+    public void display() {
+        calc_area();
+        calc_volume();
+        System.out.println("The area of Cone is: " + area);
+        System.out.println("The volume of Cone is: " + volume);
+    }
+}
+
+class Cylinder implements Shape {
+    double r, h, area, volume;
+
+    public void accept() throws IOException {
+        System.out.println("Enter radius and height of the Cylinder: ");
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        r = Double.parseDouble(br.readLine());
+        h = Double.parseDouble(br.readLine());
+    }
+
+    public void calc_area() {
+        area = (2 * pi * r * h) + (2 * pi * r * r);
+    }
+
+    public void calc_volume() {
+        volume = pi * r * r * h;
+    }
+
+    public void display() {
+        calc_area();
+        calc_volume();
+        System.out.println("The area of Cylinder is: " + area);
+        System.out.println("The volume of Cylinder is: " + volume);
+    }
+}
+
+class Box implements Shape {
+    double l, b, h, area, volume;
+
+    public void accept() throws IOException {
+        System.out.println("Enter length, breadth and height of the Box: ");
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        l = Double.parseDouble(br.readLine());
+        b = Double.parseDouble(br.readLine());
+        h = Double.parseDouble(br.readLine());
+    }
+
+    public void calc_area() {
+        area = (2 * l * b) + (2 * b * h) + (2 * l * h);
+    }
+
+    public void calc_volume() {
+        volume = l * b * h;
+    }
+
+    public void display() {
+        calc_area();
+        calc_volume();
+        System.out.println("The area of Box is: " + area);
+        System.out.println("The volume of Box is: " + volume);
+    }
+}
+
+public class InterfaceShape {
+    public static void main(String[] args) throws IOException {
+        Sphere s = new Sphere();
+        s.accept();
+        s.display();
+
+        Cone co = new Cone();
+        co.accept();
+        co.display();
+
+        Cylinder cy = new Cylinder();
+        cy.accept();
+        cy.display();
+
+        Box b = new Box();
+        b.accept();
+        b.display();
+    }
+}
+
+16) linklist
+
+import java.util.*;
+
+class Linklist {
+    public static void main(String[] args) {
+        LinkedList ll = new LinkedList();
+
+        // Add elements
+        ll.add("Red");
+        ll.add("Blue");
+        ll.add("Yellow");
+        ll.add("Orange");
+
+        // Display elements using Iterator
+        Iterator i = ll.iterator();
+        System.out.println("\nContents of the List using an Iterator:\n");
+        while (i.hasNext()) {
+            String s = (String) i.next();
+            System.out.println(s);
+        }
+
+        // ListIterator to traverse in both directions
+        ListIterator<String> li = ll.listIterator();
+
+        // Move the iterator to the end of the list
+        while (li.hasNext()) {
+            li.next();
+        }
+
+        // Display elements in reverse order
+        System.out.println("\nContents of the List in reverse order using a ListIterator:");
+        while (li.hasPrevious()) {
+            System.out.println(li.previous());
+        }
+
+        // Add elements at specific positions
+        ll.add(2, "Pink");   // add at index 2 (3rd position)
+        ll.add(3, "Green");  // add at index 3 (4th position)
+
+        // Display modified list
+        System.out.println("\nList after inserting elements between Blue and Yellow:");
+        System.out.println(ll);
+    }
+}
+
+
+17) loginpage
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class LoginPageGUI extends JFrame implements ActionListener {
+    JLabel userLabel, passLabel;
+    JTextField userText;
+    JPasswordField passText;
+    JButton loginBtn, cancelBtn;
+
+    public LoginPageGUI() {
+        setTitle("Login Page");
+        setSize(350, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null); // Center the window
+
+        // Layout
+        setLayout(new GridLayout(3, 2, 10, 10));
+
+        // Components
+        userLabel = new JLabel("Username:");
+        passLabel = new JLabel("Password:");
+        userText = new JTextField();
+        passText = new JPasswordField();
+        loginBtn = new JButton("Login");
+        cancelBtn = new JButton("Cancel");
+
+        // Add components to layout
+        add(userLabel);
+        add(userText);
+        add(passLabel);
+        add(passText);
+        add(loginBtn);
+        add(cancelBtn);
+
+        // Add ActionListeners
+        loginBtn.addActionListener(this);
+        cancelBtn.addActionListener(this);
+
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == loginBtn) {
+            String user = userText.getText();
+            String pass = new String(passText.getPassword());
+
+            if (user.equals("admin") && pass.equals("1234")) {
+                JOptionPane.showMessageDialog(this, "Login Successful!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid Username or Password!");
+            }
+        } else if (e.getSource() == cancelBtn) {
+            userText.setText("");
+            passText.setText("");
+        }
+    }
+
+    public static void main(String[] args) {
+        new LoginPageGUI();
+    }
+}
+
+17) maingame
+
+import Games.*;   // Import package
+
+public class MainGame {
+    public static void main(String[] args) {
+        // Using default constructors
+        Indoor i1 = new Indoor();
+        Outdoor o1 = new Outdoor();
+
+        // Using parameterized constructors
+        String[] badmintonPlayers = {"Neeraj", "Prakash", "Kiran"};
+        Indoor i2 = new Indoor("Badminton", badmintonPlayers);
+
+        String[] footballPlayers = {"Messi", "Ronaldo", "Neymar"};
+        Outdoor o2 = new Outdoor("Football", footballPlayers);
+
+        // Display details
+        i1.display();
+        System.out.println();
+        o1.display();
+        System.out.println();
+        i2.display();
+        System.out.println();
+        o2.display();
+    }
+}
+
+
+
+18) multilevelinheritacne
+
+
+class Employee {
+    String name;
+    double salary;
+
+   
+    Employee(String name, double salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
  
-        merge_sort(L) 
-        merge_sort(R) 
- 
-        i = j = k = 0 
-        while i < len(L) and j < len(R): 
-            if L[i] < R[j]: 
-                arr[k] = L[i] 
-                i += 1 
-            else: 
-                arr[k] = R[j] 
-                j += 1 
-            k += 1 
- 
-        while i < len(L): 
-            arr[k] = L[i] 
-            i += 1 
-            k += 1 
- 
-        while j < len(R): 
-            arr[k] = R[j] 
-            j += 1 
-            k += 1 
- 
-# Example usage 
-arr = [38, 27, 43, 3, 9, 82, 10] 
-merge_sort(arr) 
-print("Sorted array using Merge Sort:", arr) 
- 
-
-3) Write a Python program to implement sorting Quick Sort algorithms. 
- 
-# Quick Sort 
-def quick_sort(arr): 
-    if len(arr) <= 1: 
-        return arr 
-    pivot = arr[len(arr) // 2] 
-    left = [x for x in arr if x < pivot] 
-    middle = [x for x in arr if x == pivot] 
-    right = [x for x in arr if x > pivot] 
-    return quick_sort(left) + middle + quick_sort(right) 
- 
-# Example usage 
-arr = [10, 7, 8, 9, 1, 5] 
-sorted_arr = quick_sort(arr) 
-print("Sorted array using Quick Sort:", sorted_arr) 
- 
-4) Write a Python program to implement sorting Insertion Sort algorithms. 
- 
-# Insertion Sort 
-def insertion_sort(arr): 
-    for i in range(1, len(arr)): 
-        key = arr[i] 
-        j = i - 1 
-        while j >= 0 and arr[j] > key: 
-            arr[j+1] = arr[j] 
-            j -= 1 
-arr[j+1] = key 
-# Example usage 
-arr = [12, 11, 13, 5, 6] 
-insertion_sort(arr) 
-print("Sorted array using Insertion Sort:", arr) 
-
-
-Assignment 3 
-
-Singly Linked List -1. Dynamic implementation of Singly Linked List to perform following 
-operations: Create, Insert, Delete, Display, Search, Reverse 2. Create a list in the sorted order. 
-
-1) Python program for static implementation of Singly Linked List to perform Insert and Display 
-operations. 
-# Static Singly Linked List using Python list 
-class StaticSinglyLinkedList: 
-def __init__(self): 
-self.list = [] 
-# Insert element at the end 
-def insert(self, data): 
-self.list.append(data) 
-# Display elements 
-def display(self): 
-for item in self.list: 
-print(item, end=" -> ") 
-print("None") 
-# Example usage 
-sll = StaticSinglyLinkedList() 
-sll.insert(10) 
-sll.insert(20) 
-sll.insert(30) 
-print("Singly Linked List:") 
-sll.display() 
-
-
-2) Python program to create a linked list in the sorted order. 
-# Node class 
-class Node: 
-def __init__(self, data): 
-self.data = data 
-self.next = None 
-# Singly Linked List 
-class SortedLinkedList: 
-def __init__(self): 
-self.head = None 
-# Insert in sorted order 
-def insert_sorted(self, data): 
-new_node = Node(data) 
-if self.head is None or self.head.data >= data: 
-new_node.next = self.head 
-self.head = new_node 
-return 
-current = self.head 
-while current.next and current.next.data < data: 
-current = current.next 
-new_node.next = current.next 
-current.next = new_node 
-# Display elements 
-def display(self): 
-temp = self.head 
-while temp: 
-print(temp.data, end=" -> ") 
-temp = temp.next 
-print("None") 
-# Example usage 
-sll = SortedLinkedList() 
-sll.insert_sorted(30) 
-sll.insert_sorted(10) 
-sll.insert_sorted(20) 
-print("Sorted Singly Linked List:") 
-sll.display() 
-
-
-3) Python program to create singly linked list and search the given node in the Linked list. 
-# Node class 
-class Node: 
-def __init__(self, data): 
-self.data = data 
-self.next = None 
-# Singly Linked List 
-class SinglyLinkedList: 
-def __init__(self): 
-self.head = None 
-# Insert at end 
-def insert(self, data): 
-new_node = Node(data) 
-if self.head is None: 
-self.head = new_node 
-return 
-current = self.head 
-while current.next: 
-current = current.next 
-current.next = new_node 
-# Search element 
-def search(self, key): 
-current = self.head 
-index = 0 
-while current: 
-if current.data == key: 
-return index 
-current = current.next 
-index += 1 
-return -1 
-# Display elements 
-def display(self): 
-temp = self.head 
-while temp: 
-print(temp.data, end=" -> ") 
-temp = temp.next 
-print("None") 
-# Example usage 
-sll = SinglyLinkedList() 
-sll.insert(10) 
-sll.insert(20) 
-sll.insert(30) 
-print("Singly Linked List:") 
-sll.display() 
-key = 20 
-index = sll.search(key) 
-if index != -1: 
-print(f"{key} found at position {index}") 
-else: 
-print(f"{key} not found in the list") 
-
-
-4) Python program to create singly linked list and reverse the Linked list. 
-# Node class 
-class Node: 
-def __init__(self, data): 
-self.data = data 
-self.next = None 
-# Singly Linked List 
-class SinglyLinkedList: 
-def __init__(self): 
-self.head = None 
-# Insert at end 
-def insert(self, data): 
-new_node = Node(data) 
-if self.head is None: 
-self.head = new_node 
-return 
-current = self.head 
-while current.next: 
-current = current.next 
-current.next = new_node 
-# Reverse the linked list 
-def reverse(self): 
-prev = None 
-current = self.head 
-while current: 
-next_node = current.next 
-current.next = prev 
-prev = current 
-current = next_node 
-self.head = prev 
-# Display elements 
-def display(self): 
-temp = self.head 
-while temp: 
-print(temp.data, end=" -> ") 
-temp = temp.next 
-print("None") 
-# Example usage 
-sll = SinglyLinkedList() 
-sll.insert(10) 
-sll.insert(20) 
-sll.insert(30) 
-print("Original Linked List:") 
-sll.display() 
-sll.reverse() 
-print("Reversed Linked List:") 
-sll.display() 
-
-
-Assignment 4 
-
-Doubly Linked List - Dynamic implementation of Doubly circular Linked List to perform following 
-operations: Create, Insert, Delete, Display, Search  
-
-
-1) Write a python program for implementation of Doubly Linked List to perform Insert and 
-Display operations. 
-# Node class for Doubly Linked List 
-class Node: 
-def __init__(self, data): 
-self.data = data 
-self.prev = None 
-self.next = None 
-# Doubly Linked List class 
-class DoublyLinkedList: 
-def __init__(self): 
-self.head = None 
-# Insert at end 
-def insert(self, data): 
-new_node = Node(data) 
-if self.head is None: 
-self.head = new_node 
-return 
-current = self.head 
-while current.next: 
-current = current.next 
-current.next = new_node 
-new_node.prev = current 
-# Display elements forward 
-def display(self): 
-current = self.head 
-while current: 
-print(current.data, end=" <-> ") 
-current = current.next 
-print("None") 
-# Example usage 
-dll = DoublyLinkedList() 
-dll.insert(10) 
-dll.insert(20) 
-dll.insert(30) 
-print("Doubly Linked List:") 
-dll.display() 
-
-2) Python program to create doubly linked list and search the given node in the Linked list. 
-# Node class 
-class Node: 
-def __init__(self, data): 
-self.data = data 
-self.prev = None 
-self.next = None 
-# Doubly Linked List 
-class DoublyLinkedList: 
-def __init__(self): 
-self.head = None 
-# Insert at end 
-def insert(self, data): 
-new_node = Node(data) 
-if self.head is None: 
-self.head = new_node 
-return 
-current = self.head 
-while current.next: 
-current = current.next 
-current.next = new_node 
-new_node.prev = current 
-# Search for a node 
-def search(self, key): 
-current = self.head 
-position = 0 
-while current: 
-if current.data == key: 
-return position 
-current = current.next 
-position += 1 
-return -1 
-# Display elements 
-def display(self): 
-current = self.head 
-while current: 
-print(current.data, end=" <-> ") 
-current = current.next 
-print("None") 
-# Example usage 
-dll = DoublyLinkedList() 
-dll.insert(10) 
-dll.insert(20) 
-dll.insert(30) 
-print("Doubly Linked List:") 
-dll.display() 
-key = 20 
-pos = dll.search(key) 
-if pos != -1: 
-print(f"{key} found at position {pos}") 
-else: 
-print(f"{key} not found in the list") 
-
-
-Assignment 5 
-Linked List Applications - Merge two sorted lists.  
-
-
-1) Python program to merge two sorted linked lists. 
-# Node class 
-class Node: 
-def __init__(self, data): 
-self.data = data 
-self.next = None 
-# Linked List class 
-class LinkedList: 
-def __init__(self): 
-self.head = None 
-# Insert at end 
-def insert(self, data): 
-new_node = Node(data) 
-if not self.head: 
-self.head = new_node 
-return 
-current = self.head 
-while current.next: 
-current = current.next 
-current.next = new_node 
-# Display linked list 
-def display(self): 
-current = self.head 
-while current: 
-print(current.data, end=" -> ") 
-current = current.next 
-print("None") 
-# Function to merge two sorted linked lists 
-def merge_sorted_lists(l1, l2): 
-dummy = Node(0) 
-tail = dummy 
-while l1 and l2: 
-if l1.data <= l2.data: 
-tail.next = l1 
-l1 = l1.next 
-else: 
-tail.next = l2 
-l2 = l2.next 
-tail = tail.next 
-if l1: 
-tail.next = l1 
-if l2: 
-tail.next = l2 
-return dummy.next 
-# Example usage 
-list1 = LinkedList() 
-list1.insert(1) 
-list1.insert(3) 
-list1.insert(5) 
-list2 = LinkedList() 
-list2.insert(2) 
-list2.insert(4) 
-list2.insert(6) 
-print("First Sorted List:") 
-list1.display() 
-print("Second Sorted List:") 
-list2.display() 
-merged_list = LinkedList() 
-merged_list.head = merge_sorted_lists(list1.head, list2.head) 
-print("Merged Sorted Linked List:") 
-merged_list.display() 
-
-
-Assignment 6 
-Stack - Static and Dynamic implementation of Stack to perform following operations: Init, Push, 
-Pop, Isempty, Isfull 
-
-
-1) Write a python code for static implementation of stack. 
-# Static Stack using Python list with fixed size 
-class StaticStack: 
-def __init__(self, size): 
-self.stack = [None] * size 
-self.top = -1 
-self.size = size 
-# Push element 
-def push(self, data): 
-if self.top >= self.size - 1: 
-print("Stack Overflow") 
-return 
-self.top += 1 
-self.stack[self.top] = data 
-# Pop element 
-def pop(self): 
-if self.top == -1: 
-print("Stack Underflow") 
-return None 
-data = self.stack[self.top] 
-self.top -= 1 
-return data 
-# Check if empty 
-def is_empty(self): 
-return self.top == -1 
-# Check if full 
-def is_full(self): 
-return self.top == self.size - 1 
-# Display stack 
-def display(self): 
-if self.top == -1: 
-print("Stack is empty") 
-else: 
-for i in range(self.top, -1, -1): 
-print(self.stack[i], end=" ") 
-print() 
-# Example usage 
-stack = StaticStack(5) 
-stack.push(10) 
-stack.push(20) 
-stack.push(30) 
-print("Static Stack:") 
-stack.display() 
-print("Popped element:", stack.pop()) 
-stack.display() 
-
-
-2) Write a python code for dynamic implementation of Stack to perform following operations: 
-Init, Push, Pop, Isempty, Isfull. 
-# Dynamic Stack using Python list (no fixed size) 
-class DynamicStack: 
-def __init__(self): 
-self.stack = [] 
-# Push element 
-def push(self, data): 
-self.stack.append(data) 
-# Pop element 
-def pop(self): 
-if self.is_empty(): 
-print("Stack Underflow") 
-return None 
-return self.stack.pop() 
-# Check if empty 
-def is_empty(self): 
-return len(self.stack) == 0 
-# Check if full (not applicable for dynamic stack) 
-def is_full(self): 
-return False 
-# Display stack 
-def display(self): 
-if self.is_empty(): 
-print("Stack is empty") 
-else: 
-for item in reversed(self.stack): 
-print(item, end=" ") 
-print() 
-# Example usage 
-stack = DynamicStack() 
-stack.push(10) 
-stack.push(20) 
-stack.push(30) 
-print("Dynamic Stack:") 
-stack.display() 
-print("Popped element:", stack.pop()) 
-stack.display() 
-
-
-3) Show the static implementation of stack using python. 
-# Static Stack with fixed size 
-stack = [None] * 5  # Size 5 
-top = -1 
-# Push function 
-def push(data): 
-global top 
-if top >= len(stack) - 1: 
-print("Stack Overflow") 
-else: 
-top += 1 
-stack[top] = data 
-# Pop function 
-def pop(): 
-global top 
-if top == -1: 
-print("Stack Underflow") 
-return None 
-data = stack[top] 
-top -= 1 
-return data 
-# Display function 
-def display(): 
-if top == -1: 
-print("Stack is empty") 
-else: 
-for i in range(top, -1, -1): 
-print(stack[i], end=" ") 
-print() 
-# Example usage 
-push(10) 
-push(20) 
-push(30) 
-print("Static Stack:") 
-display() 
-print("Popped element:", pop()) 
-display() 
-
-
-Assignment 7 
-Applications of Stack - 1. Implementation of an algorithm that reverses string of characters using 
-stack and checks whether a string is a palindrome. 2. Infix to Postfix conversion. Evaluation of postfix 
-expression. 
-
-
-1) Write a Python program for Evaluation of postfix expression. 
-# Evaluate Postfix Expression 
-def evaluate_postfix(expression): 
-stack = [] 
-for char in expression: 
-if char.isdigit(): 
-stack.append(int(char)) 
-else: 
-b = stack.pop() 
-a = stack.pop() 
-if char == '+': 
-stack.append(a + b) 
-elif char == '-': 
-stack.append(a - b) 
-elif char == '*': 
-stack.append(a * b) 
-elif char == '/': 
-stack.append(a / b) 
-return stack.pop() 
-# Example usage 
-expr = "231*+9-" 
-result = evaluate_postfix(expr) 
-print("Result of postfix expression:", result) 
-
-
-2) Write a Python program to convert infix to postfix conversion using stack. 
-# Infix to Postfix Conversion 
-def precedence(op): 
-if op in ('+', '-'): 
-return 1 
-if op in ('*', '/'): 
-return 2 
-return 0 
-def infix_to_postfix(expression): 
-stack = [] 
-output = '' 
-for char in expression: 
-if char.isalnum():  # Operand 
-output += char 
-elif char == '(': 
-stack.append(char) 
-elif char == ')': 
-while stack and stack[-1] != '(': 
-output += stack.pop() 
-stack.pop() 
-else:  # Operator 
-while stack and precedence(stack[-1]) >= precedence(char): 
-output += stack.pop() 
-stack.append(char) 
-while stack: 
-output += stack.pop() 
-return output 
-# Example usage 
-infix_expr = "A*(B+C)/D" 
-postfix_expr = infix_to_postfix(infix_expr) 
-print("Postfix expression:", postfix_expr) 
-
-
-3) Write a python code for Implementation an of algorithm that reverses string of characters 
-using stack and checks whether string a is a palindrome or not.  
-# Reverse string using stack and check palindrome 
-def reverse_string(s): 
-stack = list(s) 
-reversed_s = '' 
-while stack: 
-reversed_s += stack.pop() 
-return reversed_s 
-def is_palindrome(s): 
-return s == reverse_string(s) 
-# Example usage 
-string = "radar" 
-reversed_str = reverse_string(string) 
-print("Reversed string:", reversed_str) 
-if is_palindrome(string): 
-print(f"{string} is a palindrome") 
-else: 
-print(f"{string} is not a palindrome") 
-
-
-Assignment 8 
-
-Linear Queue - Static and Dynamic implementation of linear Queue to perform following 
-operations: Init, enqueue, dequeue, IsEmpty, IsFull.  
-
-
-1) Write a python code for dynamic implementation linear of Queue to perform following 
-operations: init, enqueue, dequeue, isEmpty, isFul. 
-# Dynamic Linear Queue using Python list 
-class DynamicQueue: 
-def __init__(self): 
-self.queue = [] 
-# Enqueue element 
-def enqueue(self, data): 
-self.queue.append(data) 
-# Dequeue element 
-def dequeue(self): 
-if self.is_empty(): 
-print("Queue Underflow") 
-return None 
-return self.queue.pop(0) 
-# Check if empty 
-def is_empty(self): 
-return len(self.queue) == 0 
-# Check if full (not applicable for dynamic queue) 
-def is_full(self): 
-return False 
-# Display queue 
-def display(self): 
-if self.is_empty(): 
-print("Queue is empty") 
-else: 
-print(" <- ".join(map(str, self.queue))) 
-# Example usage 
-dq = DynamicQueue() 
-dq.enqueue(10) 
-dq.enqueue(20) 
-dq.enqueue(30) 
-print("Dynamic Queue:") 
-dq.display() 
-print("Dequeued element:", dq.dequeue()) 
-dq.display() 
-
-
-2) Show the static implementation queue of using Python. 
-# Static Queue with fixed size 
-queue = [None] * 5 
-front = -1 
-rear = -1 
-size = len(queue) 
-# Enqueue function 
-def enqueue(data): 
-global rear, front 
-if rear == size - 1: 
-print("Queue Overflow") 
-else: 
-if front == -1: 
-front = 0 
-rear += 1 
-queue[rear] = data 
-# Dequeue function 
-def dequeue(): 
-global front, rear 
-if front == -1 or front > rear: 
-print("Queue Underflow") 
-return None 
-data = queue[front] 
-front += 1 
-if front > rear: 
-front = rear = -1 
-return data 
-# Display function 
-def display(): 
-if front == -1: 
-print("Queue is empty") 
-else: 
-for i in range(front, rear+1): 
-print(queue[i], end=" <- ") 
-print() 
-# Example usage 
-enqueue(10) 
-enqueue(20) 
-enqueue(30) 
-print("Static Queue:") 
-display() 
-print("Dequeued element:", dequeue()) 
-display() 
-
-
-3) Write the code for static queue implementation in Python. 
-# Static Queue Class 
-class StaticQueue: 
-def __init__(self, size): 
-self.queue = [None] * size 
-self.front = -1 
-self.rear = -1 
-self.size = size 
-# Enqueue 
-def enqueue(self, data): 
-if self.rear == self.size - 1: 
-print("Queue Overflow") 
-else: 
-if self.front == -1: 
-self.front = 0 
-self.rear += 1 
-self.queue[self.rear] = data 
-# Dequeue 
-def dequeue(self): 
-if self.front == -1 or self.front > self.rear: 
-print("Queue Underflow") 
-return None 
-data = self.queue[self.front] 
-self.front += 1 
-if self.front > self.rear: 
-self.front = self.rear = -1 
-return data 
-# Check empty 
-def is_empty(self): 
-return self.front == -1 
-# Check full 
-def is_full(self): 
-return self.rear == self.size - 1 
-# Display 
-def display(self): 
-if self.is_empty(): 
-print("Queue is empty") 
-else: 
-for i in range(self.front, self.rear+1): 
-print(self.queue[i], end=" <- ") 
-print() 
-# Example usage 
-sq = StaticQueue(5) 
-sq.enqueue(10) 
-sq.enqueue(20) 
-sq.enqueue(30) 
-print("Static Queue:") 
-sq.display() 
-print("Dequeued element:", sq.dequeue()) 
-sq.display() 
-
-
-Assignment 9 
-Circular and Priority Queue 1. Implementation of circular queue 2. Implementation of priority 
-queue 
-
-
-1) Write a python code for simple implementation of priority queue. 
-# Priority Queue using list 
-class PriorityQueue: 
-def __init__(self): 
-self.queue = [] 
-# Enqueue element with priority 
-def enqueue(self, data, priority): 
-self.queue.append((data, priority)) 
-# Sort based on priority (lower number = higher priority) 
-self.queue.sort(key=lambda x: x[1]) 
-# Dequeue element 
-def dequeue(self): 
-if self.is_empty(): 
-print("Queue Underflow") 
-return None 
-return self.queue.pop(0)[0] 
-# Check if empty 
-def is_empty(self): 
-return len(self.queue) == 0 
-# Display queue 
-def display(self): 
-if self.is_empty(): 
-print("Priority Queue is empty") 
-else: 
-print("Queue elements with priority:") 
-for item, pr in self.queue: 
-print(f"{item} (Priority: {pr})", end=" <- ") 
-print() 
-# Example usage 
-pq = PriorityQueue() 
-pq.enqueue("Task1", 2) 
-pq.enqueue("Task2", 1) 
-pq.enqueue("Task3", 3) 
-print("Priority Queue:") 
-pq.display() 
-print("Dequeued element:", pq.dequeue()) 
-pq.display() 
-
-
-2) Write a python code for implementation of circular queue. 
-# Circular Queue class 
-class CircularQueue: 
-def __init__(self, size): 
-self.queue = [None] * size 
-self.size = size 
-self.front = -1 
-self.rear = -1 
-# Check if full 
-def is_full(self): 
-return (self.rear + 1) % self.size == self.front 
-# Check if empty 
-def is_empty(self): 
-return self.front == -1 
-# Enqueue element 
-def enqueue(self, data): 
-if self.is_full(): 
-print("Queue Overflow") 
-return 
-if self.is_empty(): 
-self.front = 0 
-self.rear = (self.rear + 1) % self.size 
-self.queue[self.rear] = data 
-# Dequeue element 
-def dequeue(self): 
-if self.is_empty(): 
-print("Queue Underflow") 
-return None 
-data = self.queue[self.front] 
-if self.front == self.rear: 
-# Queue has only one element 
-self.front = self.rear = -1 
-else: 
-self.front = (self.front + 1) % self.size 
-return data 
-# Display elements 
-def display(self): 
-if self.is_empty(): 
-print("Circular Queue is empty") 
-return 
-i = self.front 
-while True: 
-print(self.queue[i], end=" <- ") 
-if i == self.rear: 
-break 
-i = (i + 1) % self.size 
-print() 
-# Example usage 
-cq = CircularQueue(5) 
-cq.enqueue(10) 
-cq.enqueue(20) 
-cq.enqueue(30) 
-cq.enqueue(40) 
-print("Circular Queue:") 
-cq.display() 
-print("Dequeued element:", cq.dequeue()) 
-cq.display() 
-
-
-Assignment 10 
-Tree Travarsals, operations etc  
-Insert, 
-
-
-1) Write a python program to perform following operations on BST. 
-i)  
-ii)  
-Display 
- 
-class Node: 
-    def __init__(self, data): 
-        self.data = data 
-        self.left = None 
-        self.right = None 
- 
-class BST: 
-    def __init__(self): 
-        self.root = None 
- 
-    # Insert 
-    def insert(self, data): 
-        if self.root is None: 
-            self.root = Node(data) 
-        else: 
-            self._insert(self.root, data) 
- 
-    def _insert(self, node, data): 
-        if data < node.data: 
-            if node.left: 
-                self._insert(node.left, data) 
-            else: 
-                node.left = Node(data) 
-        else: 
-            if node.right: 
-                self._insert(node.right, data) 
-            else: 
-                node.right = Node(data) 
- 
-    # Display Inorder 
-    def inorder(self, node): 
-        if node: 
-            self.inorder(node.left) 
-            print(node.data, end=" ") 
-            self.inorder(node.right) 
- 
-# Example usage 
-bst = BST() 
-bst.insert(50) 
-bst.insert(30) 
- 
-
-2) Write a python program to perform following operations on BST.  
-Create Search Display (Preorder / Inorder / Postorder) 
- 
-class Node: 
-    def __init__(self, data): 
-        self.data = data 
-        self.left = None 
-        self.right = None 
- 
-class BST: 
-    def __init__(self): 
-        self.root = None 
- 
-    # Insert 
-    def insert(self, data): 
-        if not self.root: 
-            self.root = Node(data) 
-        else: 
-            self._insert(self.root, data) 
- 
-    def _insert(self, node, data): 
-        if data < node.data: 
-            if node.left: 
-                self._insert(node.left, data) 
-            else: 
-                node.left = Node(data) 
-        else: 
-            if node.right: 
-                self._insert(node.right, data) 
-            else: 
-                node.right = Node(data) 
- 
-    # Search 
-    def search(self, node, key): 
-        if node is None: 
-            return False 
-        if node.data == key: 
-            return True 
-        elif key < node.data: 
-            return self.search(node.left, key) 
-        else: 
-            return self.search(node.right, key) 
- 
-    # Traversals 
-    def preorder(self, node): 
-        if node: 
-            print(node.data, end=" ") 
-            self.preorder(node.left) 
-            self.preorder(node.right) 
- 
-    def inorder(self, node): 
-        if node: 
-            self.inorder(node.left) 
-            print(node.data, end=" ") 
-            self.inorder(node.right) 
- 
-    def postorder(self, node): 
-        if node: 
-            self.postorder(node.left) 
-            self.postorder(node.right) 
-            print(node.data, end=" ") 
- 
-# Example usage 
-bst = BST() 
-for val in [50, 30, 70, 20, 40, 60, 80]: 
-    bst.insert(val) 
- 
-print("Search 40:", bst.search(bst.root, 40)) 
-print("Preorder:") 
-bst.preorder(bst.root) 
-print("\nInorder:") 
-bst.inorder(bst.root) 
-print("\nPostorder:") 
-bst.postorder(bst.root) 
-print() 
-Create  
-
-
-3) Write a python program to perform following operations on Binary Search Tree  
-i. 
-ii. 
-iii. 
-Count non-leaf nodes 
-Traversal (Prorder / Inorder / Postorder) 
-def count_non_leaf(node): 
-if node is None or (node.left is None and node.right is None): 
-return 0 
-return 1 + count_non_leaf(node.left) + count_non_leaf(node.right) 
-# Using BST from previous example 
-print("Non-leaf nodes count:", count_non_leaf(bst.root)) 
-
-Create 
-
-
-4) Write a python program to perform following operations on Binary Search Tree  
-i. 
-ii. 
-iii. 
-Count total nodes  
-Traversal (Prorder / Inorder / Postorder) 
-def count_total_nodes(node): 
-if node is None: 
-return 0 
-return 1 + count_total_nodes(node.left) + count_total_nodes(node.right) 
-# Using BST from previous example 
-print("Total nodes count:", count_total_nodes(bst.root)) 
-Create  
-
-
-5) Write a python program to perform following operations on BST.  
-i) 
-ii) 
-Display 
-Insert 
-
-
-6) Write a python program to perform following operations on BST. 
-i. 
-ii. 
-iii. 
-Delete   
-Display (Preorder / Inorder/ Postorder) 
-# Delete node function 
-def delete_node(root, key): 
-if root is None: 
-return root 
-if key < root.data: 
-root.left = delete_node(root.left, key) 
-elif key > root.data: 
-root.right = delete_node(root.right, key) 
-else: 
-# Node with only one child or no child 
-if root.left is None: 
-return root.right 
-elif root.right is None: 
-return root.left 
-# Node with two children: get inorder successor 
-temp = root.right 
-while temp.left: 
-temp = temp.left 
-root.data = temp.data 
-root.right = delete_node(root.right, temp.data) 
-return root 
-# Example usage 
-bst.root = delete_node(bst.root, 20) 
-print("BST Inorder after deleting 20:") 
-bst.inorder(bst.root) 
-print() 
-
-
-Assignment 11  
-Calculate indegree and out degree of a given graph 
-
-
-1) Write a program to calculate indegree of a graph using adjacency matrix. 
-def indegree(adj_matrix, vertex): 
-indeg = 0 
-n = len(adj_matrix) 
-for i in range(n): 
-indeg += adj_matrix[i][vertex] 
-return indeg 
-# Example usage 
-graph = [ 
-[0, 1, 0], 
-[0, 0, 1], 
-[1, 0, 0] 
-] 
-vertex = 0 
-print(f"Indegree of vertex {vertex} is:", indegree(graph, vertex)) 
-
-
-2) Write a Python program to calculate outdegree of a graph using adjacency matrix. 
-def outdegree(adj_matrix, vertex): 
-return sum(adj_matrix[vertex]) 
-# Example usage 
-vertex = 0 
-print(f"Outdegree of vertex {vertex} is:", outdegree(graph, vertex)) 
-
-
-3) Write a program to calculate indegree of a graph. 
-# Function to calculate indegrees of all vertices 
-def indegrees_all(adj_matrix): 
-n = len(adj_matrix) 
-indeg_list = [] 
-for v in range(n): 
-indeg = sum(adj_matrix[i][v] for i in range(n)) 
-indeg_list.append(indeg) 
-return indeg_list 
-# Example usage 
-indeg_list = indegrees_all(graph) 
-for v, deg in enumerate(indeg_list): 
-print(f"Indegree of vertex {v} is {deg}") 
-
-
-4) Write a program to calculate outdegree of a graph 
-# Function to calculate outdegrees of all vertices 
-def outdegrees_all(adj_matrix): 
-n = len(adj_matrix) 
-outdeg_list = [] 
-for v in range(n): 
-outdeg = sum(adj_matrix[v]) 
-outdeg_list.append(outdeg) 
-return outdeg_list 
-# Example usage 
-outdeg_list = outdegrees_all(graph) 
-for v, deg in enumerate(outdeg_list): 
-print(f"Outdegree of vertex {v} is {deg}") 
-
-
-PYTHON EXTRA PRACTICE QUESTIONS   
-1) Write a Python class named Circle constructed by a radius and two methods which will 
-compute the area and the perimeter of a circle 
-import math 
-class Circle: 
-def __init__(self, radius): 
-self.radius = radius 
-def area(self): 
-return math.pi * self.radius ** 2 
-def perimeter(self): 
-return 2 * math.pi * self.radius 
-# Example usage 
-c = Circle(5) 
-print("Area of Circle:", round(c.area(), 2)) 
-print("Perimeter of Circle:", round(c.perimeter(), 2)) 
-
-
-2) Write a Python program to create a class representing a shopping cart. Include methods for 
-adding and removing items, and calculating the total price. 
-class ShoppingCart: 
-def __init__(self): 
-self.items = {} 
-def add_item(self, item, price): 
-self.items[item] = price 
-def remove_item(self, item): 
-if item in self.items: 
-del self.items[item] 
-def total_price(self): 
-return sum(self.items.values()) 
-# Example usage 
-cart = ShoppingCart() 
-cart.add_item("Apple", 50) 
-cart.add_item("Banana", 20) 
-cart.add_item("Orange", 30) 
-print("Total Price:", cart.total_price()) 
-cart.remove_item("Banana") 
-print("Total Price after removing Banana:", cart.total_price()) 
-
-
-3) Write a Python class named Rectangle constructed by length and width, and two methods 
-which will compute the area and the perimeter of the rectangle. 
-class Rectangle: 
-def __init__(self, length, width): 
-self.length = length 
-self.width = width 
-def area(self): 
-return self.length * self.width 
-def perimeter(self): 
-return 2 * (self.length + self.width) 
-# Example usage 
-r = Rectangle(5, 3) 
-print("Area of Rectangle:", r.area()) 
-print("Perimeter of Rectangle:", r.perimeter()) 
-
-
-4) Write a Python script to sort (ascending and descending) a dictionary by value. 
-data = {'Apple': 50, 'Banana': 20, 'Orange': 30} 
-# Sort ascending 
-asc_sorted = dict(sorted(data.items(), key=lambda item: item[1])) 
-print("Ascending:", asc_sorted) 
-# Sort descending 
-desc_sorted = dict(sorted(data.items(), key=lambda item: item[1], reverse=True)) 
-print("Descending:", desc_sorted) 
-
-
-5) Write a program to generate Fibonacci numbers using function. 
-data = {'Apple': 50, 'Banana': 20, 'Orange': 30} 
-# Sort ascending 
-asc_sorted = dict(sorted(data.items(), key=lambda item: item[1])) 
-print("Ascending:", asc_sorted) 
-# Sort descending 
-desc_sorted = dict(sorted(data.items(), key=lambda item: item[1], reverse=True)) 
-print("Descending:", desc_sorted) 
+    void displayEmployeeDetails() {
+        System.out.println("Employee Name: " + name);
+        System.out.println("Salary: " + salary);
+    }
+}
+
+class Developer extends Employee {
+    String projectName;
+
+    
+    Developer(String name, double salary, String projectName) {
+        super(name, salary); // Call to Employee constructor
+        this.projectName = projectName;
+    }
+
+    
+    void displayDeveloperDetails() {
+        displayEmployeeDetails(); // Call method from Employee
+        System.out.println("Project Name: " + projectName);
+    }
+}
+
+class Programmer extends Developer {
+    String progLanguage;
+
+    
+    Programmer(String name, double salary, String projectName, String progLanguage) {
+        super(name, salary, projectName); // Call to Developer constructor
+        this.progLanguage = progLanguage;
+    }
+
+  
+    void displayProgrammerDetails() {
+        displayDeveloperDetails(); 
+        System.out.println("Programming Language: " + progLanguage);
+    }
+}
+
+public class MultilevelInheritanceDemo {
+    public static void main(String[] args) {
+        
+        Programmer pr = new Programmer("Alice", 75000, "Banking App"," Java");
+
+        System.out.println("Programmer Details:");
+        pr.displayProgrammerDetails();
+    }
+}
+
+
+19) multiplication
+
+import java.io.*;
+
+public class MultiplicationTable {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Enter the number up to which table should be printed: ");
+        int num = Integer.parseInt(br.readLine());
+
+        System.out.println("***** MULTIPLICATION TABLE *****");
+
+        for (int i = 1; i <= num; i++) {
+            for (int j = 1; j <= 10; j++) {
+                System.out.print(" " + (i * j) + " ");
+            }
+            System.out.println(); 
+        }
+    }
+}
+
+
+20) mydate
+
+import java.util.Scanner;
+
+public class MyDate {
+    int dd, mm, yy;
+
+    // Default constructor
+    MyDate() {
+        this.dd = 1;
+        this.mm = 1;
+        this.yy = 2000;
+    }
+
+    // Parameterized constructor
+    MyDate(int dd, int mm, int yy) {
+        this.dd = dd;
+        this.mm = mm;
+        this.yy = yy;
+    }
+
+    // Accept input from user
+    void accept() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter day: ");
+        this.dd = sc.nextInt();
+        System.out.print("Enter month: ");
+        this.mm = sc.nextInt();
+        System.out.print("Enter year: ");
+        this.yy = sc.nextInt();
+    }
+
+    // Method to display date
+    void display() {
+        System.out.println(this.dd + "-" + this.mm + "-" + this.yy);
+    }
+
+    // Optional main for testing MyDate separately
+    public static void main(String[] args) {
+        MyDate date1 = new MyDate();
+        System.out.print("Default Date: ");
+        date1.display();
+
+        MyDate date2 = new MyDate(4, 8, 2025);
+        System.out.print("Parameterized Date: ");
+        date2.display();
+    }
+}
+
+
+21)overloading
+
+import java.util.Scanner;
+
+public class OverloadingMethod {
+
+    // Area of Circle
+    double area(double radius) {
+        return 3.14 * radius * radius;
+    }
+
+    // Area of Rectangle
+    double area(double length, double breadth) {
+        return length * breadth;
+    }
+
+    // Area of Triangle
+    double area(double base, double height, boolean isTriangle) {
+        return 0.5 * base * height;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        OverloadingMethod ac = new OverloadingMethod();
+
+        System.out.print("Enter radius of circle: ");
+        double r = sc.nextDouble();
+        System.out.println("Area of Circle: " + ac.area(r));
+
+        System.out.print("\nEnter length and breadth of rectangle: ");
+        double l = sc.nextDouble();
+        double b = sc.nextDouble();
+        System.out.println("Area of Rectangle: " + ac.area(l, b));
+
+        System.out.print("\nEnter base and height of triangle: ");
+        double base = sc.nextDouble();
+        double h = sc.nextDouble();
+        System.out.println("Area of Triangle: " + ac.area(base, h, true));
+
+        sc.close();
+    }
+}
+
+22) primecheck
+
+import java.util.Scanner;
+
+// User defined exception
+class ZeroNumberException extends Exception {
+    public ZeroNumberException(String message) {
+        super(message);
+    }
+}
+
+public class PrimeCheck {
+    
+    // Function to check prime
+    static boolean isPrime(int n) {
+        if (n <= 1) return false;
+        for (int i = 2; i <= n / 2; i++) {
+            if (n % i == 0)
+                return false;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        try {
+            System.out.print("Enter a number: ");
+            int num = sc.nextInt();
+
+            if (num == 0) {
+                throw new ZeroNumberException("Number is 0, not allowed!");
+            }
+
+            if (isPrime(num)) {
+                System.out.println(num + " is Prime");
+            } else {
+                System.out.println(num + " is Not Prime");
+            }
+        } catch (ZeroNumberException e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
+        sc.close();
+    }
+}
+
+
+
+23) product
+
+import java.io.*;
+
+class ProductInfo {
+    int pid;
+    String n;
+    int m;
+
+    ProductInfo(int pid, String n, int m) {
+        this.pid = pid;
+        this.n = n;
+        this.m = m;
+    }
+
+    public void display() {
+        System.out.print("Product Id = " + pid + "  ");
+        System.out.print("Product Name = " + n + "  ");
+        System.out.println("Product Price = " + m);
+    }
+}
+
+public class Product {
+
+    public static void main(String args[]) {
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+            ProductInfo[] obj = new ProductInfo[5];
+
+            int pro_Id;
+            String pro_name;
+            int pro_pr;
+
+            for (int i = 0; i < 5; i++) {
+                System.out.println("Enter Product ID");
+                pro_Id = Integer.parseInt(br.readLine());
+
+                System.out.println("Enter Product Name");
+                pro_name = br.readLine();
+
+                System.out.println("Enter Product Price");
+                pro_pr = Integer.parseInt(br.readLine());
+
+                obj[i] = new ProductInfo(pro_Id, pro_name, pro_pr);
+            }
+
+            for (int i = 0; i < 5; i++) {
+                obj[i].display();
+            }
+
+        } catch (Exception e) {
+            System.out.println("Something went wrong.");
+        }
+    }
+}
+
+
+24) reverse
+
+public class ReverseNumber {
+    public static void main(String[] args) {
+        int num = Integer.parseInt(args[0]);
+        int reversed = 0;
+        while (num != 0) {
+            int digit = num % 10;
+            reversed = reversed * 10 + digit;
+            num /= 10;
+        }
+        System.out.println("Reversed Number: " + reversed);
+    }
+}
+
+25) seriespackage
+
+import Series.Prime;
+import Series.Square;
+import java.io.*;
+
+class SerisePackage {
+    public static void main(String a[]) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println("Enter no :");
+        int no = Integer.parseInt(br.readLine());
+
+        Prime p = new Prime();
+        System.out.println("Prime numbers up to given no are : ");
+        p.prime_range(no);
+
+        Square s = new Square();
+        System.out.println("Squares up to given no are : ");
+        s.square_range(no);
+    }
+}
+
+
+26) studentmain
+
+
+import java.io.*;
+class Student {
+ int rollNumber;
+ String name;
+ float per;
+ static int count=0;
+ public Student(){
+  rollNumber=0;
+  name=null;
+  per=0.0f;
+ }
+ public Student(int rollNumber,String name,float per){
+  this.rollNumber=rollNumber;
+  this.name=name;
+  this.per=per;
+  count++;
+ }
+ public static void count(){
+  System.out.println("Object "+(count)+" Created");
+ }
+ public void display(){
+  System.out.println("Roll Number: "+rollNumber);
+  System.out.println("Name: "+name);
+  System.out.println("Percentage: "+per);
+  System.out.println("------------------------------");
+ } 
+}
+public class StudentMain {
+ public static void main(String [] args)throws IOException{
+  Student s1=new Student(1,"Rusher",56.76f);
+  Student.count();
+  Student s2=new Student(2,"Naren",89.67f);
+  Student.count();
+  Student s3=new Student(3,"Adi",99.54f);
+  Student.count();
+  s1.display();
+  s2.display();
+  s3.display();  
+}
+
+}
+
+
+27) sumofarray
+
+public class SumOfArray {  
+    public static void main(String[] args) {  
+        int[] arr = new int[] {1, 2, 3, 4, 5};  
+        int sum = 0;  
+        int temp = 0;
+
+        System.out.println("Elements of original array: ");    
+        for (int i = 0; i < arr.length; i++) {     
+            System.out.print(arr[i] + " ");    
+        }    
+        System.out.println();
+
+        for (int i = 0; i < arr.length; i++) {  
+            sum = sum + arr[i];  
+        }  
+        System.out.println("Sum of all the elements of an array: " + sum); 
+
+        // Sort the array in ascending order    
+        for (int i = 0; i < arr.length; i++) {     
+            for (int j = i + 1; j < arr.length; j++) {     
+                if (arr[i] > arr[j]) {    
+                    temp = arr[i];    
+                    arr[i] = arr[j];    
+                    arr[j] = temp;    
+                }     
+            }     
+        }    
+
+        System.out.println();    
+        System.out.println("Elements of array sorted in ascending order: ");    
+        for (int i = 0; i < arr.length; i++) {     
+            System.out.print(arr[i] + " ");    
+        }       
+    }  
+}
+
+
+
+
+
