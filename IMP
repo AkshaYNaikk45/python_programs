@@ -1,3 +1,1566 @@
+FYMSc(CA) Sem II
+Web Technologies Practical
+
+SLIP 1 SOLUTION
+
+🔹 Q1: JavaScript – Check Driving Eligibility
+<!DOCTYPE html>
+<html>
+<body>
+<h3>Driving Eligibility</h3>
+
+Age: <input type="number" id="age">
+<button onclick="check()">Check</button>
+
+<p id="result"></p>
+
+<script>
+function check() {
+    var age = document.getElementById("age").value;
+    if(age >= 18)
+        document.getElementById("result").innerHTML = "Eligible for driving";
+    else
+        document.getElementById("result").innerHTML = "Not eligible";
+}
+</script>
+
+</body>
+</html>
+
+🔹 Q2: PHP – Count Vowels & Occurrences
+HTML Form
+<form method="post" action="vowel.php">
+Enter String: <input type="text" name="str">
+<input type="submit">
+</form>
+PHP Script (vowel.php)
+<?php
+$str = $_POST['str'];
+$str = strtolower($str);
+$vowels = ['a','e','i','o','u'];
+$count = 0;
+foreach($vowels as $v){
+    $c = substr_count($str, $v);
+    echo "Count of $v = $c <br>";
+    $count += $c;
+}
+
+echo "Total Vowels = $count";
+?>
+
+SLIP 2 SOLUTION
+
+
+🔹 Q1: HTML List
+<ul>
+    <li>Tea
+        <ul>
+            <li>Hot Tea</li>
+            <li>Black Tea</li>
+        </ul>
+    </li>
+    <li>Coffee</li>
+    <li>Cold Coffee</li>
+    <li>Hot Coffee</li>
+</ul>
+________________________________________
+🔹 Q2: Employee Form + Display
+Form
+<form method="post" action="emp.php">
+Name: <input type="text" name="name"><br>
+Salary: <input type="text" name="salary"><br>
+Designation: <input type="text" name="desg"><br>
+Address: <textarea name="addr"></textarea><br>
+<input type="submit">
+</form>
+PHP (emp.php)
+<?php
+echo "Name: ".$_POST['name']."<br>";
+echo "Salary: ".$_POST['salary']."<br>";
+echo "Designation: ".$_POST['desg']."<br>";
+echo "Address: ".$_POST['addr'];
+?>
+________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SLIP 3 SOLUTION
+
+🔹 Q1: PHP Inheritance (Shape)
+<?php
+class Shape {
+    function area() {}
+}
+
+class Triangle extends Shape {
+    function area($b,$h){
+        return 0.5*$b*$h;
+    }
+}
+
+class Square extends Shape {
+    function area($s){
+        return $s*$s;
+    }
+}
+
+$t = new Triangle();
+echo "Triangle Area: ".$t->area(5,4)."<br>";
+
+$s = new Square();
+echo "Square Area: ".$s->area(5);
+?>
+________________________________________
+🔹 Q2: String Operations
+<?php
+$name = $_POST['name'];
+
+echo "Uppercase: ".strtoupper($name)."<br>";
+echo "First Letter Capital: ".ucfirst($name);
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SLIP 4 SOLUTION
+
+
+Q.1) PHP Script to Generate XML
+<?php
+$xml = new DOMDocument("1.0", "ISO-8859-1");
+
+// Root element <BookStore>
+$bookstore = $xml->createElement("BookStore");
+$xml->appendChild($bookstore);
+
+// <Books>
+$books = $xml->createElement("Books");
+$bookstore->appendChild($books);
+
+// First Book
+$php1 = $xml->createElement("PHP");
+
+$title1 = $xml->createElement("Title", "Programming in PHP");
+$pub1 = $xml->createElement("Publication", "O'RELLY");
+
+$php1->appendChild($title1);
+$php1->appendChild($pub1);
+
+// Second Book
+$php2 = $xml->createElement("PHP");
+
+$title2 = $xml->createElement("Title", "Beginners PHP");
+$pub2 = $xml->createElement("Publication", "WORX");
+
+$php2->appendChild($title2);
+$php2->appendChild($pub2);
+
+// Append to Books
+$books->appendChild($php1);
+$books->appendChild($php2);
+
+// Display XML
+$xml->formatOutput = true;
+echo "<pre>";
+echo $xml->saveXML();
+?>
+________________________________________
+✅ Q.2) PHP Script Using Session (3 Pages)
+________________________________________
+🔹 Page 1: emp1.php (Employee Details Form)
+<form method="post" action="emp2.php">
+Employee No: <input type="text" name="eno"><br>
+Employee Name: <input type="text" name="ename"><br>
+Address: <textarea name="addr"></textarea><br>
+<input type="submit" value="Next">
+</form>
+________________________________________
+🔹 Page 2: emp2.php (Earnings Form)
+<?php
+session_start();
+
+$_SESSION['eno'] = $_POST['eno'];
+$_SESSION['ename'] = $_POST['ename'];
+$_SESSION['addr'] = $_POST['addr'];
+?>
+
+<form method="post" action="emp3.php">
+Basic: <input type="text" name="basic"><br>
+DA: <input type="text" name="da"><br>
+HRA: <input type="text" name="hra"><br>
+<input type="submit" value="Calculate">
+</form>
+________________________________________
+🔹 Page 3: emp3.php (Display All Details)
+<?php
+session_start();
+
+$eno = $_SESSION['eno'];
+$ename = $_SESSION['ename'];
+$addr = $_SESSION['addr'];
+
+$basic = $_POST['basic'];
+$da = $_POST['da'];
+$hra = $_POST['hra'];
+
+$total = $basic + $da + $hra;
+
+echo "<h3>Employee Details</h3>";
+echo "Employee No: $eno <br>";
+echo "Name: $ename <br>";
+echo "Address: $addr <br><br>";
+
+echo "<h3>Salary Details</h3>";
+echo "Basic: $basic <br>";
+echo "DA: $da <br>";
+echo "HRA: $hra <br>";
+echo "Total Salary: $total";
+?>
+
+
+
+
+
+SLIP 5 SOLUTION
+
+Q.1) Admission Form Design (HTML)
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admission Form</title>
+</head>
+<body>
+
+<h2>Admission Form</h2>
+
+<form>
+
+Name: <input type="text" name="name"><br><br>
+
+Address: <textarea name="address"></textarea><br><br>
+
+Gender:
+<input type="radio" name="gender" value="Male"> Male
+<input type="radio" name="gender" value="Female"> Female <br><br>
+
+Hobbies:
+<input type="checkbox" name="hobby[]" value="Sports"> Sports
+<input type="checkbox" name="hobby[]" value="Music"> Music
+<input type="checkbox" name="hobby[]" value="Reading"> Reading <br><br>
+
+<h3>Academic Record</h3>
+<table border="1">
+<tr>
+    <th>Exam</th>
+    <th>Board</th>
+    <th>Percentage</th>
+</tr>
+<tr>
+    <td>10th</td>
+    <td>State Board</td>
+    <td>85%</td>
+</tr>
+<tr>
+    <td>12th</td>
+    <td>State Board</td>
+    <td>78%</td>
+</tr>
+<tr>
+    <td>Graduation</td>
+    <td>University</td>
+    <td>82%</td>
+</tr>
+</table><br>
+
+<input type="submit" value="Submit">
+
+</form>
+
+</body>
+</html>
+________________________________________
+Q.2) PHP Arithmetic Operation with Default Parameter
+________________________________________
+🔹 Page 1: form.html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Arithmetic Operation</h2>
+
+<form method="post" action="result.php">
+Number 1: <input type="text" name="num1"><br><br>
+Number 2: <input type="text" name="num2"><br><br>
+
+Operation:
+<input type="radio" name="op" value="+"> Addition
+<input type="radio" name="op" value="-"> Subtraction
+<input type="radio" name="op" value="*"> Multiplication
+<input type="radio" name="op" value="/"> Division <br><br>
+
+<input type="submit" value="Calculate">
+
+</form>
+
+</body>
+</html>
+________________________________________
+🔹 Page 2: result.php
+<?php
+
+// Function with default parameters
+function calculate($a = 0, $b = 0, $op = '+')
+{
+    switch($op)
+    {
+        case '+': return $a + $b;
+        case '-': return $a - $b;
+        case '*': return $a * $b;
+        case '/': return ($b != 0) ? $a / $b : "Division by zero not allowed";
+        default: return "Invalid Operation";
+    }
+}
+
+// Fetch values
+$a = $_POST['num1'];
+$b = $_POST['num2'];
+$op = $_POST['op'];
+
+// Call function
+$result = calculate($a, $b, $op);
+
+// Display result
+echo "<h3>Result = $result</h3>";
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SLIP 6 SOLUTION
+
+Q.1) PHP Script to Display Source Code of a Webpage
+PHP provides a built-in function show_source() or highlight_file().
+<?php
+// Display source code of current file
+show_source("source.php");
+
+// OR you can use:
+# highlight_file("source.php");
+?>
+🔹 If you want user input:
+<form method="post">
+Enter file name: <input type="text" name="file">
+<input type="submit">
+</form>
+
+<?php
+if(isset($_POST['file'])){
+    show_source($_POST['file']);
+}
+?>
+________________________________________
+Q.2) PHP Script to Calculate Factorial
+________________________________________
+🔹 Step 1: HTML Form
+<form method="post" action="fact.php">
+Enter Number: <input type="text" name="num">
+<input type="submit" value="Find Factorial">
+</form>
+________________________________________
+🔹 Step 2: PHP Script (fact.php)
+<?php
+
+// Function to calculate factorial
+function factorial($n)
+{
+    if($n == 0 || $n == 1)
+        return 1;
+    else
+        return $n * factorial($n - 1);
+}
+
+// Get input
+$num = $_POST['num'];
+
+// Check non-negative
+if($num < 0)
+{
+    echo "Factorial not defined for negative numbers";
+}
+else
+{
+    $result = factorial($num);
+    echo "Factorial of $num = $result";
+}
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SLIP 7 SOLUTION
+
+Q.1) PHP Calculator Class
+<?php
+
+class Calculator
+{
+    public $a, $b;
+
+    // Constructor to initialize values
+    function __construct($x, $y)
+    {
+        $this->a = $x;
+        $this->b = $y;
+    }
+
+    function add()
+    {
+        return $this->a + $this->b;
+    }
+
+    function subtract()
+    {
+        return $this->a - $this->b;
+    }
+
+    function multiply()
+    {
+        return $this->a * $this->b;
+    }
+
+    function divide()
+    {
+        if($this->b == 0)
+            return "Division by zero not allowed";
+        return $this->a / $this->b;
+    }
+}
+
+// Object creation
+$c = new Calculator(10, 5);
+
+echo "Addition: " . $c->add() . "<br>";
+echo "Subtraction: " . $c->subtract() . "<br>";
+echo "Multiplication: " . $c->multiply() . "<br>";
+echo "Division: " . $c->divide();
+
+?>
+________________________________________
+Q.2) External CSS Program
+🔹 Step 1: Create CSS file (style.css)
+body {
+    background-color: skyblue;
+    color: blue;
+    font-size: 18px;
+}
+________________________________________
+🔹 Step 2: Link CSS to HTML file
+<!DOCTYPE html>
+<html>
+<head>
+    <title>External CSS Example</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<h2>This is Web Technology Page</h2>
+<p>This text is displayed in blue color with sky blue background.</p>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SLIP 8 SOLUTION
+
+Q.1) PHP Class: Temperature Conversion
+________________________________________
+🔹 Page 1: form.html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Temperature Conversion</h2>
+
+<form method="post" action="convert.php">
+Enter Celsius: <input type="text" name="c"><br><br>
+Enter Fahrenheit: <input type="text" name="f"><br><br>
+<input type="submit" value="Convert">
+</form>
+
+</body>
+</html>
+________________________________________
+🔹 Page 2: convert.php
+<?php
+
+class Temperature
+{
+    public $celsius;
+    public $fahrenheit;
+
+    // Parameterized Constructor
+    function __construct($c, $f)
+    {
+        $this->celsius = $c;
+        $this->fahrenheit = $f;
+    }
+
+    // Celsius to Fahrenheit
+    function cToF()
+    {
+        return ($this->celsius * 9/5) + 32;
+    }
+
+    // Fahrenheit to Celsius
+    function fToC()
+    {
+        return ($this->fahrenheit - 32) * 5/9;
+    }
+}
+
+// Get values
+$c = $_POST['c'];
+$f = $_POST['f'];
+
+// Create object
+$temp = new Temperature($c, $f);
+
+// Display result
+echo "<h3>Conversion Result</h3>";
+echo "Celsius to Fahrenheit: " . $temp->cToF() . "<br>";
+echo "Fahrenheit to Celsius: " . $temp->fToC();
+
+?>
+________________________________________
+Q.2) XML + CSS Formatting
+________________________________________
+🔹 Step 1: Create XML file (University.xml)
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="style.css"?>
+
+<Universities>
+
+<Univ>
+    <Uname>Savitribai Phule Pune University</Uname>
+    <CITY>Pune</CITY>
+    <Rank>1</Rank>
+</Univ>
+
+<Univ>
+    <Uname>Mumbai University</Uname>
+    <CITY>Mumbai</CITY>
+    <Rank>2</Rank>
+</Univ>
+
+<Univ>
+    <Uname>Delhi University</Uname>
+    <CITY>Delhi</CITY>
+    <Rank>3</Rank>
+</Univ>
+
+</Universities>
+________________________________________
+🔹 Step 2: Create CSS file (style.css)
+Uname {
+    color: black;
+    font-family: "Copperplate Gothic Light";
+    font-size: 16pt;
+    font-weight: bold;
+    display: block;
+}
+
+CITY, Rank {
+    color: yellow;
+    font-family: Arial;
+    font-size: 12pt;
+    font-weight: bold;
+    display: block;
+}
+
+Univ {
+    margin-bottom: 15px;
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SLIP 9 SOLUTION
+
+Q.1) JavaScript to Print Table of First n Numbers
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Tables of First n Numbers</h2>
+
+Enter n: <input type="number" id="num">
+<button onclick="printTable()">Print Tables</button>
+
+<pre id="output"></pre>
+
+<script>
+function printTable()
+{
+    var n = document.getElementById("num").value;
+    var result = "";
+
+    for(let i = 1; i <= n; i++)
+    {
+        result += "Table of " + i + "\n";
+        for(let j = 1; j <= 10; j++)
+        {
+            result += i + " x " + j + " = " + (i*j) + "\n";
+        }
+        result += "\n";
+    }
+
+    document.getElementById("output").innerHTML = result;
+}
+</script>
+
+</body>
+</html>
+________________________________________
+Q.2) PHP Menu Driven Program (Associative Arrays)
+<?php
+
+// Sample associative arrays
+$arr1 = array("a"=>10, "b"=>20, "c"=>30);
+$arr2 = array("b"=>20, "c"=>40, "d"=>50);
+
+// Menu
+echo "<h3>Menu</h3>";
+echo "1. Merge Arrays<br>";
+echo "2. Intersection<br>";
+echo "3. Union<br>";
+echo "4. Difference<br><br>";
+
+// Choice (you can change value for testing)
+$choice = 1;
+
+switch($choice)
+{
+    case 1:
+        echo "<b>Merged Array:</b><br>";
+        print_r(array_merge($arr1, $arr2));
+        break;
+
+    case 2:
+        echo "<b>Intersection:</b><br>";
+        print_r(array_intersect_assoc($arr1, $arr2));
+        break;
+
+    case 3:
+        echo "<b>Union:</b><br>";
+        $union = $arr1 + $arr2;
+        print_r($union);
+        break;
+
+    case 4:
+        echo "<b>Difference (arr1 - arr2):</b><br>";
+        print_r(array_diff_assoc($arr1, $arr2));
+        break;
+
+    default:
+        echo "Invalid Choice";
+}
+
+?>
+Alternative (User Input Menu Version – Better for Exam)
+<form method="post">
+Enter Choice (1-4): <input type="text" name="ch">
+<input type="submit">
+</form>
+
+<?php
+$arr1 = array("a"=>10, "b"=>20, "c"=>30);
+$arr2 = array("b"=>20, "c"=>40, "d"=>50);
+
+if(isset($_POST['ch']))
+{
+    $ch = $_POST['ch'];
+
+    switch($ch)
+    {
+        case 1:
+            print_r(array_merge($arr1, $arr2));
+            break;
+
+        case 2:
+            print_r(array_intersect_assoc($arr1, $arr2));
+            break;
+
+        case 3:
+            print_r($arr1 + $arr2);
+            break;
+
+        case 4:
+            print_r(array_diff_assoc($arr1, $arr2));
+            break;
+    }
+}
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SLIP 10 SOLUTION
+
+Q.1) PHP Inheritance (Shape with Menu using Radio Button)
+________________________________________
+🔹 HTML Form
+<form method="post">
+Select Shape:<br>
+<input type="radio" name="shape" value="triangle"> Triangle<br>
+<input type="radio" name="shape" value="square"> Square<br>
+<input type="radio" name="shape" value="rectangle"> Rectangle<br>
+<input type="radio" name="shape" value="circle"> Circle<br><br>
+
+Enter Value 1: <input type="text" name="v1"><br><br>
+Enter Value 2 (if needed): <input type="text" name="v2"><br><br>
+
+<input type="submit" value="Calculate Area">
+</form>
+________________________________________
+🔹 PHP Script
+<?php
+
+// Base Class
+class Shape {
+    function area() {
+        return 0;
+    }
+}
+
+// Triangle
+class Triangle extends Shape {
+    function area($b, $h) {
+        return 0.5 * $b * $h;
+    }
+}
+
+// Square
+class Square extends Shape {
+    function area($s) {
+        return $s * $s;
+    }
+}
+
+// Rectangle
+class Rectangle extends Shape {
+    function area($l, $w) {
+        return $l * $w;
+    }
+}
+
+// Circle
+class Circle extends Shape {
+    function area($r) {
+        return 3.14 * $r * $r;
+    }}// Processing
+if(isset($_POST['shape'])) {
+    $shape = $_POST['shape'];
+    $v1 = $_POST['v1'];
+    $v2 = $_POST['v2'];
+
+    switch($shape) {
+        case "triangle":
+            $obj = new Triangle();
+            echo "Area of Triangle = " . $obj->area($v1, $v2);
+            break;
+
+        case "square":
+            $obj = new Square();
+            echo "Area of Square = " . $obj->area($v1);
+            break;
+
+        case "rectangle":
+            $obj = new Rectangle();
+            echo "Area of Rectangle = " . $obj->area($v1, $v2);
+            break;
+
+        case "circle":
+            $obj = new Circle();
+            echo "Area of Circle = " . $obj->area($v1);
+            break;
+    }}?>
+________________________________________
+Q.2) PHP Superglobal Variables
+<?php
+
+// a) Client IP Address
+echo "<b>Client IP Address:</b> " . $_SERVER['REMOTE_ADDR'] . "<br><br>";
+
+// b) Browser Information
+echo "<b>Browser Information:</b> " . $_SERVER['HTTP_USER_AGENT'] . "<br><br>";
+
+// c) Check HTTP or HTTPS
+if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
+    echo "<b>Page loaded using HTTPS</b>";
+else
+    echo "<b>Page loaded using HTTP</b>";
+
+?>
+
+
+
+
+SLIP 11 SOLUTION
+
+Q.1) JavaScript to Calculate Simple Interest
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Simple Interest Calculator</h2>
+
+Principal: <input type="text" id="p"><br><br>
+Rate (%): <input type="text" id="r"><br><br>
+Time (years): <input type="text" id="t"><br><br>
+
+<button onclick="calculateSI()">Calculate</button>
+
+<p id="result"></p>
+
+<script>
+function calculateSI()
+{
+    var p = parseFloat(document.getElementById("p").value);
+    var r = parseFloat(document.getElementById("r").value);
+    var t = parseFloat(document.getElementById("t").value);
+
+    var si = (p * r * t) / 100;
+
+    document.getElementById("result").innerHTML = "Simple Interest = " + si;
+}
+</script>
+
+</body>
+</html>
+________________________________________
+Q.2) AJAX Program to Read contact.dat and Display in Table
+________________________________________
+🔹 Step 1: Create contact.dat file
+1,John,0201234567,9876543210,Friend
+2,Rahul,0207654321,9123456780,Colleague
+3,Anita,0201112222,9988776655,Sister
+________________________________________
+🔹 Step 2: HTML + AJAX
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Contact List</h2>
+
+<button onclick="loadData()">Print Contacts</button>
+
+<div id="table"></div>
+
+<script>
+function loadData()
+{
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function()
+    {
+        if (this.readyState == 4 && this.status == 200)
+        {
+            var data = this.responseText.trim().split("\n");
+
+            var table = "<table border='1'>";
+            table += "<tr><th>SrNo</th><th>Name</th><th>Residence</th><th>Mobile</th><th>Relation</th></tr>";
+
+            for (var i = 0; i < data.length; i++)
+            {
+                var row = data[i].split(",");
+                table += "<tr>";
+                for (var j = 0; j < row.length; j++)
+                {
+                    table += "<td>" + row[j] + "</td>";
+                }
+                table += "</tr>";
+            }
+
+            table += "</table>";
+            document.getElementById("table").innerHTML = table;
+        }
+    };
+
+    xhttp.open("GET", "contact.dat", true);
+    xhttp.send();
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+SLIP 12 SOLUTION
+
+Q.1) Divide Screen into Four Equal Parts
+Using HTML + CSS (frames/grid layout)
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    height: 100vh;
+}
+
+.box {
+    border: 1px solid black;
+    padding: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="box">
+<h3>Technical Activities</h3>
+<ul>
+<li>Workshops</li>
+<li>Seminars</li>
+<li>Guest Lectures</li>
+</ul>
+</div>
+
+<div class="box">
+<h3>Cultural Activities</h3>
+<ul>
+<li>Dance</li>
+<li>Drama</li>
+<li>Music</li>
+</ul>
+</div>
+
+<div class="box">
+<h3>Sports Activities</h3>
+<ul>
+<li>Cricket</li>
+<li>Football</li>
+<li>Badminton</li>
+</ul>
+</div>
+
+<div class="box">
+<h3>Academic Activities</h3>
+<ul>
+<li>Projects</li>
+<li>Assignments</li>
+<li>Presentations</li>
+</ul>
+</div>
+
+</div>
+
+</body>
+</html>
+________________________________________
+Q.2) PHP Cookie Program (3 Pages)
+________________________________________
+🔹 Page 1: form.html (User Preferences)
+<form method="post" action="setcookie.php">
+
+Font Style: <input type="text" name="style"><br><br>
+Font Size: <input type="text" name="size"><br><br>
+Font Color: <input type="text" name="color"><br><br>
+Background Color: <input type="text" name="bg"><br><br>
+
+<input type="submit" value="Save Preferences">
+
+</form>
+________________________________________
+🔹 Page 2: setcookie.php (Store in Cookies)
+<?php
+
+setcookie("style", $_POST['style'], time()+3600);
+setcookie("size", $_POST['size'], time()+3600);
+setcookie("color", $_POST['color'], time()+3600);
+setcookie("bg", $_POST['bg'], time()+3600);
+
+echo "Preferences Saved!<br>";
+echo "<a href='display.php'>View Preferences</a>";
+
+?>
+________________________________________
+🔹 Page 3: display.php (Apply Preferences)
+<?php
+$style = $_COOKIE['style'];
+$size = $_COOKIE['size'];
+$color = $_COOKIE['color'];
+$bg = $_COOKIE['bg'];
+?>
+
+<html>
+<body style="
+    font-family: <?php echo $style; ?>;
+    font-size: <?php echo $size; ?>px;
+    color: <?php echo $color; ?>;
+    background-color: <?php echo $bg; ?>;
+">
+
+<h2>Applied User Preferences</h2>
+
+<?php
+echo "Font Style: $style <br>";
+echo "Font Size: $size <br>";
+echo "Font Color: $color <br>";
+echo "Background Color: $bg <br>";
+?>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SLIP 13 SOLUTION
+
+Q.1) Java Program – Check Voting Eligibility
+import java.util.Scanner;
+
+public class VotingEligibility {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Age: ");
+        int age = sc.nextInt();
+
+        if(age >= 18) {
+            System.out.println("Candidate is Eligible for Voting");
+        } else {
+            System.out.println("Candidate is NOT Eligible for Voting");
+        }
+
+        sc.close();
+    }
+}
+________________________________________
+Q.2) Java Program – Store n Integers in ArrayList
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ArrayListExample {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Integer> list = new ArrayList<>();
+
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+
+        // Accept n integers
+        for(int i = 0; i < n; i++) {
+            System.out.print("Enter element " + (i+1) + ": ");
+            int num = sc.nextInt();
+            list.add(num);
+        }
+
+        // Display elements
+        System.out.println("\nElements in ArrayList:");
+        for(int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
+        sc.close(); }}
+
+
+SLIP 14 SOLUTION
+
+Q.1) JavaScript – Display Weekday from Number
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Display Weekday</h2>
+
+Enter number (1-7): <input type="number" id="day">
+<button onclick="showDay()">Show Day</button>
+
+<p id="result"></p>
+
+<script>
+function showDay()
+{
+    var d = parseInt(document.getElementById("day").value);
+    var dayName;
+
+    switch(d)
+    {
+        case 1: dayName = "Monday"; break;
+        case 2: dayName = "Tuesday"; break;
+        case 3: dayName = "Wednesday"; break;
+        case 4: dayName = "Thursday"; break;
+        case 5: dayName = "Friday"; break;
+        case 6: dayName = "Saturday"; break;
+        case 7: dayName = "Sunday"; break;
+        default: dayName = "Invalid Input";
+    }
+
+    document.getElementById("result").innerHTML = dayName;
+}
+</script>
+
+</body>
+</html>
+________________________________________
+Q.2) Database + PHP Solution
+________________________________________
+🔹 a) Relationship (Many-to-Many)
+ A student can participate in many competitions
+ A competition can have many students
+So we create a junction table:
+Student (stud_id, name, class)
+Competition (c_no, c_name, type)
+Participation (stud_id, c_no, rank, year)
+________________________________________
+🔹 b) RDB in 3NF (SQL)
+CREATE TABLE Student (
+    stud_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    class VARCHAR(20)
+);
+
+CREATE TABLE Competition (
+    c_no INT PRIMARY KEY,
+    c_name VARCHAR(50),
+    type VARCHAR(20)
+);
+
+CREATE TABLE Participation (
+    stud_id INT,
+    c_no INT,
+    rank INT,
+    year INT,
+    PRIMARY KEY (stud_id, c_no),
+    FOREIGN KEY (stud_id) REFERENCES Student(stud_id),
+    FOREIGN KEY (c_no) REFERENCES Competition(c_no)
+);
+________________________________________
+🔹 c) PHP Script (Display 1st Rank Students)
+HTML Form
+<form method="post" action="result.php">
+Enter Competition Name: <input type="text" name="cname">
+<input type="submit" value="Search">
+</form>
+________________________________________
+PHP (result.php)
+<?php
+
+$conn = new mysqli("localhost", "root", "", "test");
+
+$cname = $_POST['cname'];
+
+$sql = "SELECT s.stud_id, s.name, s.class
+        FROM Student s, Competition c, Participation p
+        WHERE s.stud_id = p.stud_id
+        AND c.c_no = p.c_no
+        AND p.rank = 1
+        AND c.c_name = '$cname'";
+
+$result = $conn->query($sql);
+
+echo "<h3>Students with 1st Rank</h3>";
+
+if($result->num_rows > 0)
+{
+    while($row = $result->fetch_assoc())
+    {
+        echo "ID: ".$row['stud_id']." Name: ".$row['name']." Class: ".$row['class']."<br>";
+    }
+}
+else
+{
+    echo "No records found";
+}
+
+$conn->close();
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SLIP 15 SOLUTION
+
+Q.1) JavaScript – Check Prime Number
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Prime Number Check</h2>
+
+Enter Number: <input type="number" id="num">
+<button onclick="checkPrime()">Check</button>
+
+<p id="result"></p>
+
+<script>
+function checkPrime()
+{
+    var n = parseInt(document.getElementById("num").value);
+    var flag = 1;
+
+    if(n <= 1)
+        flag = 0;
+    else {
+        for(var i = 2; i <= n/2; i++)
+        {
+            if(n % i == 0)
+            {
+                flag = 0;
+                break;
+            }
+        }
+    }
+
+    if(flag == 1)
+        document.getElementById("result").innerHTML = n + " is Prime Number";
+    else
+        document.getElementById("result").innerHTML = n + " is NOT Prime Number";
+}
+</script>
+
+</body>
+</html>
+________________________________________
+Q.2) AJAX – Search Student Name (Using Array)
+________________________________________
+🔹 HTML + JavaScript (AJAX Simulation)
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Search Student</h2>
+
+Enter Name: <input type="text" onkeyup="searchName(this.value)">
+
+<ul id="result"></ul>
+
+<script>
+
+// Student array
+var students = ["Amit", "Rahul", "Ramesh", "Sneha", "Sonal", "Anita", "Akash"];
+
+function searchName(str)
+{
+    var res = "";
+
+    if(str.length == 0)
+    {
+        document.getElementById("result").innerHTML = "";
+        return;
+    }
+
+    // Simulating AJAX filtering
+    for(var i = 0; i < students.length; i++)
+    {
+        if(students[i].toLowerCase().startsWith(str.toLowerCase()))
+        {
+            res += "<li>" + students[i] + "</li>";
+        }
+    }
+
+    document.getElementById("result").innerHTML = res;
+}
+
+</script>
+
+</body>
+</html>
+________________________________________
+ Alternative (Real AJAX using separate file)
+🔹 HTML
+<input type="text" onkeyup="showHint(this.value)">
+<p id="txtHint"></p>
+
+<script>
+function showHint(str)
+{
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function()
+    {
+        if(this.readyState == 4 && this.status == 200)
+        {
+            document.getElementById("txtHint").innerHTML = this.responseText;
+        }
+    };
+
+    xhttp.open("GET", "search.php?q=" + str, true);
+    xhttp.send();
+}
+</script>
+________________________________________
+🔹 PHP (search.php)
+<?php
+
+$students = array("Amit","Rahul","Ramesh","Sneha","Sonal","Anita","Akash");
+
+$q = $_GET["q"];
+$result = "";
+
+foreach($students as $name)
+{
+    if(stripos($name, $q) === 0)
+    {
+        $result .= $name . "<br>";
+    }
+}
+
+echo ($result == "") ? "No match found" : $result;
+
+?>
+
+
+
+
+
+
+
 
 1.Design a admission form. which should contain: text box, multiline text box, a table
 which shows your academic record, radio button, check box, submit button etc.
