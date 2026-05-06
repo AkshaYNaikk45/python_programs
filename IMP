@@ -1,1566 +1,1056 @@
-Accountsort.java
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+1.Design a admission form. which should contain: text box, multiline text box, a table
+which shows your academic record, radio button, check box, submit button etc.
 
-class Account {
-    int acno;            
-    String acname;       
-    float bal;          
-    static int count;   
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admission Form</title>
+</head>
+<body>
+<h2 align="center">College Admission Form</h2>
+<form>
+Name: <input type="text" name="name"><br><br>
+Email: <input type="text" name="email"><br><br>
+Phone Number: <input type="text" name="phone"><br><br>
+Gender:
+<input type="radio" name="gender"> Male
+<input type="radio" name="gender"> Female
+<input type="radio" name="gender"> Other
+<br><br>
+Course Interested:
+<input type="checkbox" name="course"> BCA
+<input type="checkbox" name="course"> BSc
+<input type="checkbox" name="course"> BBA
+<br><br>
+Address:<br>
+<textarea rows="4" cols="40"></textarea>
+<br><br>
+<h3>Academic Record</h3>
+<table border="1" cellpadding="5">
+<tr>
+<th>Exam</th>
+<th>Board/University</th>
+<th>Year</th>
+<th>Percentage</th>
+</tr>
+<tr>
+<td>10th</td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+<tr>
+<td>12th</td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+<tr>
+<td>Graduation</td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+<td><input type="text"></td>
+</tr>
+</table>
+<br>
+<input type="submit" value="Submit Form">
+<input type="reset" value="Reset">
+</form>
+</body>
+</html>
 
-    // Default constructor
-    Account() {}
 
-    // Parameterized constructor
-    Account(String n, float p) {
-        count++;          
-        acno = count;     
-        acname = n;
-        bal = p;
-    }
+2.Write CSS using HTML which uses of text decoration, border, padding and margin.
 
-    // Method to display account details
-    void display() {
-        System.out.println(acno + "\t" + acname + "\t" + bal);
-    }
-
-    // Method to return balance
-    float getbal() {
-        return bal;
-    }
-
-    // Static method to show how many objects are created
-    static void counter() {
-        System.out.println(count + " object is created");
-    }
-
-    // Static method to sort accounts by balance in ascending order using Bubble Sort
-    public static void sortAccount(Account a[], int n) {
-        // Outer loop for number of passes (starts from last index and moves to 0)
-        for (int i = n - 1; i >= 0; i--) {
-            // Inner loop for comparing adjacent elements from start to i
-            for (int j = 0; j < i; j++) {
-                // If current account's balance is greater than next, swap them
-                if (a[j].getbal() > a[j + 1].getbal()) {                    
-                    Account t = a[j];
-                    a[j] = a[j + 1];
-                    a[j + 1] = t;
-                }
-            }
-        }
-
-        // Display sorted accounts
-        System.out.println("\nAccounts sorted by balance:");
-        for (int i = 0; i < n; i++) {
-            a[i].display();
-        }
-    }
+<!DOCTYPE html>
+<html>
+<head>
+<title>CSS Example</title>
+<style>
+h1{
+text-decoration: underline;
+border: 3px solid blue;
+padding: 10px;
+margin: 20px;
 }
-
-// Main class to test the Account functionality
-public class AccountSort {
-    public static void main(String args[]) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));        
-        
-        System.out.println("Enter number of Accounts:");
-        int n = Integer.parseInt(br.readLine());
-
-        Account p[] = new Account[n];
-
-        // Accept account details from user
-        for (int i = 0; i < n; i++) {
-            System.out.print("Enter Name: ");
-            String name = br.readLine();
-            System.out.print("Enter Balance: ");
-            float bal = Float.parseFloat(br.readLine());
-
-            // Create account object and store it in array
-            p[i] = new Account(name, bal);
-            p[i].counter();  // Display count after each creation
-        }
-
-        // Sort and display accounts based on balance
-        Account.sortAccount(p, Account.count);
-    }
+p{
+text-decoration: line-through;
+border: 2px dashed red;
+padding: 15px;
+margin: 25px;
 }
-
-
-
-
-2) Area calculation.java
-
-import java.io.*;
-abstract class Shape{
- abstract public void calc_area();
- abstract public void calc_volume();
- final float pi=3.14f;
+div{
+border: 2px solid green;
+padding: 20px;
+margin: 30px;
 }
+</style>
+</head>
+<body>
+<h1>Welcome to Web Technology</h1>
+<p>This is an example of CSS text decoration.</p>
+<div>
+This box shows the use of border, padding and margin.
+</div>
+</body>
+</html>
 
-class Sphere extends Shape{
- double r;
- private double area;
- private double volume;
- public void accept() throws IOException{
-  System.out.println("Enter the radius of the Sphere: ");
-  BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-  r=Double.parseDouble(br.readLine());
+
+3.Create an HTML page with following specifications:
+
+a. Title should be about “My City”
+b. Place your City name at the top of the page in large text and in red color
+c. Add names and images (as a link) of landmarks in your city each in a different color,
+style and typeface
+d. After clicking on images it should display history of that place
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>My City</title>
+</head>
+<body>
+<h1 style="color: red;">My City: New York</h1>
+<a href="https://en.wikipedia.org/wiki/Statue_of_Liberty">
+<img src="https://thumbs.dreamstime.com/b/cartoon-statue-liberty-isolated-pedestaldrawing-humor-cartoon-statue-liberty-isolated-pedestal-drawing-humor-stock278474540.jpg" alt="no priview" height="10%" width="25%">
+</a>
+<h1>Statue_of_Liberty</h1>
+<br>
+<a href="central_park.html">
+<img src="img.jpg" alt="no priview" height="10%" width="25%">
+</a>
+<h1>central_park</h1>
+</body>
+</html>
+
+
+4.Write CSS using HTML which displays following output
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div.static {
+position: static;
+left: 100px;
+top: 150px;
+border: 4px solid red;
+width:880px;
+}
+div.relative {
+position: relative;
+left: 80px;
+top: 150px;
+border: 6px solid green;
+width:280px;
+}
+div.fixed {
+position: fixed;
+left: 100px;
+top: 150px;
+border: 4px solid blue;
+}
+div.absolute {
+position: absolute;
+left: 100px;
+top:120px;
+border: 4px dotted purple;
+width:880px;
+}
+</style>
+</head>
+<body>
+<h1>Positioning in CSS: Static, Relative, Fixed and Absolute.</h1>
+<div class="static">This is a div with Static position</div>
+<br>
+<div class="relative">This is a div with Relative position</div>
+<br>
+<div class="fixed">This is a div with Fixed position</div>
+<br>
+<div class="absolute">This is a div with Absolute position</div>
+</body>
+</html>
+
+Steps to Run HTML/CSS Program
+1. Open Text Editor (like gedit or Text Editor).
+2. Type your HTML/CSS program in the editor.
+3. Click Save As.
+4. Save the file with .html extension (Example: program.html).
+5. Go to the location where the file is saved.
+6. Right-click the file → Open with Firefox/Chrome.
+7. The program will run and display in the browser.
+
+
+Practical 2: (Introduction to PHP)
+
+5.Write a PHP script for the following. a) Design a form to accept the details of 5 different
+items such as Item code, Item Name, unit, sold and Rate. b) Display the bill in tabular
+format. Use only 4 textboxes. [ Use explode]
+
+HTML Form (bill_form.html)
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Item Bill Form</title>
+</head>
+<body>
+<h2>Enter Item Details</h2>
+<form method="POST" action="bill.php">
+Item 1: <input type="text" name="item1"
+placeholder="Code,Name,Unit,Sold,Rate"><br><br>
+Item 2: <input type="text" name="item2"
+placeholder="Code,Name,Unit,Sold,Rate"><br><br>
+Item 3: <input type="text" name="item3"
+placeholder="Code,Name,Unit,Sold,Rate"><br><br>
+Item 4: <input type="text" name="item4"
+placeholder="Code,Name,Unit,Sold,Rate"><br><br>
+<input type="submit" value="Generate Bill">
+</form>
+</body>
+</html>
+
+PHP Script (bill.php)
+
+<?php
+$items = array($_POST['item1'], $_POST['item2'], $_POST['item3'], $_POST['item4']);
+echo "<h2>Bill Details</h2>";
+echo "<table border='1'>";
+echo "<tr>
+<th>Item Code</th>
+<th>Item Name</th>
+<th>Unit</th>
+<th>Sold</th>
+<th>Rate</th>
+<th>Total</th>
+</tr>";
+foreach($items as $item)
+{
+ $data = explode(",", $item);
+ $code = $data[0];
+ $name = $data[1];
+ $unit = $data[2];
+ $sold = $data[3];
+ $rate = $data[4];
+ $total = $sold * $rate;
+ echo "<tr>";
+ echo "<td>$code</td>";
+ echo "<td>$name</td>";
+ echo "<td>$unit</td>";
+ echo "<td>$sold</td>";
+ echo "<td>$rate</td>";
+ echo "<td>$total</td>";
+ echo "</tr>";
+}
+echo "</table>";
+?>
+
+6.Design a HTML form to accept a string. Write a PHP script for the following. a) Write a
+function to count the total number of Vowels from the script. b) Show the occurrences of
+each Vowel from the script
+
+HTML Form (vowel_form.html)
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Vowel Counter</title>
+</head>
+<body>
+<h2>Enter a String</h2>
+<form method="POST" action="vowel.php">
+Enter Text:
+<input type="text" name="text" required>
+<br><br>
+<input type="submit" value="Check Vowels">
+</form>
+</body>
+</html>
+
+PHP Script (vowel.php)
+
+<?php
+function countVowels($str)
+{
+ $str = strtolower($str);
+ $vowels = array('a'=>0,'e'=>0,'i'=>0,'o'=>0,'u'=>0);
+ for($i=0; $i<strlen($str); $i++)
+ {
+ $ch = $str[$i];
+ if(array_key_exists($ch,$vowels))
+ {
+ $vowels[$ch]++;
  }
- public void calc_area(){
-  area=4*pi*r*r;
  }
- public void calc_volume(){
-  
-  volume=1.33333333334*pi*r*r*r;
+ return $vowels;
+}
+$text = $_POST['text'];
+$result = countVowels($text);
+$total = array_sum($result);
+echo "<h2>Result</h2>";
+echo "Total Vowels = ".$total."<br><br>";
+echo "Occurrences of Each Vowel:<br>";
+foreach($result as $vowel=>$count)
+{
+ echo $vowel." = ".$count."<br>";
+}
+?>
+
+Steps to Run Program
+1. Open your Text Editor
+2. Save Files in htdocs Folder
+3. Save HTML file
+4. Save PHP file
+5. Both files must be inside htdocs
+6. Start XAMPP
+7. Run in Browser
+http://localhost/vowel_form.html
+
+
+Practical 3: (Function and Array)
+
+7.Write a PHP script to accept the number from user and write a PHP function to
+calculate the factorial of a number (a non-negative integer). The function accepts the
+number as an argument.
+
+HTML Form (factorial_form.html)
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Factorial Calculator</title>
+</head>
+<body>
+<h2>Factorial Calculator</h2>
+<form method="POST" action="factorial.php">
+Enter a Number:
+<input type="number" name="num" required>
+<br><br>
+<input type="submit" value="Calculate Factorial">
+</form>
+</body>
+</html>
+
+PHP Script (factorial.php)
+
+<?php
+function factorial($n)
+{
+ $fact = 1;
+ for($i=1; $i<=$n; $i++)
+ {
+ $fact = $fact * $i;
  }
- public void display(){
-  calc_area();
-  calc_volume();
-  System.out.println("The area of sphere is: "+area);
-  System.out.println("The volume of sphere is: "+volume);
+ return $fact;
+}
+$num = $_POST['num'];
+$result = factorial($num);
+echo "<h2>Factorial of $num is $result</h2>";
+?>
+
+
+8.Write a menu driven program to perform the following operations on associative
+arrays: a) Merge the given arrays. b) Find the intersection of two arrays. c) Find the union
+of two arrays. d) Find set difference of two arrays.
+
+
+<?php
+$a = array("a"=>10,"b"=>20,"c"=>30);
+$b = array("b"=>20,"c"=>30,"d"=>40);
+echo "<h3>Array A</h3>";
+print_r($a);
+echo "<br><h3>Array B</h3>";
+print_r($b);
+echo "<br><br>";
+echo "1. Merge Arrays<br>";
+$merge = array_merge($a,$b);
+print_r($merge);
+echo "<br><br>";
+echo "2. Intersection of Arrays<br>";
+$inter = array_intersect($a,$b);
+print_r($inter);
+echo "<br><br>";
+echo "3. Union of Arrays<br>";
+$union = $a + $b;
+print_r($union);
+echo "<br><br>";
+echo "4. Set Difference (A - B)<br>";
+$diff = array_diff($a,$b);
+print_r($diff);
+?>
+
+
+Steps to Run Program
+1. Save File
+2. Start XAMPP
+3. Run in Browser
+ http://localhost/array.php
+
+
+Practical 3: (Class and Object)
+
+9.Write PHP script to demonstrate the concept of introspection for examining object.
+
+<?php
+class Student
+{
+ public $name = "ABC";
+ public $course = "MSc CA";
+ function display()
+ {
+ echo "Student Information<br>";
+ }
+ function showCourse()
+ {
+ echo "Course: " . $this->course . "<br>";
  }
 }
+$obj = new Student();
+/* Introspection */
+echo "<h3>Class Name:</h3>";
+echo get_class($obj);
+echo "<h3>Object Properties:</h3>";
+print_r(get_object_vars($obj));
+echo "<h3>Class Methods:</h3>";
+print_r(get_class_methods($obj));
+?>
 
-class Cone extends Shape{
- double h,r,area,volume;
+10.Write a PHP program to create a class temperature which contains data members as
+Celsius and Fahrenheit. Create and initialize all values of temperature object by using
+parameterized constructor. Convert Celsius to Fahrenheit and Convert Fahrenheit to
+Celsius using member functions. Display conversion on next page
 
- public void accept() throws IOException{
-  System.out.println("Enter radius and height of the Cone: ");
-  BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-  r=Double.parseDouble(br.readLine());
-  h=Double.parseDouble(br.readLine());
- }
- public void calc_area(){
-  
-  double sq=h*h+r*r;
-  area=pi*r*(r+ java.lang.Math.sqrt(sq));
- }
- public void calc_volume(){
-  double d=h/3;
-  volume=pi*r*r*d;
- }
- public void display(){
-  calc_area();
-  calc_volume();
-  System.out.println("The area of Cone is: "+area);
-  System.out.println("The volume of Cone is: "+volume);
- }
-}
+First Page (HTML Form) – temperature.html
 
-class Cylinder extends Shape{
- double r,h,area,volume;
- public void accept() throws IOException{
-  System.out.println("Enter radius and height of the Cylinder: ");
-  BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-  r=Double.parseDouble(br.readLine());
-  h=Double.parseDouble(br.readLine());
- }
- public void calc_area(){
-  area=(2*pi*r*h)+(2*pi*r*r);
- }
- public void calc_volume(){
-  volume=pi*r*r*h;
- }
- public void display(){
-  calc_area();
-  calc_volume();
-  System.out.println("The area of Cylinder is: "+area);
-  System.out.println("The volume of Cylinder is: "+volume);
- }
-}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Temperature Conversion</title>
+</head>
+<body>
+<h2>Temperature Conversion Form</h2>
+<form method="post" action="convert.php">
+Enter Celsius:
+<input type="text" name="celsius"><br><br>
+Enter Fahrenheit:
+<input type="text" name="fahrenheit"><br><br>
+<input type="submit" value="Convert">
+</form>
+</body>
+</html>
 
-class Box extends Shape{
- double l,b,h,area,volume;
- public void accept() throws IOException{
-  System.out.println("Enter length, breadth and height of the Box: ");
-  BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-  l=Double.parseDouble(br.readLine());
-  b=Double.parseDouble(br.readLine());
-  h=Double.parseDouble(br.readLine());
+Second Page (PHP Program) – convert.php
+
+<?php
+class Temperature
+{
+ public $celsius;
+ public $fahrenheit;
+ // Parameterized constructor
+ function __construct($c,$f)
+ {
+ $this->celsius = $c;
+ $this->fahrenheit = $f;
  }
- public void calc_area(){
-  area=(2*l*b)+(2*b*h)+(2*l*h);
+ // Celsius to Fahrenheit
+ function c_to_f()
+ {
+ return ($this->celsius * 9/5) + 32;
  }
- public void calc_volume(){
-  volume=l*b*h;
- }
- public void display(){
-  calc_area();
-  calc_volume();
-  System.out.println("The area of Box is: "+area);
-  System.out.println("The volume of Box is: "+volume);
+ // Fahrenheit to Celsius
+ function f_to_c()
+ {
+ return ($this->fahrenheit - 32) * 5/9;
  }
 }
+$c = $_POST['celsius'];
+$f = $_POST['fahrenheit'];
+$obj = new Temperature($c,$f);
+echo "<h2>Temperature Conversion Result</h2>";
+echo "Celsius to Fahrenheit = ".$obj->c_to_f()."<br><br>";
+echo "Fahrenheit to Celsius = ".$obj->f_to_c();
+?>
 
-public class AreaCalculation {
- public static void main(String [] args)throws IOException{
-  Sphere s=new Sphere();
-  s.accept();
-  s.display();
-  Cone co=new Cone();
-  co.accept();
-  co.display();
-  Cylinder cy=new Cylinder();
-  cy.accept();
-  cy.display();
-  Box b=new Box();
-  b.accept();
-  b.display(); 
+
+Steps to Run Program
+1. Save Files
+Both files must be inside htdocs
+2. Start XAMPP
+3. Run in Browser
+ http://localhost/temperature.html
+
+Practical 4: (Web Techniques)
+
+11.Write a PHP script to display following information using super global variable. a)
+Client IP Address. b) Browser detection/information. C) To check whether the page is
+called from ‘https’ or ‘http’.
+
+<?php
+// a) Client IP Address
+echo "<h3>Client IP Address:</h3>";
+echo $_SERVER['REMOTE_ADDR'];
+echo "<br><br>";
+// b) Browser Information
+echo "<h3>Browser Information:</h3>";
+echo $_SERVER['HTTP_USER_AGENT'];
+echo "<br><br>";
+// c) Check HTTP or HTTPS
+echo "<h3>Protocol Used:</h3>";
+if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
+{
+ echo "Page is called using HTTPS";
+}
+else
+{
+ echo "Page is called using HTTP";
+}
+?>
+
+12.Write a PHP script to change the preference of your web page like font style, font,
+size, font color, background color using cookie. Display selected settings on next page
+and actual implementation (with new settings) on third page.
+
+Page 1 – Preference Form (preference.html)
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Preference</title>
+</head>
+<body>
+<h2>Select Page Preferences</h2>
+<form method="post" action="setcookie.php">
+Font Style:
+<select name="font">
+<option value="Arial">Arial</option>
+<option value="Times New Roman">Times New Roman</option>
+<option value="Verdana">Verdana</option>
+</select>
+<br><br>
+Font Size:
+<select name="size">
+<option value="16px">16</option>
+<option value="20px">20</option>
+<option value="24px">24</option>
+</select>
+<br><br>
+Font Color:
+<input type="color" name="fontcolor">
+<br><br>
+Background Color:
+<input type="color" name="bgcolor">
+<br><br>
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>
+
+Page 2 – Store Cookie and Show Settings (setcookie.php)
+
+<?php
+$font = $_POST['font'];
+$size = $_POST['size'];
+$fcolor = $_POST['fontcolor'];
+$bgcolor = $_POST['bgcolor'];
+// Set Cookies
+setcookie("font",$font,time()+3600);
+setcookie("size",$size,time()+3600);
+setcookie("fcolor",$fcolor,time()+3600);
+setcookie("bgcolor",$bgcolor,time()+3600);
+echo "<h2>Selected Preferences</h2>";
+echo "Font Style: $font <br>";
+echo "Font Size: $size <br>";
+echo "Font Color: $fcolor <br>";
+echo "Background Color: $bgcolor <br><br>";
+echo "<a href='display.php'>Click here to see the page with new settings</a>";
+?>
+<?php
+$font = $_COOKIE['font'];
+$size = $_COOKIE['size'];
+$fcolor = $_COOKIE['fcolor'];
+$bgcolor = $_COOKIE['bgcolor'];
+?>
+
+Page 3 – Apply Settings (display.php)
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Applied Preferences</title>
+</head>
+<body style="background-color:<?php echo $bgcolor; ?>;
+ font-family:<?php echo $font; ?>;
+ font-size:<?php echo $size; ?>;
+ color:<?php echo $fcolor; ?>;">
+<h2>This page uses your selected preferences</h2>
+<p>
+This text is displayed using the font style, size, and colors selected by you.
+</p>
+</body>
+</html>
+
+
+Steps To Run Program
+1. Save Files
+Three files must be inside htdocs
+2. Start Server
+3. Open in Browser
+http://localhost/preference.html
+
+
+Practical 5: (Database)
+
+13.Consider the following entities and their relationship. Doctor ( doc_no, dname,
+address, city, area) Hospital (hosp_no, hname, hcity) Doctor-Hospital related with manyone relationship. Create a RDB in 3NF for above and solve the following. Using above
+database write a script in PHP to print the Doctor visiting to the hospital in tabular
+format. Accept hospital name from user[ Use MySQL]
+
+CREATE DATABASE hospital_db;
+USE hospital_db;
+CREATE TABLE Hospital(
+hosp_no INT PRIMARY KEY,
+hname VARCHAR(50),
+hcity VARCHAR(50)
+);
+CREATE TABLE Doctor(
+doc_no INT PRIMARY KEY,
+dname VARCHAR(50),
+address VARCHAR(100),
+city VARCHAR(50),
+area VARCHAR(50),
+hosp_no INT,
+FOREIGN KEY (hosp_no) REFERENCES Hospital(hosp_no)
+);
+
+HTML File (hospital.html)
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Doctor Visiting Hospital</title>
+</head>
+<body>
+<h2>Search Doctors Visiting Hospital</h2>
+<form method="POST" action="doctor.php">
+Enter Hospital Name :
+<input type="text" name="hname" required>
+<br><br>
+<input type="submit" value="Show Doctors">
+</form>
+</body>
+</html>
+
+
+PHP File (doctor.php)
+<?php
+$con = mysqli_connect("localhost","root","","hospital_db");
+if(!$con)
+{
+ die("Connection failed");
+}
+$hname = $_POST['hname'];
+$sql = "SELECT Doctor.doc_no, Doctor.dname, Doctor.address, Doctor.city, Doctor.area
+ FROM Doctor, Hospital
+ WHERE Doctor.hosp_no = Hospital.hosp_no
+ AND Hospital.hname='$hname'";
+$result = mysqli_query($con,$sql);
+echo "<h2>Doctors Visiting $hname</h2>";
+echo "<table border='1'>";
+echo "<tr>
+ <th>Doctor No</th>
+ <th>Name</th>
+ <th>Address</th>
+ <th>City</th>
+ <th>Area</th>
+ </tr>";
+while($row=mysqli_fetch_assoc($result))
+{
+ echo "<tr>";
+ echo "<td>".$row['doc_no']."</td>";
+ echo "<td>".$row['dname']."</td>";
+ echo "<td>".$row['address']."</td>";
+ echo "<td>".$row['city']."</td>";
+ echo "<td>".$row['area']."</td>";
+ echo "</tr>";
+}
+echo "</table>";
+mysqli_close($con);
+?>
+
+14.Consider the following entities and their relationship. Student ( stud_id, name, class)
+Competition (c_no,c_name, type) a) Relationship between student and competition In
+many-many with attributes rank and year. b) Create a RDB in 3NF for above and solve the
+following. c) Using above database write a script in PHP to accept a competition from
+user and display information of student who has secured 1st rank in that competition.
+
+CREATE DATABASE competition_db;
+USE competition_db;
+CREATE TABLE Student(
+stud_id INT PRIMARY KEY,
+name VARCHAR(50),
+class VARCHAR(20)
+);
+CREATE TABLE Competition(
+c_no INT PRIMARY KEY,
+c_name VARCHAR(50),
+type VARCHAR(30)
+);
+CREATE TABLE Participation(
+stud_id INT,
+c_no INT,
+rank INT,
+year INT,
+PRIMARY KEY(stud_id,c_no,year),
+FOREIGN KEY(stud_id) REFERENCES Student(stud_id),
+FOREIGN KEY(c_no) REFERENCES Competition(c_no)
+);
+
+HTML Form (competition.html)
+<html>
+<body>
+<h2>Search First Rank Student</h2>
+<form method="post" action="result.php">
+Enter Competition Name :
+<input type="text" name="cname">
+<br><br>
+<input type="submit" value="Show Result">
+</form>
+</body>
+</html>
+
+PHP Script (result.php)
+
+<?php
+$con = mysqli_connect("localhost","root","","competition_db");
+if(!$con)
+{
+die("Connection failed");
+}
+$cname = $_POST['cname'];
+$sql = "SELECT s.stud_id, s.name, s.class, p.year
+ FROM Student s, Competition c, Participation p
+ WHERE s.stud_id=p.stud_id
+ AND c.c_no=p.c_no
+ AND c.c_name='$cname'
+ AND p.rank=1";
+$result = mysqli_query($con,$sql);
+echo "<h2>First Rank Student in $cname</h2>";
+echo "<table border=1>";
+echo "<tr>
+<th>Student ID</th>
+<th>Name</th>
+<th>Class</th>
+<th>Year</th>
+</tr>";
+while($row=mysqli_fetch_assoc($result))
+{
+echo "<tr>";
+echo "<td>".$row['stud_id']."</td>";
+echo "<td>".$row['name']."</td>";
+echo "<td>".$row['class']."</td>";
+echo "<td>".$row['year']."</td>";
+echo "</tr>";
+}
+echo "</table>";
+mysqli_close($con);
+?>
+
+
+
+Steps To Run Program
+1. Start XAMPP
+2. Open phpMyAdmin
+http://localhost/phpmyadmin
+• Create database: competition_db
+• Run your SQL queries
+3. Save Files
+4. Run Program
+ http://localhost/competition.html
+
+
+Practical 6: (JavaScript)
+
+15.Write the JavaScript to do swapping of two values. (For example: if A=100 and B=200,
+after swapping it becomes A=200 and B=100)
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Swap Two Values</title>
+</head>
+<body>
+<h2>Swapping of Two Values</h2>
+<script>
+var A = 100;
+var B = 200;
+document.write("Before Swapping:<br>");
+document.write("A = " + A + "<br>");
+document.write("B = " + B + "<br><br>");
+var temp;
+temp = A;
+A = B;
+B = temp;
+document.write("After Swapping:<br>");
+document.write("A = " + A + "<br>");
+document.write("B = " + B);
+</script>
+</body>
+</html>
+
+
+16.Write the JavaScript to convert temperature from Celsius to Fahrenheit.
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Celsius to Fahrenheit</title>
+</head>
+<body>
+<h2>Temperature Conversion</h2>
+<script>
+var celsius = 30;
+var fahrenheit;
+fahrenheit = (celsius * 9/5) + 32;
+document.write("Temperature in Celsius = " + celsius + "<br>");
+document.write("Temperature in Fahrenheit = " + fahrenheit);
+</script>
+</body>
+</html>
+
+Steps To Run Program
+
+1. Open Text Editor
+2. Save the File
+• Copy your code
+• Save file with .html extension
+ 3. Save Location
+You can save it anywhere (Desktop / Documents etc.)
+ 4. Open in Browser
+• Go to the file location
+• Double click on temperature.html
+OR right click → Open with browser (Chrome/Firefox)
+ 5. Run Program
+
+
+Practical 7: (XML and AJAX)
+
+17.Write a script to create XML file as 'Employee.xml'. The element of this xml file are as
+follows:
+
+<Empdetails>
+<Employee EMPno= Empname=>
+<Salary>--------</Salary>
+<Designation>-------</Designation>
+</Employee>
+</Empdetails>
+<?xml version="1.0" encoding="UTF-8"?>
+<Empdetails>
+ <Employee EMPno="101" Empname="Rahul">
+ <Salary>25000</Salary>
+ <Designation>Manager</Designation>
+ </Employee>
+ <Employee EMPno="102" Empname="Sneha">
+ <Salary>20000</Salary>
+ <Designation>Clerk</Designation>
+ </Employee>
+</Empdetails>
+
+
+18.Write a PHP script to generate an XML in the following format in php.
+
+<? Xml version='1.0' encoding="ISO-8859-1'?>
+<Book Store>
+<Books>
+<Title> Programming in PHP </ Title>
+<PHP> <PHP>
+<Publication>O'RELLY<Publication>
+</PHP>
+<Title> Beginners PHP</Title>
+<Publication> WORX</Publication>
+</PHP></Books>
+</Book Store>
+<?php
+$xml = new DOMDocument("1.0", "ISO-8859-1");
+// Create root element
+$bookstore = $xml->createElement("BookStore");
+$xml->appendChild($bookstore);
+// Create Books element
+$books = $xml->createElement("Books");
+$bookstore->appendChild($books);
+// First Book
+$php = $xml->createElement("PHP");
+$books->appendChild($php);
+$title1 = $xml->createElement("Title","Programming in PHP");
+$php->appendChild($title1);
+$pub1 = $xml->createElement("Publication","O'REILLY");
+$php->appendChild($pub1);
+// Second Book
+$php2 = $xml->createElement("PHP");
+$books->appendChild($php2);
+$title2 = $xml->createElement("Title","Beginners PHP");
+$php2->appendChild($title2);
+$pub2 = $xml->createElement("Publication","WORX");
+$php2->appendChild($pub2);
+// Display XML
+$xml->formatOutput = true;
+echo $xml->saveXML();
+?>
+
+
+19.Write a AJAX program to search Student name according to the character typed and
+display list using array
+
+HTML + AJAX File (search.html)
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Search</title>
+<script>
+function showStudent(str)
+{
+ if (str.length == 0)
+ {
+ document.getElementById("result").innerHTML = "";
+ return;
+ }
+ var xmlhttp = new XMLHttpRequest();
+ xmlhttp.onreadystatechange = function()
+ {
+ if (this.readyState == 4 && this.status == 200)
+ {
+ document.getElementById("result").innerHTML = this.responseText;
+ }
+ };
+ xmlhttp.open("GET","student.php?q="+str,true);
+ xmlhttp.send();
+}
+</script>
+</head>
+<body>
+<h2>Search Student Name</h2>
+Enter Student Name :
+<input type="text" onkeyup="showStudent(this.value)">
+<p>Suggestions:</p>
+<div id="result"></div>
+</body>
+</html>
+
+
+PHP File (student.php)
+
+<?php
+$students = array(
+"Amol","Amit","Anita","Ajay","Bhushan","Bhakti",
+"Chaitali","Chetan","Dipali","Dinesh","Kiran",
+"Komal","Mahesh","Neha","Pooja","Rahul","Rohit",
+"Sonali","Suresh","Vaishali"
+);
+$q = $_GET["q"];
+$hint = "";
+if ($q !== "")
+{
+ $q = strtolower($q);
+ $len = strlen($q);
+ foreach($students as $name)
+ {
+ if (stristr($q, substr($name,0,$len)))
+ {
+ if ($hint === "")
+ {
+ $hint = $name;
+ }
+ else
+ {
+ $hint .= "<br>$name";
+ }
+ }
  }
 }
-
-
-3) ARMSTRONGnumber
-
-import java.util.Scanner;
-
-public class ArmstrongandFactors {
-    
-    // Function to check Armstrong number
-    static boolean isArmstrong(int n) {
-        int temp = n, sum = 0, digits = 0;
-        while (temp > 0) {
-            digits++;
-            temp /= 10;
-        }
-        temp = n;
-        while (temp > 0) {
-            int d = temp % 10;
-            sum += Math.pow(d, digits);
-            temp /= 10;
-        }
-        return sum == n;
-    }
-
-    // Function to print factors of a number
-    static void printFactors(int n) {
-        System.out.print("Factors of " + n + ": ");
-        for (int i = 1; i <= n; i++) {
-            if (n % i == 0) {
-                System.out.print(i + " ");
-            }
-        }
-        System.out.println();
-    }
-
-    // Function to print Armstrong numbers up to a given range
-    static void printArmstrongRange(int range) {
-        System.out.println("Armstrong numbers up to " + range + ":");
-        for (int i = 1; i <= range; i++) {
-            if (isArmstrong(i)) {
-                System.out.print(i + " ");
-            }
-        }
-        System.out.println();
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Enter a number: ");
-        int num = sc.nextInt();
-
-        System.out.print("Enter range: ");
-        int range = sc.nextInt();
-
-        if (isArmstrong(num)) {
-            System.out.println(num + " is an Armstrong number.");
-        } else {
-            System.out.println(num + " is NOT an Armstrong number.");
-        }
-
-        printFactors(num);
-        printArmstrongRange(range);
-
-        sc.close();
-    }
-}
-
-
-4)Arraylist
-
-import java.util.ArrayList;
-import java.util.Scanner;
-
-public class ArrayListExample {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        ArrayList<Integer> list = new ArrayList<>();
-
-        System.out.print("Enter number of integers: ");
-        int n = sc.nextInt();
-
-        System.out.println("Enter " + n + " integers:");
-        for (int i = 0; i < n; i++) {
-            int num = sc.nextInt();
-            list.add(num);
-        }
-
-        System.out.println("\nArrayList elements: " + list);
-        sc.close();
-    }
-}
-
-
-
-5)CitySTDapp
-
-import java.util.*;
-
-public class CitySTDApp {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        HashMap<String, String> cityMap = new HashMap<>();
-
-        while (true) {
-            System.out.println("\n--- City STD Code App ---");
-            System.out.println("1. Add City & STD Code");
-            System.out.println("2. Remove City");
-            System.out.println("3. Search City");
-            System.out.println("4. Display All");
-            System.out.println("5. Exit");
-            System.out.print("Enter your choice: ");
-            int choice = sc.nextInt();
-            sc.nextLine(); // consume newline
-
-            switch (choice) {
-                case 1: // Add
-                    System.out.print("Enter City Name: ");
-                    String city = sc.nextLine();
-                    if (cityMap.containsKey(city)) {
-                        System.out.println("City already exists! Duplicate not allowed.");
-                    } else {
-                        System.out.print("Enter STD Code: ");
-                        String code = sc.nextLine();
-                        cityMap.put(city, code);
-                        System.out.println("City added successfully!");
-                    }
-                    break;
-
-                case 2: // Remove
-                    System.out.print("Enter City to Remove: ");
-                    String remCity = sc.nextLine();
-                    if (cityMap.remove(remCity) != null) {
-                        System.out.println(remCity + " removed successfully!");
-                    } else {
-                        System.out.println("City not found!");
-                    }
-                    break;
-
-                case 3: // Search
-                    System.out.print("Enter City to Search: ");
-                    String searchCity = sc.nextLine();
-                    if (cityMap.containsKey(searchCity)) {
-                        System.out.println("STD Code of " + searchCity + " = " + cityMap.get(searchCity));
-                    } else {
-                        System.out.println("City not found!");
-                    }
-                    break;
-
-                case 4: // Display all
-                    System.out.println("\n--- City List ---");
-                    for (Map.Entry<String, String> entry : cityMap.entrySet()) {
-                        System.out.println(entry.getKey() + " -> " + entry.getValue());
-                    }
-                    break;
-
-                case 5: // Exit
-                    System.out.println("Exiting...");
-                    sc.close();
-                    return;
-
-                default:
-                    System.out.println("Invalid choice! Try again.");
-            }
-        }
-    }
-}
-
-
-6)combobox
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-
-public class ComboBoxExampleGUI extends JFrame implements ActionListener {
-    JComboBox<String> comboBox;
-    JButton showButton;
-    JLabel resultLabel;
-
-    public ComboBoxExampleGUI() {
-        setTitle("Java Swing Examples");
-        setSize(400, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new FlowLayout());
-
-        JLabel label = new JLabel("Control in action: JComboBox");
-
-        // ComboBox with programming languages
-        String languages[] = {"Java", "C", "C++", "Python", "Perl"};
-        comboBox = new JComboBox<>(languages);
-
-        showButton = new JButton("Show");
-        resultLabel = new JLabel("Language Selected: ");
-
-        add(label);
-        add(comboBox);
-        add(showButton);
-        add(resultLabel);
-
-        showButton.addActionListener(this);
-
-        setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String selected = (String) comboBox.getSelectedItem();
-        resultLabel.setText("Language Selected: " + selected);
-    }
-
-    public static void main(String[] args) {
-        new ComboBoxExampleGUI();
-    }
-}
-
-
-
-7)customerfile
-
-
-import java.io.*;
-import java.util.Scanner;
-
-class CustomerFile {
-    public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
-
-        FileOutputStream fos = new FileOutputStream("customers.dat");
-        DataOutputStream dos = new DataOutputStream(fos);
-
-        System.out.print("Enter number of customers: ");
-        int n = sc.nextInt();
-        sc.nextLine(); // consume newline
-
-        for (int i = 1; i <= n; i++) {
-            System.out.println("\nEnter details of customer " + i + ":");
-            System.out.print("Customer ID: ");
-            int cid = sc.nextInt();
-            sc.nextLine();
-            System.out.print("Name: ");
-            String name = sc.nextLine();
-            System.out.print("Address: ");
-            String address = sc.nextLine();
-            System.out.print("Mobile No: ");
-            String mobile = sc.nextLine();
-
-            dos.writeInt(cid);
-            dos.writeUTF(name);
-            dos.writeUTF(address);
-            dos.writeUTF(mobile);
-        }
-
-        dos.close();
-        fos.close();
-
-        System.out.println("\nData written successfully to customers.dat");
-
-        FileInputStream fis = new FileInputStream("customers.dat");
-        DataInputStream dis = new DataInputStream(fis);
-
-        System.out.println("\n***** Customer Details *****");
-        for (int i = 1; i <= n; i++) {
-            int cid = dis.readInt();
-            String name = dis.readUTF();
-            String address = dis.readUTF();
-            String mobile = dis.readUTF();
-
-            System.out.println("\nCustomer " + i + ":");
-            System.out.println("ID: " + cid);
-            System.out.println("Name: " + name);
-            System.out.println("Address: " + address);
-            System.out.println("Mobile: " + mobile);
-        }
-
-        dis.close();
-        fis.close();
-        sc.close();
-    }
-}
-
-
-8)doctorname exception
-
-
-import java.util.*;
-
-// User-defined Exception
-class InvalidNameException extends Exception {
-}
-
-class DoctorNameException {
-    public static void main(String args[]) {
-        Scanner s = new Scanner(System.in);
-        System.out.println("Enter the Doctor Name ");
-        String name = s.next();
-
-        try {
-            for (int i = 0; i < name.length(); i++) {
-                int ch = (int) name.charAt(i);
-
-                if ((ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122)) {
-                } 
-                else {
-                    throw new InvalidNameException();
-                }
-            }
-            System.out.println("Doctor Name is : " + name);
-        } 
-        catch (InvalidNameException e) {
-            System.out.println("Invalid Name ");
-        }
-    }
-}
-
-
-
-9) employeearray
-
-
-import java.util.Scanner;
-
-class Employee {
-    String name;
-    double salary;
-
-    // Constructor
-    Employee(String name, double salary) {
-        this.name = name;
-        this.salary = salary;
-    }
-
-    // Method to display employee details
-    void displayInfo() {
-        System.out.println("Name: " + name + ", Salary: " + salary);
-    }
-}
-
-public class EmployeeArray1 {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        // Create an array to store 5 Employee objects
-        Employee[] employees = new Employee[5];
-
-        // Input employee data
-        for (int i = 0; i < employees.length; i++) {
-            System.out.println("Enter details for Employee " + (i + 1) + ":");
-
-            System.out.print("Name: ");
-            String name = scanner.nextLine();
-
-            System.out.print("Salary: ");
-            double salary = scanner.nextDouble();
-            scanner.nextLine(); // consume newline
-
-            // Create new Employee object and store in array
-            employees[i] = new Employee(name, salary);
+echo ($hint === "") ? "No Suggestion" : $hint;
+?>
+
+
+20.Write a AJAX program to print Teacher information from MySQL table Teacher.
+
+Teacher (Tno, Name, Subject, Research area).
+
+CREATE TABLE Teacher (
+Tno INT PRIMARY KEY,
+Name VARCHAR (50),
+Subject VARCHAR (50),
+Research_area VARCHAR (50)
+);
+INSERT INTO Teacher VALUES
+(1,'Amit Patil','DBMS','Data Mining'),
+(2,'Neha Shah','Java','Cloud Computing'),
+(3,'Ravi Kulkarni','PHP','Web Technology');
+HTML + AJAX File (teacher.html)
+<!DOCTYPE html>
+<html>
+<head>
+<title>Teacher Information</title>
+<script>
+function showTeacher()
+{
+ var xmlhttp = new XMLHttpRequest();
+ xmlhttp.onreadystatechange = function()
+ {
+ if(this.readyState == 4 && this.status == 200)
+ {
+ document.getElementById("result").innerHTML = this.responseText;
  }
-
-        // Display employee data
-        System.out.println("\nEmployee Details:");
-        for (int i = 0; i < employees.length; i++) {
-            System.out.print("Employee " + (i + 1) + ": ");
-            employees[i].displayInfo();
-        }
-
-        scanner.close();
-    }
+ };
+ xmlhttp.open("GET","teacher.php",true);
+ xmlhttp.send();
 }
-
-
-10) empmaxsal
-
-import java.io.*;
-
-class Emp {
-    private int id;
-    private double salary;
-    private String name, dept;
-    double total; // total salary (salary + bonus if any)
-
-    public Emp() {
-        id = 0;
-        salary = 0.0;
-        name = "";
-        dept = "";
-        total = 0.0;
-    }
-
-    public Emp(int id, double salary, String name, String dept) {
-        this.id = id;
-        this.salary = salary;
-        this.name = name;
-        this.dept = dept;
-        this.total = salary;
-    }
-
-    public void accept() throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        System.out.print("Enter id of employee: ");
-        id = Integer.parseInt(br.readLine());
-        System.out.print("Enter name of employee: ");
-        name = br.readLine();
-        System.out.print("Enter salary of employee: ");
-        salary = Double.parseDouble(br.readLine());
-        System.out.print("Enter department of employee: ");
-        dept = br.readLine();
-        total = salary; // initialize total with salary
-    }
-
-    public void display() {
-        System.out.println("Emp Id: " + id);
-        System.out.println("Name: " + name);
-        System.out.println("Salary: " + salary);
-        System.out.println("Department: " + dept);
-    }
+</script>
+</head>
+<body>
+<h2>Teacher Information</h2>
+<button onclick="showTeacher()">Show Teachers</button>
+<div id="result"></div>
+</body>
+</html>
+PHP File (teacher.php)
+<?php
+$conn = mysqli_connect("localhost","root","","college");
+if(!$conn)
+{
+ die("Connection Failed");
 }
-
-class Manager extends Emp {
-    private double bonus;
-
-    public void accept() throws IOException {
-        super.accept(); // take basic emp details
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        System.out.print("Enter Bonus of employee: ");
-        bonus = Double.parseDouble(br.readLine());
-        super.total = super.total + bonus; // add bonus to total salary
-    }
-
-    public void display() {
-        super.display();
-        System.out.println("Bonus: " + bonus);
-        System.out.println("Total Salary: " + total);
-    }
+$sql = "SELECT * FROM Teacher";
+$result = mysqli_query($conn,$sql);
+echo "<table border=1>";
+echo "<tr>
+<th>Tno</th>
+<th>Name</th>
+<th>Subject</th>
+<th>Research Area</th>
+</tr>";
+while($row = mysqli_fetch_assoc($result))
+{
+ echo "<tr>";
+ echo "<td>".$row['Tno']."</td>";
+ echo "<td>".$row['Name']."</td>";
+ echo "<td>".$row['Subject']."</td>";
+ echo "<td>".$row['Research_area']."</td>";
+ echo "</tr>";
 }
-
-public class EmpMaxSalary {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        System.out.print("Enter the number of employees: ");
-        int n = Integer.parseInt(br.readLine());
-
-        Manager[] m = new Manager[n];
-
-        // Accept employees
-        for (int i = 0; i < n; i++) {
-            m[i] = new Manager();
-            m[i].accept();
-        }
-
-        // Display employees
-        for (int i = 0; i < n; i++) {
-            m[i].display();
-            System.out.println("---------------------------------");
-        }
-
-        // Find max salary employee
-        double max = m[0].total;
-        int index = 0;
-        for (int i = 1; i < n; i++) {
-            if (m[i].total > max) {
-                max = m[i].total;
-                index = i;
-            }
-        }
-
-        System.out.println("The Employee having the maximum Total salary is:");
-        m[index].display();
-    }
-}
-
-
-11) Fibonacci
-
-import java.util.Scanner;
-
-public class FibonacciSeries {
-
-    // Function to print Fibonacci series
-    static void printFibonacci(int n) {
-        int a = 0, b = 1, c;
-        System.out.print("Fibonacci Series: " + a + " " + b);
-
-        for (int i = 2; i < n; i++) {
-            c = a + b;
-            System.out.print(" " + c);
-            a = b;
-            b = c;
-        }
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter number of terms: ");
-        int n = sc.nextInt();
-
-        printFibonacci(n);
-        sc.close();
-    }
-}
-
-
-12) fileinfo
-
-import java.io.File;
-import java.util.Scanner;
-
-public class FileInfo {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        // Accept file name from user
-        System.out.print("Enter file name with path: ");
-        String fileName = sc.nextLine();
-
-        File f = new File(fileName);
-
-        if (f.exists()) {
-            System.out.println("\nFile Information:");
-            System.out.println("File Name: " + f.getName());
-            System.out.println("Absolute Path: " + f.getAbsolutePath());
-            System.out.println("Readable: " + f.canRead());
-            System.out.println("Writable: " + f.canWrite());
-            
-            // Checking type (file or directory)
-            if (f.isFile()) {
-                System.out.println("Type: Regular File");
-            } else if (f.isDirectory()) {
-                System.out.println("Type: Directory");
-            }
-            
-            System.out.println("File Size: " + f.length() + " bytes");
-        } else {
-            System.out.println("\nFile does not exist!");
-        }
-
-        sc.close();
-    }
-}
-
-
-14) hashtable
-
-import java.io.*;
-import java.util.*;
-
-class Hashtable1 {
-    public static void main(String args[]) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        Hashtable ht = new Hashtable();
-        float sal;
-        String name = null;
-
-        System.out.println("\nEnter number of Employees : ");
-        int n = Integer.parseInt(br.readLine());
-
-        // Input employee details
-        for (int i = 1; i <= n; i++) {
-            System.out.print("Enter Employee name : ");
-            name = br.readLine();
-
-            System.out.print("Enter Employee Salary : ");
-            sal = Float.parseFloat(br.readLine());
-
-            ht.put(name, sal);   // store name & salary in Hashtable
-        }
-
-        // Display complete Hashtable
-        System.out.println("Hash table = " + ht);
-
-        // Display using Enumeration
-        Enumeration nameEnum = ht.keys();
-        Enumeration salaryEnum = ht.elements();
-
-        System.out.println("Name\tSalary");
-
-        while (nameEnum.hasMoreElements()) {
-            System.out.println(nameEnum.nextElement() + "\t" + salaryEnum.nextElement());
-        }
-
-        // Search employee
-        System.out.println("Enter name to be searched : ");
-        String snm = br.readLine();
-
-        nameEnum = ht.keys();
-        salaryEnum = ht.elements();
-        int cnt = 0;
-
-        while (nameEnum.hasMoreElements()) {
-            name = (String) nameEnum.nextElement();
-            if (snm.equals(name)) {
-                cnt++;
-                System.out.println("Salary = " + ht.get(name));
-            }
-        }
-
-        if (cnt == 0) {
-            System.out.println("Employee not found");
-        }
-    }
-}
-
-
-
-15) interfaceshape
-
-
-import java.io.*;
-
-// Interface
-interface Shape {
-    void calc_area();
-    void calc_volume();
-    float pi = 3.14f;   // final and static by default in interface
-}
-
-class Sphere implements Shape {
-    double r;
-    private double area;
-    private double volume;
-
-    public void accept() throws IOException {
-        System.out.println("Enter the radius of the Sphere: ");
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        r = Double.parseDouble(br.readLine());
-    }
-
-    public void calc_area() {
-        area = 4 * pi * r * r;
-    }
-
-    public void calc_volume() {
-        volume = (4.0 / 3.0) * pi * r * r * r;
-    }
-
-    public void display() {
-        calc_area();
-        calc_volume();
-        System.out.println("The area of Sphere is: " + area);
-        System.out.println("The volume of Sphere is: " + volume);
-    }
-}
-
-class Cone implements Shape {
-    double h, r, area, volume;
-
-    public void accept() throws IOException {
-        System.out.println("Enter radius and height of the Cone: ");
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        r = Double.parseDouble(br.readLine());
-        h = Double.parseDouble(br.readLine());
-    }
-
-    public void calc_area() {
-        double sq = h * h + r * r;
-        area = pi * r * (r + Math.sqrt(sq));
-    }
-
-    public void calc_volume() {
-        volume = (pi * r * r * h) / 3;
-    }
-
-    public void display() {
-        calc_area();
-        calc_volume();
-        System.out.println("The area of Cone is: " + area);
-        System.out.println("The volume of Cone is: " + volume);
-    }
-}
-
-class Cylinder implements Shape {
-    double r, h, area, volume;
-
-    public void accept() throws IOException {
-        System.out.println("Enter radius and height of the Cylinder: ");
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        r = Double.parseDouble(br.readLine());
-        h = Double.parseDouble(br.readLine());
-    }
-
-    public void calc_area() {
-        area = (2 * pi * r * h) + (2 * pi * r * r);
-    }
-
-    public void calc_volume() {
-        volume = pi * r * r * h;
-    }
-
-    public void display() {
-        calc_area();
-        calc_volume();
-        System.out.println("The area of Cylinder is: " + area);
-        System.out.println("The volume of Cylinder is: " + volume);
-    }
-}
-
-class Box implements Shape {
-    double l, b, h, area, volume;
-
-    public void accept() throws IOException {
-        System.out.println("Enter length, breadth and height of the Box: ");
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        l = Double.parseDouble(br.readLine());
-        b = Double.parseDouble(br.readLine());
-        h = Double.parseDouble(br.readLine());
-    }
-
-    public void calc_area() {
-        area = (2 * l * b) + (2 * b * h) + (2 * l * h);
-    }
-
-    public void calc_volume() {
-        volume = l * b * h;
-    }
-
-    public void display() {
-        calc_area();
-        calc_volume();
-        System.out.println("The area of Box is: " + area);
-        System.out.println("The volume of Box is: " + volume);
-    }
-}
-
-public class InterfaceShape {
-    public static void main(String[] args) throws IOException {
-        Sphere s = new Sphere();
-        s.accept();
-        s.display();
-
-        Cone co = new Cone();
-        co.accept();
-        co.display();
-
-        Cylinder cy = new Cylinder();
-        cy.accept();
-        cy.display();
-
-        Box b = new Box();
-        b.accept();
-        b.display();
-    }
-}
-
-16) linklist
-
-import java.util.*;
-
-class Linklist {
-    public static void main(String[] args) {
-        LinkedList ll = new LinkedList();
-
-        // Add elements
-        ll.add("Red");
-        ll.add("Blue");
-        ll.add("Yellow");
-        ll.add("Orange");
-
-        // Display elements using Iterator
-        Iterator i = ll.iterator();
-        System.out.println("\nContents of the List using an Iterator:\n");
-        while (i.hasNext()) {
-            String s = (String) i.next();
-            System.out.println(s);
-        }
-
-        // ListIterator to traverse in both directions
-        ListIterator<String> li = ll.listIterator();
-
-        // Move the iterator to the end of the list
-        while (li.hasNext()) {
-            li.next();
-        }
-
-        // Display elements in reverse order
-        System.out.println("\nContents of the List in reverse order using a ListIterator:");
-        while (li.hasPrevious()) {
-            System.out.println(li.previous());
-        }
-
-        // Add elements at specific positions
-        ll.add(2, "Pink");   // add at index 2 (3rd position)
-        ll.add(3, "Green");  // add at index 3 (4th position)
-
-        // Display modified list
-        System.out.println("\nList after inserting elements between Blue and Yellow:");
-        System.out.println(ll);
-    }
-}
-
-
-17) loginpage
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-
-public class LoginPageGUI extends JFrame implements ActionListener {
-    JLabel userLabel, passLabel;
-    JTextField userText;
-    JPasswordField passText;
-    JButton loginBtn, cancelBtn;
-
-    public LoginPageGUI() {
-        setTitle("Login Page");
-        setSize(350, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // Center the window
-
-        // Layout
-        setLayout(new GridLayout(3, 2, 10, 10));
-
-        // Components
-        userLabel = new JLabel("Username:");
-        passLabel = new JLabel("Password:");
-        userText = new JTextField();
-        passText = new JPasswordField();
-        loginBtn = new JButton("Login");
-        cancelBtn = new JButton("Cancel");
-
-        // Add components to layout
-        add(userLabel);
-        add(userText);
-        add(passLabel);
-        add(passText);
-        add(loginBtn);
-        add(cancelBtn);
-
-        // Add ActionListeners
-        loginBtn.addActionListener(this);
-        cancelBtn.addActionListener(this);
-
-        setVisible(true);
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loginBtn) {
-            String user = userText.getText();
-            String pass = new String(passText.getPassword());
-
-            if (user.equals("admin") && pass.equals("1234")) {
-                JOptionPane.showMessageDialog(this, "Login Successful!");
-            } else {
-                JOptionPane.showMessageDialog(this, "Invalid Username or Password!");
-            }
-        } else if (e.getSource() == cancelBtn) {
-            userText.setText("");
-            passText.setText("");
-        }
-    }
-
-    public static void main(String[] args) {
-        new LoginPageGUI();
-    }
-}
-
-17) maingame
-
-package Games;
-
-public class Indoor {
-    String gameName;
-    String[] players;
-
-    // Default constructor
-    public Indoor() {
-        gameName = "Chess";
-        players = new String[]{"Amit", "Sneha", "Rahul"};
-    }
-
-    // Parameterized constructor
-    public Indoor(String gameName, String[] players) {
-        this.gameName = gameName;
-        this.players = players;
-    }
-
-    public void display() {
-        System.out.println("Indoor Game: " + gameName);
-        System.out.println("Players:");
-        for (String p : players) {
-            System.out.println("- " + p);
-        }
-    }
-}
-
-
-package Games;
-
-public class Outdoor {
-    String gameName;
-    String[] players;
-
-    // Default constructor
-    public Outdoor() {
-        gameName = "Cricket";
-        players = new String[]{"Rohit", "Virat", "Dhoni"};
-    }
-
-    // Parameterized constructor
-    public Outdoor(String gameName, String[] players) {
-        this.gameName = gameName;
-        this.players = players;
-    }
-
-    public void display() {
-        System.out.println("Outdoor Game: " + gameName);
-        System.out.println("Players:");
-        for (String p : players) {
-            System.out.println("- " + p);
-        }
-    }
-}
-
-
-
-import Games.*;   // Import package
-
-public class MainGame {
-    public static void main(String[] args) {
-        // Using default constructors
-        Indoor i1 = new Indoor();
-        Outdoor o1 = new Outdoor();
-
-        // Using parameterized constructors
-        String[] badmintonPlayers = {"Neeraj", "Prakash", "Kiran"};
-        Indoor i2 = new Indoor("Badminton", badmintonPlayers);
-
-        String[] footballPlayers = {"Messi", "Ronaldo", "Neymar"};
-        Outdoor o2 = new Outdoor("Football", footballPlayers);
-
-        // Display details
-        i1.display();
-        System.out.println();
-        o1.display();
-        System.out.println();
-        i2.display();
-        System.out.println();
-        o2.display();
-    }
-}
-
-
-
-18) multilevelinheritacne
-
-
-class Employee {
-    String name;
-    double salary;
-
-   
-    Employee(String name, double salary) {
-        this.name = name;
-        this.salary = salary;
-    }
-
- 
-    void displayEmployeeDetails() {
-        System.out.println("Employee Name: " + name);
-        System.out.println("Salary: " + salary);
-    }
-}
-
-class Developer extends Employee {
-    String projectName;
-
-    
-    Developer(String name, double salary, String projectName) {
-        super(name, salary); // Call to Employee constructor
-        this.projectName = projectName;
-    }
-
-    
-    void displayDeveloperDetails() {
-        displayEmployeeDetails(); // Call method from Employee
-        System.out.println("Project Name: " + projectName);
-    }
-}
-
-class Programmer extends Developer {
-    String progLanguage;
-
-    
-    Programmer(String name, double salary, String projectName, String progLanguage) {
-        super(name, salary, projectName); // Call to Developer constructor
-        this.progLanguage = progLanguage;
-    }
-
-  
-    void displayProgrammerDetails() {
-        displayDeveloperDetails(); 
-        System.out.println("Programming Language: " + progLanguage);
-    }
-}
-
-public class MultilevelInheritanceDemo {
-    public static void main(String[] args) {
-        
-        Programmer pr = new Programmer("Alice", 75000, "Banking App"," Java");
-
-        System.out.println("Programmer Details:");
-        pr.displayProgrammerDetails();
-    }
-}
-
-
-19) multiplication
-
-import java.io.*;
-
-public class MultiplicationTable {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        System.out.print("Enter the number up to which table should be printed: ");
-        int num = Integer.parseInt(br.readLine());
-
-        System.out.println("***** MULTIPLICATION TABLE *****");
-
-        for (int i = 1; i <= num; i++) {
-            for (int j = 1; j <= 10; j++) {
-                System.out.print(" " + (i * j) + " ");
-            }
-            System.out.println(); 
-        }
-    }
-}
-
-
-20) mydate
-
-import java.util.Scanner;
-
-public class MyDate {
-    int dd, mm, yy;
-
-    // Default constructor
-    MyDate() {
-        this.dd = 1;
-        this.mm = 1;
-        this.yy = 2000;
-    }
-
-    // Parameterized constructor
-    MyDate(int dd, int mm, int yy) {
-        this.dd = dd;
-        this.mm = mm;
-        this.yy = yy;
-    }
-
-    // Accept input from user
-    void accept() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter day: ");
-        this.dd = sc.nextInt();
-        System.out.print("Enter month: ");
-        this.mm = sc.nextInt();
-        System.out.print("Enter year: ");
-        this.yy = sc.nextInt();
-    }
-
-    // Method to display date
-    void display() {
-        System.out.println(this.dd + "-" + this.mm + "-" + this.yy);
-    }
-
-    // Optional main for testing MyDate separately
-    public static void main(String[] args) {
-        MyDate date1 = new MyDate();
-        System.out.print("Default Date: ");
-        date1.display();
-
-        MyDate date2 = new MyDate(4, 8, 2025);
-        System.out.print("Parameterized Date: ");
-        date2.display();
-    }
-}
-
-
-21)overloading
-
-import java.util.Scanner;
-
-public class OverloadingMethod {
-
-    // Area of Circle
-    double area(double radius) {
-        return 3.14 * radius * radius;
-    }
-
-    // Area of Rectangle
-    double area(double length, double breadth) {
-        return length * breadth;
-    }
-
-    // Area of Triangle
-    double area(double base, double height, boolean isTriangle) {
-        return 0.5 * base * height;
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        OverloadingMethod ac = new OverloadingMethod();
-
-        System.out.print("Enter radius of circle: ");
-        double r = sc.nextDouble();
-        System.out.println("Area of Circle: " + ac.area(r));
-
-        System.out.print("\nEnter length and breadth of rectangle: ");
-        double l = sc.nextDouble();
-        double b = sc.nextDouble();
-        System.out.println("Area of Rectangle: " + ac.area(l, b));
-
-        System.out.print("\nEnter base and height of triangle: ");
-        double base = sc.nextDouble();
-        double h = sc.nextDouble();
-        System.out.println("Area of Triangle: " + ac.area(base, h, true));
-
-        sc.close();
-    }
-}
-
-22) primecheck
-
-import java.util.Scanner;
-
-// User defined exception
-class ZeroNumberException extends Exception {
-    public ZeroNumberException(String message) {
-        super(message);
-    }
-}
-
-public class PrimeCheck {
-    
-    // Function to check prime
-    static boolean isPrime(int n) {
-        if (n <= 1) return false;
-        for (int i = 2; i <= n / 2; i++) {
-            if (n % i == 0)
-                return false;
-        }
-        return true;
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        try {
-            System.out.print("Enter a number: ");
-            int num = sc.nextInt();
-
-            if (num == 0) {
-                throw new ZeroNumberException("Number is 0, not allowed!");
-            }
-
-            if (isPrime(num)) {
-                System.out.println(num + " is Prime");
-            } else {
-                System.out.println(num + " is Not Prime");
-            }
-        } catch (ZeroNumberException e) {
-            System.out.println("Exception: " + e.getMessage());
-        }
-        sc.close();
-    }
-}
-
-
-
-23) product
-
-import java.io.*;
-
-class ProductInfo {
-    int pid;
-    String n;
-    int m;
-
-    ProductInfo(int pid, String n, int m) {
-        this.pid = pid;
-        this.n = n;
-        this.m = m;
-    }
-
-    public void display() {
-        System.out.print("Product Id = " + pid + "  ");
-        System.out.print("Product Name = " + n + "  ");
-        System.out.println("Product Price = " + m);
-    }
-}
-
-public class Product {
-
-    public static void main(String args[]) {
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-            ProductInfo[] obj = new ProductInfo[5];
-
-            int pro_Id;
-            String pro_name;
-            int pro_pr;
-
-            for (int i = 0; i < 5; i++) {
-                System.out.println("Enter Product ID");
-                pro_Id = Integer.parseInt(br.readLine());
-
-                System.out.println("Enter Product Name");
-                pro_name = br.readLine();
-
-                System.out.println("Enter Product Price");
-                pro_pr = Integer.parseInt(br.readLine());
-
-                obj[i] = new ProductInfo(pro_Id, pro_name, pro_pr);
-            }
-
-            for (int i = 0; i < 5; i++) {
-                obj[i].display();
-            }
-
-        } catch (Exception e) {
-            System.out.println("Something went wrong.");
-        }
-    }
-}
-
-
-24) reverse
-
-public class ReverseNumber {
-    public static void main(String[] args) {
-        int num = Integer.parseInt(args[0]);
-        int reversed = 0;
-        while (num != 0) {
-            int digit = num % 10;
-            reversed = reversed * 10 + digit;
-            num /= 10;
-        }
-        System.out.println("Reversed Number: " + reversed);
-    }
-}
-
-25) seriespackage
-
-import Series.Prime;
-import Series.Square;
-import java.io.*;
-
-class SerisePackage {
-    public static void main(String a[]) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        System.out.println("Enter no :");
-        int no = Integer.parseInt(br.readLine());
-
-        Prime p = new Prime();
-        System.out.println("Prime numbers up to given no are : ");
-        p.prime_range(no);
-
-        Square s = new Square();
-        System.out.println("Squares up to given no are : ");
-        s.square_range(no);
-    }
-}
-
-
-26) studentmain
-
-
-import java.io.*;
-class Student {
- int rollNumber;
- String name;
- float per;
- static int count=0;
- public Student(){
-  rollNumber=0;
-  name=null;
-  per=0.0f;
- }
- public Student(int rollNumber,String name,float per){
-  this.rollNumber=rollNumber;
-  this.name=name;
-  this.per=per;
-  count++;
- }
- public static void count(){
-  System.out.println("Object "+(count)+" Created");
- }
- public void display(){
-  System.out.println("Roll Number: "+rollNumber);
-  System.out.println("Name: "+name);
-  System.out.println("Percentage: "+per);
-  System.out.println("------------------------------");
- } 
-}
-public class StudentMain {
- public static void main(String [] args)throws IOException{
-  Student s1=new Student(1,"Rusher",56.76f);
-  Student.count();
-  Student s2=new Student(2,"Naren",89.67f);
-  Student.count();
-  Student s3=new Student(3,"Adi",99.54f);
-  Student.count();
-  s1.display();
-  s2.display();
-  s3.display();  
-}
-
-}
-
-
-27) sumofarray
-
-public class SumOfArray {  
-    public static void main(String[] args) {  
-        int[] arr = new int[] {1, 2, 3, 4, 5};  
-        int sum = 0;  
-        int temp = 0;
-
-        System.out.println("Elements of original array: ");    
-        for (int i = 0; i < arr.length; i++) {     
-            System.out.print(arr[i] + " ");    
-        }    
-        System.out.println();
-
-        for (int i = 0; i < arr.length; i++) {  
-            sum = sum + arr[i];  
-        }  
-        System.out.println("Sum of all the elements of an array: " + sum); 
-
-        // Sort the array in ascending order    
-        for (int i = 0; i < arr.length; i++) {     
-            for (int j = i + 1; j < arr.length; j++) {     
-                if (arr[i] > arr[j]) {    
-                    temp = arr[i];    
-                    arr[i] = arr[j];    
-                    arr[j] = temp;    
-                }     
-            }     
-        }    
-
-        System.out.println();    
-        System.out.println("Elements of array sorted in ascending order: ");    
-        for (int i = 0; i < arr.length; i++) {     
-            System.out.print(arr[i] + " ");    
-        }       
-    }  
-}
-
-
-
-
-
+echo "</table>";
+mysqli_close($conn);
+?>
+
+
+
+Steps to Run AJAX Program
+1. Start XAMPP
+2. Create Database & Table
+Open browser:
+http://localhost/phpmyadmin
+3. Save Files in htdocs
+4. Run the Program
+Open browser:
+http://localhost/teacher.html
