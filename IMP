@@ -1,2619 +1,691 @@
-FYMSc(CA) Sem II
-Web Technologies Practical
-
-SLIP 1 SOLUTION
-
-🔹 Q1: JavaScript – Check Driving Eligibility
-<!DOCTYPE html>
-<html>
-<body>
-<h3>Driving Eligibility</h3>
-
-Age: <input type="number" id="age">
-<button onclick="check()">Check</button>
-
-<p id="result"></p>
-
-<script>
-function check() {
-    var age = document.getElementById("age").value;
-    if(age >= 18)
-        document.getElementById("result").innerHTML = "Eligible for driving";
-    else
-        document.getElementById("result").innerHTML = "Not eligible";
-}
-</script>
-
-</body>
-</html>
-
-🔹 Q2: PHP – Count Vowels & Occurrences
-HTML Form
-<form method="post" action="vowel.php">
-Enter String: <input type="text" name="str">
-<input type="submit">
-</form>
-PHP Script (vowel.php)
-<?php
-$str = $_POST['str'];
-$str = strtolower($str);
-$vowels = ['a','e','i','o','u'];
-$count = 0;
-foreach($vowels as $v){
-    $c = substr_count($str, $v);
-    echo "Count of $v = $c <br>";
-    $count += $c;
-}
-
-echo "Total Vowels = $count";
-?>
-
-SLIP 2 SOLUTION
-
-
-🔹 Q1: HTML List
-<ul>
-    <li>Tea
-        <ul>
-            <li>Hot Tea</li>
-            <li>Black Tea</li>
-        </ul>
-    </li>
-    <li>Coffee</li>
-    <li>Cold Coffee</li>
-    <li>Hot Coffee</li>
-</ul>
-________________________________________
-🔹 Q2: Employee Form + Display
-Form
-<form method="post" action="emp.php">
-Name: <input type="text" name="name"><br>
-Salary: <input type="text" name="salary"><br>
-Designation: <input type="text" name="desg"><br>
-Address: <textarea name="addr"></textarea><br>
-<input type="submit">
-</form>
-PHP (emp.php)
-<?php
-echo "Name: ".$_POST['name']."<br>";
-echo "Salary: ".$_POST['salary']."<br>";
-echo "Designation: ".$_POST['desg']."<br>";
-echo "Address: ".$_POST['addr'];
-?>
-________________________________________
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SLIP 3 SOLUTION
-
-🔹 Q1: PHP Inheritance (Shape)
-<?php
-class Shape {
-    function area() {}
-}
-
-class Triangle extends Shape {
-    function area($b,$h){
-        return 0.5*$b*$h;
-    }
-}
-
-class Square extends Shape {
-    function area($s){
-        return $s*$s;
-    }
-}
-
-$t = new Triangle();
-echo "Triangle Area: ".$t->area(5,4)."<br>";
-
-$s = new Square();
-echo "Square Area: ".$s->area(5);
-?>
-________________________________________
-🔹 Q2: String Operations
-<?php
-$name = $_POST['name'];
-
-echo "Uppercase: ".strtoupper($name)."<br>";
-echo "First Letter Capital: ".ucfirst($name);
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SLIP 4 SOLUTION
-
-
-Q.1) PHP Script to Generate XML
-<?php
-$xml = new DOMDocument("1.0", "ISO-8859-1");
-
-// Root element <BookStore>
-$bookstore = $xml->createElement("BookStore");
-$xml->appendChild($bookstore);
-
-// <Books>
-$books = $xml->createElement("Books");
-$bookstore->appendChild($books);
-
-// First Book
-$php1 = $xml->createElement("PHP");
-
-$title1 = $xml->createElement("Title", "Programming in PHP");
-$pub1 = $xml->createElement("Publication", "O'RELLY");
-
-$php1->appendChild($title1);
-$php1->appendChild($pub1);
-
-// Second Book
-$php2 = $xml->createElement("PHP");
-
-$title2 = $xml->createElement("Title", "Beginners PHP");
-$pub2 = $xml->createElement("Publication", "WORX");
-
-$php2->appendChild($title2);
-$php2->appendChild($pub2);
-
-// Append to Books
-$books->appendChild($php1);
-$books->appendChild($php2);
-
-// Display XML
-$xml->formatOutput = true;
-echo "<pre>";
-echo $xml->saveXML();
-?>
-________________________________________
-✅ Q.2) PHP Script Using Session (3 Pages)
-________________________________________
-🔹 Page 1: emp1.php (Employee Details Form)
-<form method="post" action="emp2.php">
-Employee No: <input type="text" name="eno"><br>
-Employee Name: <input type="text" name="ename"><br>
-Address: <textarea name="addr"></textarea><br>
-<input type="submit" value="Next">
-</form>
-________________________________________
-🔹 Page 2: emp2.php (Earnings Form)
-<?php
-session_start();
-
-$_SESSION['eno'] = $_POST['eno'];
-$_SESSION['ename'] = $_POST['ename'];
-$_SESSION['addr'] = $_POST['addr'];
-?>
-
-<form method="post" action="emp3.php">
-Basic: <input type="text" name="basic"><br>
-DA: <input type="text" name="da"><br>
-HRA: <input type="text" name="hra"><br>
-<input type="submit" value="Calculate">
-</form>
-________________________________________
-🔹 Page 3: emp3.php (Display All Details)
-<?php
-session_start();
-
-$eno = $_SESSION['eno'];
-$ename = $_SESSION['ename'];
-$addr = $_SESSION['addr'];
-
-$basic = $_POST['basic'];
-$da = $_POST['da'];
-$hra = $_POST['hra'];
-
-$total = $basic + $da + $hra;
-
-echo "<h3>Employee Details</h3>";
-echo "Employee No: $eno <br>";
-echo "Name: $ename <br>";
-echo "Address: $addr <br><br>";
-
-echo "<h3>Salary Details</h3>";
-echo "Basic: $basic <br>";
-echo "DA: $da <br>";
-echo "HRA: $hra <br>";
-echo "Total Salary: $total";
-?>
-
-
-
-
-
-SLIP 5 SOLUTION
-
-Q.1) Admission Form Design (HTML)
-<!DOCTYPE html>
-<html>
-<head>
-<title>Admission Form</title>
-</head>
-<body>
-
-<h2>Admission Form</h2>
-
-<form>
-
-Name: <input type="text" name="name"><br><br>
-
-Address: <textarea name="address"></textarea><br><br>
-
-Gender:
-<input type="radio" name="gender" value="Male"> Male
-<input type="radio" name="gender" value="Female"> Female <br><br>
-
-Hobbies:
-<input type="checkbox" name="hobby[]" value="Sports"> Sports
-<input type="checkbox" name="hobby[]" value="Music"> Music
-<input type="checkbox" name="hobby[]" value="Reading"> Reading <br><br>
-
-<h3>Academic Record</h3>
-<table border="1">
-<tr>
-    <th>Exam</th>
-    <th>Board</th>
-    <th>Percentage</th>
-</tr>
-<tr>
-    <td>10th</td>
-    <td>State Board</td>
-    <td>85%</td>
-</tr>
-<tr>
-    <td>12th</td>
-    <td>State Board</td>
-    <td>78%</td>
-</tr>
-<tr>
-    <td>Graduation</td>
-    <td>University</td>
-    <td>82%</td>
-</tr>
-</table><br>
-
-<input type="submit" value="Submit">
-
-</form>
-
-</body>
-</html>
-________________________________________
-Q.2) PHP Arithmetic Operation with Default Parameter
-________________________________________
-🔹 Page 1: form.html
-<!DOCTYPE html>
-<html>
-<body>
-
-<h2>Arithmetic Operation</h2>
-
-<form method="post" action="result.php">
-Number 1: <input type="text" name="num1"><br><br>
-Number 2: <input type="text" name="num2"><br><br>
-
-Operation:
-<input type="radio" name="op" value="+"> Addition
-<input type="radio" name="op" value="-"> Subtraction
-<input type="radio" name="op" value="*"> Multiplication
-<input type="radio" name="op" value="/"> Division <br><br>
-
-<input type="submit" value="Calculate">
-
-</form>
-
-</body>
-</html>
-________________________________________
-🔹 Page 2: result.php
-<?php
-
-// Function with default parameters
-function calculate($a = 0, $b = 0, $op = '+')
-{
-    switch($op)
-    {
-        case '+': return $a + $b;
-        case '-': return $a - $b;
-        case '*': return $a * $b;
-        case '/': return ($b != 0) ? $a / $b : "Division by zero not allowed";
-        default: return "Invalid Operation";
-    }
-}
-
-// Fetch values
-$a = $_POST['num1'];
-$b = $_POST['num2'];
-$op = $_POST['op'];
-
-// Call function
-$result = calculate($a, $b, $op);
-
-// Display result
-echo "<h3>Result = $result</h3>";
-
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SLIP 6 SOLUTION
-
-Q.1) PHP Script to Display Source Code of a Webpage
-PHP provides a built-in function show_source() or highlight_file().
-<?php
-// Display source code of current file
-show_source("source.php");
-
-// OR you can use:
-# highlight_file("source.php");
-?>
-🔹 If you want user input:
-<form method="post">
-Enter file name: <input type="text" name="file">
-<input type="submit">
-</form>
-
-<?php
-if(isset($_POST['file'])){
-    show_source($_POST['file']);
-}
-?>
-________________________________________
-Q.2) PHP Script to Calculate Factorial
-________________________________________
-🔹 Step 1: HTML Form
-<form method="post" action="fact.php">
-Enter Number: <input type="text" name="num">
-<input type="submit" value="Find Factorial">
-</form>
-________________________________________
-🔹 Step 2: PHP Script (fact.php)
-<?php
-
-// Function to calculate factorial
-function factorial($n)
-{
-    if($n == 0 || $n == 1)
-        return 1;
-    else
-        return $n * factorial($n - 1);
-}
-
-// Get input
-$num = $_POST['num'];
-
-// Check non-negative
-if($num < 0)
-{
-    echo "Factorial not defined for negative numbers";
-}
-else
-{
-    $result = factorial($num);
-    echo "Factorial of $num = $result";
-}
-
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SLIP 7 SOLUTION
-
-Q.1) PHP Calculator Class
-<?php
-
-class Calculator
-{
-    public $a, $b;
-
-    // Constructor to initialize values
-    function __construct($x, $y)
-    {
-        $this->a = $x;
-        $this->b = $y;
-    }
-
-    function add()
-    {
-        return $this->a + $this->b;
-    }
-
-    function subtract()
-    {
-        return $this->a - $this->b;
-    }
-
-    function multiply()
-    {
-        return $this->a * $this->b;
-    }
-
-    function divide()
-    {
-        if($this->b == 0)
-            return "Division by zero not allowed";
-        return $this->a / $this->b;
-    }
-}
-
-// Object creation
-$c = new Calculator(10, 5);
-
-echo "Addition: " . $c->add() . "<br>";
-echo "Subtraction: " . $c->subtract() . "<br>";
-echo "Multiplication: " . $c->multiply() . "<br>";
-echo "Division: " . $c->divide();
-
-?>
-________________________________________
-Q.2) External CSS Program
-🔹 Step 1: Create CSS file (style.css)
-body {
-    background-color: skyblue;
-    color: blue;
-    font-size: 18px;
-}
-________________________________________
-🔹 Step 2: Link CSS to HTML file
-<!DOCTYPE html>
-<html>
-<head>
-    <title>External CSS Example</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-
-<h2>This is Web Technology Page</h2>
-<p>This text is displayed in blue color with sky blue background.</p>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SLIP 8 SOLUTION
-
-Q.1) PHP Class: Temperature Conversion
-________________________________________
-🔹 Page 1: form.html
-<!DOCTYPE html>
-<html>
-<body>
-
-<h2>Temperature Conversion</h2>
-
-<form method="post" action="convert.php">
-Enter Celsius: <input type="text" name="c"><br><br>
-Enter Fahrenheit: <input type="text" name="f"><br><br>
-<input type="submit" value="Convert">
-</form>
-
-</body>
-</html>
-________________________________________
-🔹 Page 2: convert.php
-<?php
-
-class Temperature
-{
-    public $celsius;
-    public $fahrenheit;
-
-    // Parameterized Constructor
-    function __construct($c, $f)
-    {
-        $this->celsius = $c;
-        $this->fahrenheit = $f;
-    }
-
-    // Celsius to Fahrenheit
-    function cToF()
-    {
-        return ($this->celsius * 9/5) + 32;
-    }
-
-    // Fahrenheit to Celsius
-    function fToC()
-    {
-        return ($this->fahrenheit - 32) * 5/9;
-    }
-}
-
-// Get values
-$c = $_POST['c'];
-$f = $_POST['f'];
-
-// Create object
-$temp = new Temperature($c, $f);
-
-// Display result
-echo "<h3>Conversion Result</h3>";
-echo "Celsius to Fahrenheit: " . $temp->cToF() . "<br>";
-echo "Fahrenheit to Celsius: " . $temp->fToC();
-
-?>
-________________________________________
-Q.2) XML + CSS Formatting
-________________________________________
-🔹 Step 1: Create XML file (University.xml)
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/css" href="style.css"?>
-
-<Universities>
-
-<Univ>
-    <Uname>Savitribai Phule Pune University</Uname>
-    <CITY>Pune</CITY>
-    <Rank>1</Rank>
-</Univ>
-
-<Univ>
-    <Uname>Mumbai University</Uname>
-    <CITY>Mumbai</CITY>
-    <Rank>2</Rank>
-</Univ>
-
-<Univ>
-    <Uname>Delhi University</Uname>
-    <CITY>Delhi</CITY>
-    <Rank>3</Rank>
-</Univ>
-
-</Universities>
-________________________________________
-🔹 Step 2: Create CSS file (style.css)
-Uname {
-    color: black;
-    font-family: "Copperplate Gothic Light";
-    font-size: 16pt;
-    font-weight: bold;
-    display: block;
-}
-
-CITY, Rank {
-    color: yellow;
-    font-family: Arial;
-    font-size: 12pt;
-    font-weight: bold;
-    display: block;
-}
-
-Univ {
-    margin-bottom: 15px;
-    display: block;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SLIP 9 SOLUTION
-
-Q.1) JavaScript to Print Table of First n Numbers
-<!DOCTYPE html>
-<html>
-<body>
-
-<h2>Tables of First n Numbers</h2>
-
-Enter n: <input type="number" id="num">
-<button onclick="printTable()">Print Tables</button>
-
-<pre id="output"></pre>
-
-<script>
-function printTable()
-{
-    var n = document.getElementById("num").value;
-    var result = "";
-
-    for(let i = 1; i <= n; i++)
-    {
-        result += "Table of " + i + "\n";
-        for(let j = 1; j <= 10; j++)
-        {
-            result += i + " x " + j + " = " + (i*j) + "\n";
-        }
-        result += "\n";
-    }
-
-    document.getElementById("output").innerHTML = result;
-}
-</script>
-
-</body>
-</html>
-________________________________________
-Q.2) PHP Menu Driven Program (Associative Arrays)
-<?php
-
-// Sample associative arrays
-$arr1 = array("a"=>10, "b"=>20, "c"=>30);
-$arr2 = array("b"=>20, "c"=>40, "d"=>50);
-
-// Menu
-echo "<h3>Menu</h3>";
-echo "1. Merge Arrays<br>";
-echo "2. Intersection<br>";
-echo "3. Union<br>";
-echo "4. Difference<br><br>";
-
-// Choice (you can change value for testing)
-$choice = 1;
-
-switch($choice)
-{
-    case 1:
-        echo "<b>Merged Array:</b><br>";
-        print_r(array_merge($arr1, $arr2));
-        break;
-
-    case 2:
-        echo "<b>Intersection:</b><br>";
-        print_r(array_intersect_assoc($arr1, $arr2));
-        break;
-
-    case 3:
-        echo "<b>Union:</b><br>";
-        $union = $arr1 + $arr2;
-        print_r($union);
-        break;
-
-    case 4:
-        echo "<b>Difference (arr1 - arr2):</b><br>";
-        print_r(array_diff_assoc($arr1, $arr2));
-        break;
-
-    default:
-        echo "Invalid Choice";
-}
-
-?>
-Alternative (User Input Menu Version – Better for Exam)
-<form method="post">
-Enter Choice (1-4): <input type="text" name="ch">
-<input type="submit">
-</form>
-
-<?php
-$arr1 = array("a"=>10, "b"=>20, "c"=>30);
-$arr2 = array("b"=>20, "c"=>40, "d"=>50);
-
-if(isset($_POST['ch']))
-{
-    $ch = $_POST['ch'];
-
-    switch($ch)
-    {
-        case 1:
-            print_r(array_merge($arr1, $arr2));
-            break;
-
-        case 2:
-            print_r(array_intersect_assoc($arr1, $arr2));
-            break;
-
-        case 3:
-            print_r($arr1 + $arr2);
-            break;
-
-        case 4:
-            print_r(array_diff_assoc($arr1, $arr2));
-            break;
-    }
-}
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SLIP 10 SOLUTION
-
-Q.1) PHP Inheritance (Shape with Menu using Radio Button)
-________________________________________
-🔹 HTML Form
-<form method="post">
-Select Shape:<br>
-<input type="radio" name="shape" value="triangle"> Triangle<br>
-<input type="radio" name="shape" value="square"> Square<br>
-<input type="radio" name="shape" value="rectangle"> Rectangle<br>
-<input type="radio" name="shape" value="circle"> Circle<br><br>
-
-Enter Value 1: <input type="text" name="v1"><br><br>
-Enter Value 2 (if needed): <input type="text" name="v2"><br><br>
-
-<input type="submit" value="Calculate Area">
-</form>
-________________________________________
-🔹 PHP Script
-<?php
-
-// Base Class
-class Shape {
-    function area() {
-        return 0;
-    }
-}
-
-// Triangle
-class Triangle extends Shape {
-    function area($b, $h) {
-        return 0.5 * $b * $h;
-    }
-}
-
-// Square
-class Square extends Shape {
-    function area($s) {
-        return $s * $s;
-    }
-}
-
-// Rectangle
-class Rectangle extends Shape {
-    function area($l, $w) {
-        return $l * $w;
-    }
-}
-
-// Circle
-class Circle extends Shape {
-    function area($r) {
-        return 3.14 * $r * $r;
-    }}// Processing
-if(isset($_POST['shape'])) {
-    $shape = $_POST['shape'];
-    $v1 = $_POST['v1'];
-    $v2 = $_POST['v2'];
-
-    switch($shape) {
-        case "triangle":
-            $obj = new Triangle();
-            echo "Area of Triangle = " . $obj->area($v1, $v2);
-            break;
-
-        case "square":
-            $obj = new Square();
-            echo "Area of Square = " . $obj->area($v1);
-            break;
-
-        case "rectangle":
-            $obj = new Rectangle();
-            echo "Area of Rectangle = " . $obj->area($v1, $v2);
-            break;
-
-        case "circle":
-            $obj = new Circle();
-            echo "Area of Circle = " . $obj->area($v1);
-            break;
-    }}?>
-________________________________________
-Q.2) PHP Superglobal Variables
-<?php
-
-// a) Client IP Address
-echo "<b>Client IP Address:</b> " . $_SERVER['REMOTE_ADDR'] . "<br><br>";
-
-// b) Browser Information
-echo "<b>Browser Information:</b> " . $_SERVER['HTTP_USER_AGENT'] . "<br><br>";
-
-// c) Check HTTP or HTTPS
-if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
-    echo "<b>Page loaded using HTTPS</b>";
-else
-    echo "<b>Page loaded using HTTP</b>";
-
-?>
-
-
-
-
-SLIP 11 SOLUTION
-
-Q.1) JavaScript to Calculate Simple Interest
-<!DOCTYPE html>
-<html>
-<body>
-
-<h2>Simple Interest Calculator</h2>
-
-Principal: <input type="text" id="p"><br><br>
-Rate (%): <input type="text" id="r"><br><br>
-Time (years): <input type="text" id="t"><br><br>
-
-<button onclick="calculateSI()">Calculate</button>
-
-<p id="result"></p>
-
-<script>
-function calculateSI()
-{
-    var p = parseFloat(document.getElementById("p").value);
-    var r = parseFloat(document.getElementById("r").value);
-    var t = parseFloat(document.getElementById("t").value);
-
-    var si = (p * r * t) / 100;
-
-    document.getElementById("result").innerHTML = "Simple Interest = " + si;
-}
-</script>
-
-</body>
-</html>
-________________________________________
-Q.2) AJAX Program to Read contact.dat and Display in Table
-________________________________________
-🔹 Step 1: Create contact.dat file
-1,John,0201234567,9876543210,Friend
-2,Rahul,0207654321,9123456780,Colleague
-3,Anita,0201112222,9988776655,Sister
-________________________________________
-🔹 Step 2: HTML + AJAX
-<!DOCTYPE html>
-<html>
-<body>
-
-<h2>Contact List</h2>
-
-<button onclick="loadData()">Print Contacts</button>
-
-<div id="table"></div>
-
-<script>
-function loadData()
-{
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function()
-    {
-        if (this.readyState == 4 && this.status == 200)
-        {
-            var data = this.responseText.trim().split("\n");
-
-            var table = "<table border='1'>";
-            table += "<tr><th>SrNo</th><th>Name</th><th>Residence</th><th>Mobile</th><th>Relation</th></tr>";
-
-            for (var i = 0; i < data.length; i++)
-            {
-                var row = data[i].split(",");
-                table += "<tr>";
-                for (var j = 0; j < row.length; j++)
-                {
-                    table += "<td>" + row[j] + "</td>";
-                }
-                table += "</tr>";
-            }
-
-            table += "</table>";
-            document.getElementById("table").innerHTML = table;
-        }
-    };
-
-    xhttp.open("GET", "contact.dat", true);
-    xhttp.send();
-}
-</script>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-SLIP 12 SOLUTION
-
-Q.1) Divide Screen into Four Equal Parts
-Using HTML + CSS (frames/grid layout)
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-.container {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-    height: 100vh;
-}
-
-.box {
-    border: 1px solid black;
-    padding: 10px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-<div class="box">
-<h3>Technical Activities</h3>
-<ul>
-<li>Workshops</li>
-<li>Seminars</li>
-<li>Guest Lectures</li>
-</ul>
-</div>
-
-<div class="box">
-<h3>Cultural Activities</h3>
-<ul>
-<li>Dance</li>
-<li>Drama</li>
-<li>Music</li>
-</ul>
-</div>
-
-<div class="box">
-<h3>Sports Activities</h3>
-<ul>
-<li>Cricket</li>
-<li>Football</li>
-<li>Badminton</li>
-</ul>
-</div>
-
-<div class="box">
-<h3>Academic Activities</h3>
-<ul>
-<li>Projects</li>
-<li>Assignments</li>
-<li>Presentations</li>
-</ul>
-</div>
-
-</div>
-
-</body>
-</html>
-________________________________________
-Q.2) PHP Cookie Program (3 Pages)
-________________________________________
-🔹 Page 1: form.html (User Preferences)
-<form method="post" action="setcookie.php">
-
-Font Style: <input type="text" name="style"><br><br>
-Font Size: <input type="text" name="size"><br><br>
-Font Color: <input type="text" name="color"><br><br>
-Background Color: <input type="text" name="bg"><br><br>
-
-<input type="submit" value="Save Preferences">
-
-</form>
-________________________________________
-🔹 Page 2: setcookie.php (Store in Cookies)
-<?php
-
-setcookie("style", $_POST['style'], time()+3600);
-setcookie("size", $_POST['size'], time()+3600);
-setcookie("color", $_POST['color'], time()+3600);
-setcookie("bg", $_POST['bg'], time()+3600);
-
-echo "Preferences Saved!<br>";
-echo "<a href='display.php'>View Preferences</a>";
-
-?>
-________________________________________
-🔹 Page 3: display.php (Apply Preferences)
-<?php
-$style = $_COOKIE['style'];
-$size = $_COOKIE['size'];
-$color = $_COOKIE['color'];
-$bg = $_COOKIE['bg'];
-?>
-
-<html>
-<body style="
-    font-family: <?php echo $style; ?>;
-    font-size: <?php echo $size; ?>px;
-    color: <?php echo $color; ?>;
-    background-color: <?php echo $bg; ?>;
-">
-
-<h2>Applied User Preferences</h2>
-
-<?php
-echo "Font Style: $style <br>";
-echo "Font Size: $size <br>";
-echo "Font Color: $color <br>";
-echo "Background Color: $bg <br>";
-?>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SLIP 13 SOLUTION
-
-Q.1) Java Program – Check Voting Eligibility
-import java.util.Scanner;
-
-public class VotingEligibility {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Enter Age: ");
-        int age = sc.nextInt();
-
-        if(age >= 18) {
-            System.out.println("Candidate is Eligible for Voting");
-        } else {
-            System.out.println("Candidate is NOT Eligible for Voting");
-        }
-
-        sc.close();
-    }
-}
-________________________________________
-Q.2) Java Program – Store n Integers in ArrayList
-import java.util.ArrayList;
-import java.util.Scanner;
-
-public class ArrayListExample {
-    public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in);
-        ArrayList<Integer> list = new ArrayList<>();
-
-        System.out.print("Enter number of elements: ");
-        int n = sc.nextInt();
-
-        // Accept n integers
-        for(int i = 0; i < n; i++) {
-            System.out.print("Enter element " + (i+1) + ": ");
-            int num = sc.nextInt();
-            list.add(num);
-        }
-
-        // Display elements
-        System.out.println("\nElements in ArrayList:");
-        for(int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i));
-        }
-        sc.close(); }}
-
-
-SLIP 14 SOLUTION
-
-Q.1) JavaScript – Display Weekday from Number
-<!DOCTYPE html>
-<html>
-<body>
-
-<h2>Display Weekday</h2>
-
-Enter number (1-7): <input type="number" id="day">
-<button onclick="showDay()">Show Day</button>
-
-<p id="result"></p>
-
-<script>
-function showDay()
-{
-    var d = parseInt(document.getElementById("day").value);
-    var dayName;
-
-    switch(d)
-    {
-        case 1: dayName = "Monday"; break;
-        case 2: dayName = "Tuesday"; break;
-        case 3: dayName = "Wednesday"; break;
-        case 4: dayName = "Thursday"; break;
-        case 5: dayName = "Friday"; break;
-        case 6: dayName = "Saturday"; break;
-        case 7: dayName = "Sunday"; break;
-        default: dayName = "Invalid Input";
-    }
-
-    document.getElementById("result").innerHTML = dayName;
-}
-</script>
-
-</body>
-</html>
-________________________________________
-Q.2) Database + PHP Solution
-________________________________________
-🔹 a) Relationship (Many-to-Many)
- A student can participate in many competitions
- A competition can have many students
-So we create a junction table:
-Student (stud_id, name, class)
-Competition (c_no, c_name, type)
-Participation (stud_id, c_no, rank, year)
-________________________________________
-🔹 b) RDB in 3NF (SQL)
-CREATE TABLE Student (
-    stud_id INT PRIMARY KEY,
-    name VARCHAR(50),
-    class VARCHAR(20)
-);
-
-CREATE TABLE Competition (
-    c_no INT PRIMARY KEY,
-    c_name VARCHAR(50),
-    type VARCHAR(20)
-);
-
-CREATE TABLE Participation (
-    stud_id INT,
-    c_no INT,
-    rank INT,
-    year INT,
-    PRIMARY KEY (stud_id, c_no),
-    FOREIGN KEY (stud_id) REFERENCES Student(stud_id),
-    FOREIGN KEY (c_no) REFERENCES Competition(c_no)
-);
-________________________________________
-🔹 c) PHP Script (Display 1st Rank Students)
-HTML Form
-<form method="post" action="result.php">
-Enter Competition Name: <input type="text" name="cname">
-<input type="submit" value="Search">
-</form>
-________________________________________
-PHP (result.php)
-<?php
-
-$conn = new mysqli("localhost", "root", "", "test");
-
-$cname = $_POST['cname'];
-
-$sql = "SELECT s.stud_id, s.name, s.class
-        FROM Student s, Competition c, Participation p
-        WHERE s.stud_id = p.stud_id
-        AND c.c_no = p.c_no
-        AND p.rank = 1
-        AND c.c_name = '$cname'";
-
-$result = $conn->query($sql);
-
-echo "<h3>Students with 1st Rank</h3>";
-
-if($result->num_rows > 0)
-{
-    while($row = $result->fetch_assoc())
-    {
-        echo "ID: ".$row['stud_id']." Name: ".$row['name']." Class: ".$row['class']."<br>";
-    }
-}
-else
-{
-    echo "No records found";
-}
-
-$conn->close();
-
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SLIP 15 SOLUTION
-
-Q.1) JavaScript – Check Prime Number
-<!DOCTYPE html>
-<html>
-<body>
-
-<h2>Prime Number Check</h2>
-
-Enter Number: <input type="number" id="num">
-<button onclick="checkPrime()">Check</button>
-
-<p id="result"></p>
-
-<script>
-function checkPrime()
-{
-    var n = parseInt(document.getElementById("num").value);
-    var flag = 1;
-
-    if(n <= 1)
-        flag = 0;
-    else {
-        for(var i = 2; i <= n/2; i++)
-        {
-            if(n % i == 0)
-            {
-                flag = 0;
-                break;
-            }
-        }
-    }
-
-    if(flag == 1)
-        document.getElementById("result").innerHTML = n + " is Prime Number";
-    else
-        document.getElementById("result").innerHTML = n + " is NOT Prime Number";
-}
-</script>
-
-</body>
-</html>
-________________________________________
-Q.2) AJAX – Search Student Name (Using Array)
-________________________________________
-🔹 HTML + JavaScript (AJAX Simulation)
-<!DOCTYPE html>
-<html>
-<body>
-
-<h2>Search Student</h2>
-
-Enter Name: <input type="text" onkeyup="searchName(this.value)">
-
-<ul id="result"></ul>
-
-<script>
-
-// Student array
-var students = ["Amit", "Rahul", "Ramesh", "Sneha", "Sonal", "Anita", "Akash"];
-
-function searchName(str)
-{
-    var res = "";
-
-    if(str.length == 0)
-    {
-        document.getElementById("result").innerHTML = "";
-        return;
-    }
-
-    // Simulating AJAX filtering
-    for(var i = 0; i < students.length; i++)
-    {
-        if(students[i].toLowerCase().startsWith(str.toLowerCase()))
-        {
-            res += "<li>" + students[i] + "</li>";
-        }
-    }
-
-    document.getElementById("result").innerHTML = res;
-}
-
-</script>
-
-</body>
-</html>
-________________________________________
- Alternative (Real AJAX using separate file)
-🔹 HTML
-<input type="text" onkeyup="showHint(this.value)">
-<p id="txtHint"></p>
-
-<script>
-function showHint(str)
-{
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function()
-    {
-        if(this.readyState == 4 && this.status == 200)
-        {
-            document.getElementById("txtHint").innerHTML = this.responseText;
-        }
-    };
-
-    xhttp.open("GET", "search.php?q=" + str, true);
-    xhttp.send();
-}
-</script>
-________________________________________
-🔹 PHP (search.php)
-<?php
-
-$students = array("Amit","Rahul","Ramesh","Sneha","Sonal","Anita","Akash");
-
-$q = $_GET["q"];
-$result = "";
-
-foreach($students as $name)
-{
-    if(stripos($name, $q) === 0)
-    {
-        $result .= $name . "<br>";
-    }
-}
-
-echo ($result == "") ? "No match found" : $result;
-
-?>
-
-
-
-
-
-
-
-
-1.Design a admission form. which should contain: text box, multiline text box, a table
-which shows your academic record, radio button, check box, submit button etc.
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Admission Form</title>
-</head>
-<body>
-<h2 align="center">College Admission Form</h2>
-<form>
-Name: <input type="text" name="name"><br><br>
-Email: <input type="text" name="email"><br><br>
-Phone Number: <input type="text" name="phone"><br><br>
-Gender:
-<input type="radio" name="gender"> Male
-<input type="radio" name="gender"> Female
-<input type="radio" name="gender"> Other
-<br><br>
-Course Interested:
-<input type="checkbox" name="course"> BCA
-<input type="checkbox" name="course"> BSc
-<input type="checkbox" name="course"> BBA
-<br><br>
-Address:<br>
-<textarea rows="4" cols="40"></textarea>
-<br><br>
-<h3>Academic Record</h3>
-<table border="1" cellpadding="5">
-<tr>
-<th>Exam</th>
-<th>Board/University</th>
-<th>Year</th>
-<th>Percentage</th>
-</tr>
-<tr>
-<td>10th</td>
-<td><input type="text"></td>
-<td><input type="text"></td>
-<td><input type="text"></td>
-</tr>
-<tr>
-<td>12th</td>
-<td><input type="text"></td>
-<td><input type="text"></td>
-<td><input type="text"></td>
-</tr>
-<tr>
-<td>Graduation</td>
-<td><input type="text"></td>
-<td><input type="text"></td>
-<td><input type="text"></td>
-</tr>
-</table>
-<br>
-<input type="submit" value="Submit Form">
-<input type="reset" value="Reset">
-</form>
-</body>
-</html>
-
-
-2.Write CSS using HTML which uses of text decoration, border, padding and margin.
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>CSS Example</title>
-<style>
-h1{
-text-decoration: underline;
-border: 3px solid blue;
-padding: 10px;
-margin: 20px;
-}
-p{
-text-decoration: line-through;
-border: 2px dashed red;
-padding: 15px;
-margin: 25px;
-}
-div{
-border: 2px solid green;
-padding: 20px;
-margin: 30px;
-}
-</style>
-</head>
-<body>
-<h1>Welcome to Web Technology</h1>
-<p>This is an example of CSS text decoration.</p>
-<div>
-This box shows the use of border, padding and margin.
-</div>
-</body>
-</html>
-
-
-3.Create an HTML page with following specifications:
-
-a. Title should be about “My City”
-b. Place your City name at the top of the page in large text and in red color
-c. Add names and images (as a link) of landmarks in your city each in a different color,
-style and typeface
-d. After clicking on images it should display history of that place
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>My City</title>
-</head>
-<body>
-<h1 style="color: red;">My City: New York</h1>
-<a href="https://en.wikipedia.org/wiki/Statue_of_Liberty">
-<img src="https://thumbs.dreamstime.com/b/cartoon-statue-liberty-isolated-pedestaldrawing-humor-cartoon-statue-liberty-isolated-pedestal-drawing-humor-stock278474540.jpg" alt="no priview" height="10%" width="25%">
-</a>
-<h1>Statue_of_Liberty</h1>
-<br>
-<a href="central_park.html">
-<img src="img.jpg" alt="no priview" height="10%" width="25%">
-</a>
-<h1>central_park</h1>
-</body>
-</html>
-
-
-4.Write CSS using HTML which displays following output
-
-
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-div.static {
-position: static;
-left: 100px;
-top: 150px;
-border: 4px solid red;
-width:880px;
-}
-div.relative {
-position: relative;
-left: 80px;
-top: 150px;
-border: 6px solid green;
-width:280px;
-}
-div.fixed {
-position: fixed;
-left: 100px;
-top: 150px;
-border: 4px solid blue;
-}
-div.absolute {
-position: absolute;
-left: 100px;
-top:120px;
-border: 4px dotted purple;
-width:880px;
-}
-</style>
-</head>
-<body>
-<h1>Positioning in CSS: Static, Relative, Fixed and Absolute.</h1>
-<div class="static">This is a div with Static position</div>
-<br>
-<div class="relative">This is a div with Relative position</div>
-<br>
-<div class="fixed">This is a div with Fixed position</div>
-<br>
-<div class="absolute">This is a div with Absolute position</div>
-</body>
-</html>
-
-Steps to Run HTML/CSS Program
-1. Open Text Editor (like gedit or Text Editor).
-2. Type your HTML/CSS program in the editor.
-3. Click Save As.
-4. Save the file with .html extension (Example: program.html).
-5. Go to the location where the file is saved.
-6. Right-click the file → Open with Firefox/Chrome.
-7. The program will run and display in the browser.
-
-
-Practical 2: (Introduction to PHP)
-
-5.Write a PHP script for the following. a) Design a form to accept the details of 5 different
-items such as Item code, Item Name, unit, sold and Rate. b) Display the bill in tabular
-format. Use only 4 textboxes. [ Use explode]
-
-HTML Form (bill_form.html)
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Item Bill Form</title>
-</head>
-<body>
-<h2>Enter Item Details</h2>
-<form method="POST" action="bill.php">
-Item 1: <input type="text" name="item1"
-placeholder="Code,Name,Unit,Sold,Rate"><br><br>
-Item 2: <input type="text" name="item2"
-placeholder="Code,Name,Unit,Sold,Rate"><br><br>
-Item 3: <input type="text" name="item3"
-placeholder="Code,Name,Unit,Sold,Rate"><br><br>
-Item 4: <input type="text" name="item4"
-placeholder="Code,Name,Unit,Sold,Rate"><br><br>
-<input type="submit" value="Generate Bill">
-</form>
-</body>
-</html>
-
-PHP Script (bill.php)
-
-<?php
-$items = array($_POST['item1'], $_POST['item2'], $_POST['item3'], $_POST['item4']);
-echo "<h2>Bill Details</h2>";
-echo "<table border='1'>";
-echo "<tr>
-<th>Item Code</th>
-<th>Item Name</th>
-<th>Unit</th>
-<th>Sold</th>
-<th>Rate</th>
-<th>Total</th>
-</tr>";
-foreach($items as $item)
-{
- $data = explode(",", $item);
- $code = $data[0];
- $name = $data[1];
- $unit = $data[2];
- $sold = $data[3];
- $rate = $data[4];
- $total = $sold * $rate;
- echo "<tr>";
- echo "<td>$code</td>";
- echo "<td>$name</td>";
- echo "<td>$unit</td>";
- echo "<td>$sold</td>";
- echo "<td>$rate</td>";
- echo "<td>$total</td>";
- echo "</tr>";
-}
-echo "</table>";
-?>
-
-6.Design a HTML form to accept a string. Write a PHP script for the following. a) Write a
-function to count the total number of Vowels from the script. b) Show the occurrences of
-each Vowel from the script
-
-HTML Form (vowel_form.html)
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Vowel Counter</title>
-</head>
-<body>
-<h2>Enter a String</h2>
-<form method="POST" action="vowel.php">
-Enter Text:
-<input type="text" name="text" required>
-<br><br>
-<input type="submit" value="Check Vowels">
-</form>
-</body>
-</html>
-
-PHP Script (vowel.php)
-
-<?php
-function countVowels($str)
-{
- $str = strtolower($str);
- $vowels = array('a'=>0,'e'=>0,'i'=>0,'o'=>0,'u'=>0);
- for($i=0; $i<strlen($str); $i++)
- {
- $ch = $str[$i];
- if(array_key_exists($ch,$vowels))
- {
- $vowels[$ch]++;
- }
- }
- return $vowels;
-}
-$text = $_POST['text'];
-$result = countVowels($text);
-$total = array_sum($result);
-echo "<h2>Result</h2>";
-echo "Total Vowels = ".$total."<br><br>";
-echo "Occurrences of Each Vowel:<br>";
-foreach($result as $vowel=>$count)
-{
- echo $vowel." = ".$count."<br>";
-}
-?>
-
-Steps to Run Program
-1. Open your Text Editor
-2. Save Files in htdocs Folder
-3. Save HTML file
-4. Save PHP file
-5. Both files must be inside htdocs
-6. Start XAMPP
-7. Run in Browser
-http://localhost/vowel_form.html
-
-
-Practical 3: (Function and Array)
-
-7.Write a PHP script to accept the number from user and write a PHP function to
-calculate the factorial of a number (a non-negative integer). The function accepts the
-number as an argument.
-
-HTML Form (factorial_form.html)
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Factorial Calculator</title>
-</head>
-<body>
-<h2>Factorial Calculator</h2>
-<form method="POST" action="factorial.php">
-Enter a Number:
-<input type="number" name="num" required>
-<br><br>
-<input type="submit" value="Calculate Factorial">
-</form>
-</body>
-</html>
-
-PHP Script (factorial.php)
-
-<?php
-function factorial($n)
-{
- $fact = 1;
- for($i=1; $i<=$n; $i++)
- {
- $fact = $fact * $i;
- }
- return $fact;
-}
-$num = $_POST['num'];
-$result = factorial($num);
-echo "<h2>Factorial of $num is $result</h2>";
-?>
-
-
-8.Write a menu driven program to perform the following operations on associative
-arrays: a) Merge the given arrays. b) Find the intersection of two arrays. c) Find the union
-of two arrays. d) Find set difference of two arrays.
-
-
-<?php
-$a = array("a"=>10,"b"=>20,"c"=>30);
-$b = array("b"=>20,"c"=>30,"d"=>40);
-echo "<h3>Array A</h3>";
-print_r($a);
-echo "<br><h3>Array B</h3>";
-print_r($b);
-echo "<br><br>";
-echo "1. Merge Arrays<br>";
-$merge = array_merge($a,$b);
-print_r($merge);
-echo "<br><br>";
-echo "2. Intersection of Arrays<br>";
-$inter = array_intersect($a,$b);
-print_r($inter);
-echo "<br><br>";
-echo "3. Union of Arrays<br>";
-$union = $a + $b;
-print_r($union);
-echo "<br><br>";
-echo "4. Set Difference (A - B)<br>";
-$diff = array_diff($a,$b);
-print_r($diff);
-?>
-
-
-Steps to Run Program
-1. Save File
-2. Start XAMPP
-3. Run in Browser
- http://localhost/array.php
-
-
-Practical 3: (Class and Object)
-
-9.Write PHP script to demonstrate the concept of introspection for examining object.
-
-<?php
-class Student
-{
- public $name = "ABC";
- public $course = "MSc CA";
- function display()
- {
- echo "Student Information<br>";
- }
- function showCourse()
- {
- echo "Course: " . $this->course . "<br>";
+Assignment 1: Write a program to take inputs from the user(name and age) display the values. Also
+print the version of R installation
+Solution:
+# Take input from user
+name <- readline(prompt = "Enter your name: ")
+age <- readline(prompt = "Enter your age: ")
+# Display the values
+cat("Name:", name, "\n")
+cat("Age:", age, "\n")
+# Print the R version
+cat("R Version:\n")
+print(R.version.string)
+
+
+Assignment 2: Write a program to create sequence of numbers from 20 to 50 and find the mean of
+numbers from 20 to 60 and sum of numbers from 51 to 91.
+Solution:
+# Create a sequence from 20 to 50
+seq1 <- 20:50
+print("Sequence from 20 to 50:")
+print(seq1)
+# Find mean of numbers from 20 to 60
+seq2 <- 20:60
+mean_val <- mean(seq2)
+cat("Mean of numbers from 20 to 60:", mean_val, "\n")
+# Find sum of numbers from 51 to 91
+seq3 <- 51:91
+sum_val <- sum(seq3)
+cat("Sum of numbers from 51 to 91:", sum_val)
+
+
+Assignment 3: Write a R program to create a simple bar plot of five subjects marks.
+Solution:
+# Create a vector of marks for five subjects
+marks <- c(75, 82, 90, 68, 88)
+# Create a vector of names corresponding to the subjects
+subjects <- c("Math", "Science", "History", "English", "Art")
+# Create the bar plot
+barplot(marks,
+ names.arg = subjects,
+ main = "Marks in Five Subjects",
+ xlab = "Subject",
+ ylab = "Marks",
+ col = "skyblue",
+ ylim = c(0, 100)) # Set the Y-axis limit for better presentation
+
+
+Assignment 4: Write a R program to get the unique elements of a given string and unique numbers of
+vector.
+Solution:
+# Given string
+str <- "programming"
+# Split string into characters
+chars <- strsplit(str, "")[[1]]
+# Find unique characters
+unique_chars <- unique(chars)
+cat("Unique characters in the string:\n")
+print(unique_chars)
+# Given numeric vector
+v <- c(2, 5, 3, 2, 7, 5, 9, 3)
+# Find unique numbers
+unique_numbers <- unique(v)
+cat("Unique numbers in the vector:\n")
+print(unique_numbers)
+
+
+Assignment 5: Write a R program to multiply two vectors of integers type and length 3.
+Solution:
+# Create two integer vectors of length 3
+v1 <- c(2L, 4L, 6L)
+v2 <- c(3L, 5L, 7L)
+# Multiply the vectors element-wise
+result <- v1 * v2
+# Display vectors and result
+cat("Vector 1:", v1, "\n")
+cat("Vector 2:", v2, "\n")
+cat("Multiplication Result:", result)
+
+
+Assignment 6: Write a R program to list containing a vector, a matrix and a list and give names to
+the elements in the list.
+Solution:
+# Create a vector
+v <- c(10, 20, 30)
+# Create a matrix
+m <- matrix(c(1, 2, 3, 4), nrow = 2, ncol = 2)
+# Create another list
+l <- list("R", "Python", "Java")
+# Create a list containing vector, matrix and list
+mylist <- list(v, m, l)
+# Give names to the elements of the list
+names(mylist) <- c("Vector", "Matrix", "LanguageList")
+# Display the list
+print(mylist)
+
+
+Assignment 7: Write a R program to create a list containing a vector, a matrix and a list and give
+names to the elements in the list. Access the first and second element of the list.
+Solution:
+# Create a vector of numbers
+my_vector <- c(10, 20, 30)
+# Create a 2x3 matrix
+my_matrix <- matrix(c(1, 2, 3, 4, 5, 6), nrow = 2, ncol = 3)
+# Create another list (nested list)
+nested_list <- list("apple", "banana", "cherry")
+# Create the main list containing the vector, matrix, and nested list
+my_list <- list(
+ VectorData = my_vector,
+ MatrixData = my_matrix,
+ NestedList = nested_list
+)
+# Print the entire list to verify
+print(my_list)
+# Access the first element of the list (the vector)
+first_element <- my_list$VectorData
+# Alternatively, use index: first_element <- my_list[[1]]
+print("First element (VectorData):")
+print(first_element)
+# Access the second element of the list (the matrix)
+second_element <- my_list$MatrixData
+# Alternatively, use index: second_element <- my_list[[2]]
+print("Second element (MatrixData):")
+print(second_element)
+
+
+Assignment 8: Write a R program to create a list containing a vector, a matrix and a list and
+remove the second element.
+Solution :
+# Create a vector
+my_vector <- c(1, 2, 3, 4, 5)
+# Create a matrix
+my_matrix <- matrix(c(1:9), nrow = 3, ncol = 3, byrow = TRUE)
+# Create another list
+my_inner_list <- list("apple", "banana", "cherry")
+# Create a list containing the vector, the matrix, and the inner list
+my_list <- list(
+ vector_element = my_vector,
+ matrix_element = my_matrix,
+ list_element = my_inner_list
+)
+# Print the original list to view its structure
+cat("Original list:\n")
+print(my_list)
+cat("\n")
+# Remove the second element (the matrix)
+# Method 1: Using the NULL assignment approach
+# my_list$matrix_element <- NULL
+# Method 2: Using negative indexing (by position)
+# Note that this re-indexes the remaining elements.
+my_list <- my_list[-2]
+# Print the modified list to confirm the removal
+cat("List after removing the second element:\n")
+print(my_list)
+
+
+
+Assignment 9: Write a R program to merge two given lists into one list.
+Solution:
+Merged Two list
+# Create two example lists
+list1 <- list("apple", "banana", "cherry")
+list2 <- list(1, 2, 3)
+# Merge the two lists into one using c()
+merged_list_c <- c(list1, list2)
+# Print the merged list
+print(merged_list_c)
+
+
+Assignment 10: Write a R program to assign new names "a", "b" and "c" to the elements of a given list.
+Solution:
+# Create an example list
+my_list <- list(1:10, "R Programming", TRUE)
+# Print the original list (optional)
+print("Original list:")
+print(my_list)
+# Assign new names to the elements
+names(my_list) <- c("a", "b", "c")
+# Print the list with new names
+print("List after assigning new names:")
+print(my_list)
+
+
+Assignment 11: Write a R program to create an empty data frame.
+Solution:
+# Create an empty data frame
+df <- data.frame()
+# Display the data frame
+print("Empty Data Frame:")
+print(df)
+2. With Values
+# Create an empty data frame with columns
+df <- data.frame(Name = character(),
+ Age = numeric(),
+ Salary = numeric())
+print(df)
+
+
+Assignment 12: Write a R program to create a data frame from four given vectors.
+Solution:
+# 1. Define the four vectors
+name <- c("Alice", "Bob", "Charlie", "Diana")
+age <- c(25, 30, 28, 35)
+score <- c(88.5, 76.2, 91.0, 84.7)
+qualify <- c("Yes", "No", "Yes", "Yes")
+# 2. Combine the vectors into a data frame using data.frame()
+# The argument names (Name, Age, Score, Qualify) will be the column names
+student_data <- data.frame(
+ Name = name,
+ Age = age,
+ Score = score,
+ Qualify = qualify,
+ stringsAsFactors = FALSE # Prevents character vectors from being converted to factors
+)
+# 3. Print the resulting data frame
+print(student_data)
+# 4. (Optional) Check the structure of the data frame
+str(student_data)
+
+
+Assignment 13: Write a R program to create a data frame using two given vectors and display the
+duplicated elements and unique rows of the said data frame.
+Solution:
+# Define two vectors with some duplicate values
+vector1 <- c(10, 20, 10, 30, 40, 50, 20)
+vector2 <- c("A", "B", "A", "C", "D", "E", "B")
+# Create a data frame from the vectors
+# The vector names become the column names in the data frame
+df <- data.frame(Col1 = vector1, Col2 = vector2)
+# Display the original data frame
+print("Original Data Frame:")
+print(df)
+# Display the duplicated elements/rows
+# duplicated() returns a logical vector; TRUE indicates a row is a duplicate of a previous row
+# We use this logical vector to subset the data frame
+duplicated_rows <- df[duplicated(df), ]
+print("Duplicated Rows:")
+print(duplicated_rows)
+# Display the unique rows
+# unique() returns a data frame with duplicate rows removed, keeping only unique rows
+unique_rows <- unique(df)
+print("Unique Rows:")
+print(unique_rows)
+
+
+Assignment 14: Write a R program to save the information of a data frame in a file and display the
+information of the file.
+Solution:
+# 1. Create a sample data frame
+df <- data.frame(
+ Name = c("Alice", "Bob", "Charlie"),
+ Age = c(25, 30, 28),
+ Salary = c(50000, 65000, 55000)
+)
+# Display the original data frame in the console
+print("Original data frame:")
+print(df)
+cat("\n") # Add a newline for better formatting
+# 2. Save the data frame to a file
+# The write.csv() function saves the data frame to a CSV file.
+# Setting row.names = FALSE prevents R from adding an extra column of row numbers.
+file_name <- "employees.csv"
+write.csv(df, file = file_name, row.names = FALSE)
+cat("Data frame successfully saved to '", file_name, "'\n\n", sep="")
+# 3. Display the information of the saved file
+# The file.info() function retrieves information (like size, type, permissions, etc.) about the file.
+file_details <- file.info(file_name)
+print("Information about the file:")
+print(file_details)
+cat("\n")
+# (Optional) Read the file back into a new data frame to verify content
+# The read.csv() function is used to load data from a CSV file back into a data frame.
+imported_data <- read.csv(file_name)
+print("Data frame after reading the file back into R:")
+print(imported_data)
+
+
+Assignment 15: Write a R program to create an ordered factor from data consisting of the names of
+months.
+Solution:
+exam_data = data.frame(
+name = c('Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin',
+'Jonas'),
+score = c(12.5, 9, 16.5, 12, 9, 20, 14.5, 13.5, 8, 19),
+attempts = c(1, 3, 2, 3, 2, 3, 1, 1, 2, 1),
+qualify = c('yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes')
+)
+print("Original dataframe:")
+print(exam_data)
+save(exam_data,file="data.rda")
+load("data.rda")
+file.info("data.rda")
+
+
+Assignment 16: Write R program to find whether given number is positive or negative.
+Solution:
+num = as.double(readline(prompt="Enter a number: "))
+if(num > 0) {
+ print("Positive number")
+} else {
+ if(num == 0) {
+ print("Zero")
+ } else {
+ print("Negative number")
  }
 }
-$obj = new Student();
-/* Introspection */
-echo "<h3>Class Name:</h3>";
-echo get_class($obj);
-echo "<h3>Object Properties:</h3>";
-print_r(get_object_vars($obj));
-echo "<h3>Class Methods:</h3>";
-print_r(get_class_methods($obj));
-?>
 
-10.Write a PHP program to create a class temperature which contains data members as
-Celsius and Fahrenheit. Create and initialize all values of temperature object by using
-parameterized constructor. Convert Celsius to Fahrenheit and Convert Fahrenheit to
-Celsius using member functions. Display conversion on next page
 
-First Page (HTML Form) – temperature.html
 
-<!DOCTYPE html>
-<html>
-<head>
-<title>Temperature Conversion</title>
-</head>
-<body>
-<h2>Temperature Conversion Form</h2>
-<form method="post" action="convert.php">
-Enter Celsius:
-<input type="text" name="celsius"><br><br>
-Enter Fahrenheit:
-<input type="text" name="fahrenheit"><br><br>
-<input type="submit" value="Convert">
-</form>
-</body>
-</html>
-
-Second Page (PHP Program) – convert.php
-
-<?php
-class Temperature
-{
- public $celsius;
- public $fahrenheit;
- // Parameterized constructor
- function __construct($c,$f)
- {
- $this->celsius = $c;
- $this->fahrenheit = $f;
- }
- // Celsius to Fahrenheit
- function c_to_f()
- {
- return ($this->celsius * 9/5) + 32;
- }
- // Fahrenheit to Celsius
- function f_to_c()
- {
- return ($this->fahrenheit - 32) * 5/9;
- }
+Assignment 17: Write R program to read number and print corresponding day name in a week
+Solution:
+# Read number
+num <- as.integer(readline(prompt = "Enter a number (1-7): "))
+days <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+if (num >= 1 && num <= 7) {
+ print(days[num])
+} else {
+ print("Invalid input!")
 }
-$c = $_POST['celsius'];
-$f = $_POST['fahrenheit'];
-$obj = new Temperature($c,$f);
-echo "<h2>Temperature Conversion Result</h2>";
-echo "Celsius to Fahrenheit = ".$obj->c_to_f()."<br><br>";
-echo "Fahrenheit to Celsius = ".$obj->f_to_c();
-?>
 
 
-Steps to Run Program
-1. Save Files
-Both files must be inside htdocs
-2. Start XAMPP
-3. Run in Browser
- http://localhost/temperature.html
 
-Practical 4: (Web Techniques)
+Assignment 18: Create a Matrix using R and Perform the operations addition, subtraction,
+multiplication.
+Solution:
+# Create two matrices
+A <- matrix(c(1, 2, 3, 4), nrow = 2, ncol = 2)
+B <- matrix(c(5, 6, 7, 8), nrow = 2, ncol = 2)
+# Display matrices
+print("Matrix A:")
+print(A)
+print("Matrix B:")
+print(B)
+# Addition
+add <- A + B
+print("Addition of matrices:")
+print(add)
+# Subtraction
+sub <- A - B
+print("Subtraction of matrices:")
+print(sub)
+# Multiplication
+mul <- A %*% B
+print("Multiplication of matrices:")
+print(mul)
 
-11.Write a PHP script to display following information using super global variable. a)
-Client IP Address. b) Browser detection/information. C) To check whether the page is
-called from ‘https’ or ‘http’.
 
-<?php
-// a) Client IP Address
-echo "<h3>Client IP Address:</h3>";
-echo $_SERVER['REMOTE_ADDR'];
-echo "<br><br>";
-// b) Browser Information
-echo "<h3>Browser Information:</h3>";
-echo $_SERVER['HTTP_USER_AGENT'];
-echo "<br><br>";
-// c) Check HTTP or HTTPS
-echo "<h3>Protocol Used:</h3>";
-if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
-{
- echo "Page is called using HTTPS";
+
+Assignment 19: Using R import the data from Excel/.CSV file and find mean, median, mode,
+quartiles.
+Solution:
+gfg=read.csv('values.csv') // csv file contains the values like V1=1,2,3,4,5,6,7 etc
+result<- mean(gfg$V1)
+print(result)
+x <- c(2, 4, 6, 8, 10)
+mean(x)
+# Handling NA
+x <- c(2, 4, NA, 8)
+mean(x, na.rm = TRUE)
+//median
+x <- c(1, 3, 5, 7, 9)
+median(x)
+# With NA values
+x <- c(1, NA, 5, 7)
+median(x, na.rm = TRUE)
+//mode
+get_mode <- function(v) {
+ uniqv <- unique(v)
+ uniqv[which.max(tabulate(match(v, uniqv)))]
 }
-else
-{
- echo "Page is called using HTTP";
+x <- c(1, 2, 2, 3, 3, 3, 4)
+get_mode(x)
+
+
+
+Assignment 20: Using R import the data from Excel/.CSV file and find standard deviation, variance
+and co-variance.
+Solution:
+# variance of vector
+# Create example vector
+x <- c(1, 2, 3, 4, 5, 6, 7)
+# Apply var function in R
+var(x)
+print(x)
+# R program to illustrate
+# standard deviation of vector
+# Create example vector
+x2 <- c(1, 2, 3, 4, 5, 6, 7)
+# Compare with sd function
+sd(x2)
+print(x2)
+When we work with excel file
+# Load data
+my_data <- read.csv("data.csv")
+# Compute Statistics
+v_x <- var(my_data$x)
+sd_x <- sd(my_data$x)
+cov_xy <- cov(my_data$x, my_data$y)
+# Print results
+print(paste("Variance:", v_x))
+print(paste("Standard Deviation:", sd_x))
+print(paste("Covariance:", cov_xy))
+
+
+
+Assignment 21: Write a R program to count the number of NA values in a data frame column.
+Solution:
+df<-data.frame(x = c("kapil","rahul",NA,NA), y = c(1,2,NA,3))
+print("dataframe is ")
+print(df)
+print("vector is")
+vec = is.na(df[,1])
+print(vec)
+count = sum(vec)
+print("count of NA in first column is" )
+print(count)
+
+
+
+Assignment 22: Write a R program to call the (built-in) dataset air quality. Remove the variables
+'Solar.R' and 'Wind' and display the data frame.
+Solution:
+# Load built-in dataset
+data("airquality")
+# Display original data (optional)
+print("Original Data:")
+print(airquality)
+# Remove 'Solar.R' and 'Wind' columns
+new_data <- airquality[, !(names(airquality) %in% c("Solar.R", "Wind"))]
+# Display updated data frame
+print("Updated Data (without Solar.R and Wind):")
+print(new_data)
+
+
+
+Assignment 23: Write a R program to compare two data frames to find the row(s) in first data frame
+that are not present in second data frame
+Solution:
+# Create the first data frame with sales data for three items
+data1 = data.frame(
+ "item" = c("item1", "item2", "item3"), # Column for item names
+ "Jan_sale" = c(12, 14, 12), # Sales in January
+ "Feb_sale" = c(11, 12, 15), # Sales in February
+ "Mar_sale" = c(12, 14, 15) # Sales in March
+)
+# Create the second data frame with sales data for three items
+data2 = data.frame(
+ "item" = c("item1", "item2", "item3"), # Column for item names
+ "Jan_sale" = c(12, 14, 12), # Sales in January
+ "Feb_sale" = c(11, 12, 15), # Sales in February
+ "Mar_sale" = c(12, 15, 18) # Sales in March
+)
+# Print a message indicating the following output is the original dataframes
+print("Original Dataframes:")
+# Print the first data frame
+print(data1)
+# Print the second data frame
+print(data2)
+# Print a message indicating the following output is the rows in the first data frame not present in the second
+data frame
+print("Row(s) in first data frame that are not present in second data frame:")
+# Find and print rows in the first data frame that are not present in the second data frame
+print(setdiff(data1, data2))
+
+
+
+Assignment 24: Write a R program to create a factor corresponding to height of women data set, which
+contains height and weights for a sample of women
+Solution: # Load the built-in 'women' dataset (it is usually available by default, but explicitly calling data()
+ensures availability)
+data(women)
+# Display the first few rows of the original data for reference
+print("Original 'women' data set (first 6 rows):")
+print(head(women))
+# Use the cut() function to create a factor for height.
+# Option 1: Divide into a specific number of equal-length intervals (e.g., 3)
+height_factor_equal <- cut(women$height, 3)
+print("\nFactor corresponding to height (3 equal intervals):")
+print(table(height_factor_equal)) # Display the frequency table
+# Option 2: Divide into user-defined intervals with custom labels (e.g., Short, Medium, Tall)
+# Define the break points (minimum height is 58, maximum is 72 in this dataset)
+breaks <- c(58, 63, 67, 72)
+labels <- c("Short", "Medium", "Tall")
+height_factor_custom <- cut(women$height, breaks = breaks, labels = labels, include.lowest = TRUE)
+print("\nFactor corresponding to height (custom labels and breaks):")
+print(table(height_factor_custom)) # Display the frequency table
+# Add the new factor variable to the 'women' data frame (optional)
+women$height_group <- height_factor_custom
+print("\n'women' data set with new height_group factor (first 6 rows):")
+print(head(women))
+
+
+
+Assignment 25: Write a R program to find nth highest value in a given vector
+Solution:
+# R program to find nth highest value in a vector
+# Given vector
+v <- c(12, 45, 23, 67, 34, 89, 10)
+# Value of n
+n <- 3
+# Sort the vector in decreasing order
+sorted_v <- sort(v, decreasing = TRUE)
+# Find nth highest value
+nth_highest <- sorted_v[n]
+# Print result
+cat("Vector:", v, "\n")
+cat(n, "th highest value is:", nth_highest)
+
+
+
+Assignment 26: Write an R program to sort a Vector in ascending and descending order.
+Solution:
+my_vector <- c(12, 4, 9, 21, 5)
+cat("Original vector:", my_vector, "\n\n")
+# --- 2. Sort in ascending order (default behavior) ---
+# Method A: Using sort()
+vector_asc_A <- sort(my_vector)
+cat("Ascending order (Method A):", vector_asc_A, "\n")
+# --- 3. Sort in descending order ---
+# Method A: Using sort() with decreasing = TRUE
+vector_desc_A <- sort(my_vector, decreasing = TRUE)
+cat("Descending order (Method A):", vector_desc_A, "\n")
+
+
+
+Assignment 27: Write an R program to extract first 10 English letter in lower case and last 10 letters in
+upper case and extract letters between 22nd to 24th letters in upper case.
+Solution:
+# Extract the first 10 English letters in lower case
+first_10_lower <- head(letters, 10)
+# Alternatively, using indexing:
+# first_10_lower <- letters[1:10]
+print("First 10 English letters in lower case:")
+print(first_10_lower) # [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j"
+cat("\n") # Add a newline for better output formatting
+# Extract the last 10 English letters in upper case
+last_10_upper <- tail(LETTERS, 10)
+# Alternatively, using indexing:
+# last_10_upper <- LETTERS[17:26]
+print("Last 10 English letters in upper case:")
+print(last_10_upper) # [1] "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
+cat("\n")
+# Extract letters between the 22nd to 24th letters in upper case
+# Indexing in R starts at 1
+letters_22_to_24_upper <- LETTERS[22:24]
+print("Letters between 22nd to 24th letters in upper case:")
+print(letters_22_to_24_upper) # [1] "V" "W" "X"
+
+
+
+Assignment 28: Write an R Program to calculate Decimal into binary of a given number.
+Solution:
+# R program to convert decimal to binary
+# Input decimal number
+num <- 10
+# Convert decimal to binary
+binary <- ""
+n <- num
+while(n > 0) {
+ remainder <- n %% 2
+ binary <- paste(remainder, binary, sep = "")
+ n <- n %/% 2
 }
-?>
-
-12.Write a PHP script to change the preference of your web page like font style, font,
-size, font color, background color using cookie. Display selected settings on next page
-and actual implementation (with new settings) on third page.
-
-Page 1 – Preference Form (preference.html)
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Page Preference</title>
-</head>
-<body>
-<h2>Select Page Preferences</h2>
-<form method="post" action="setcookie.php">
-Font Style:
-<select name="font">
-<option value="Arial">Arial</option>
-<option value="Times New Roman">Times New Roman</option>
-<option value="Verdana">Verdana</option>
-</select>
-<br><br>
-Font Size:
-<select name="size">
-<option value="16px">16</option>
-<option value="20px">20</option>
-<option value="24px">24</option>
-</select>
-<br><br>
-Font Color:
-<input type="color" name="fontcolor">
-<br><br>
-Background Color:
-<input type="color" name="bgcolor">
-<br><br>
-<input type="submit" value="Submit">
-</form>
-</body>
-</html>
-
-Page 2 – Store Cookie and Show Settings (setcookie.php)
-
-<?php
-$font = $_POST['font'];
-$size = $_POST['size'];
-$fcolor = $_POST['fontcolor'];
-$bgcolor = $_POST['bgcolor'];
-// Set Cookies
-setcookie("font",$font,time()+3600);
-setcookie("size",$size,time()+3600);
-setcookie("fcolor",$fcolor,time()+3600);
-setcookie("bgcolor",$bgcolor,time()+3600);
-echo "<h2>Selected Preferences</h2>";
-echo "Font Style: $font <br>";
-echo "Font Size: $size <br>";
-echo "Font Color: $fcolor <br>";
-echo "Background Color: $bgcolor <br><br>";
-echo "<a href='display.php'>Click here to see the page with new settings</a>";
-?>
-<?php
-$font = $_COOKIE['font'];
-$size = $_COOKIE['size'];
-$fcolor = $_COOKIE['fcolor'];
-$bgcolor = $_COOKIE['bgcolor'];
-?>
-
-Page 3 – Apply Settings (display.php)
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Applied Preferences</title>
-</head>
-<body style="background-color:<?php echo $bgcolor; ?>;
- font-family:<?php echo $font; ?>;
- font-size:<?php echo $size; ?>;
- color:<?php echo $fcolor; ?>;">
-<h2>This page uses your selected preferences</h2>
-<p>
-This text is displayed using the font style, size, and colors selected by you.
-</p>
-</body>
-</html>
-
-
-Steps To Run Program
-1. Save Files
-Three files must be inside htdocs
-2. Start Server
-3. Open in Browser
-http://localhost/preference.html
-
-
-Practical 5: (Database)
-
-13.Consider the following entities and their relationship. Doctor ( doc_no, dname,
-address, city, area) Hospital (hosp_no, hname, hcity) Doctor-Hospital related with manyone relationship. Create a RDB in 3NF for above and solve the following. Using above
-database write a script in PHP to print the Doctor visiting to the hospital in tabular
-format. Accept hospital name from user[ Use MySQL]
-
-CREATE DATABASE hospital_db;
-USE hospital_db;
-CREATE TABLE Hospital(
-hosp_no INT PRIMARY KEY,
-hname VARCHAR(50),
-hcity VARCHAR(50)
-);
-CREATE TABLE Doctor(
-doc_no INT PRIMARY KEY,
-dname VARCHAR(50),
-address VARCHAR(100),
-city VARCHAR(50),
-area VARCHAR(50),
-hosp_no INT,
-FOREIGN KEY (hosp_no) REFERENCES Hospital(hosp_no)
-);
-
-HTML File (hospital.html)
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Doctor Visiting Hospital</title>
-</head>
-<body>
-<h2>Search Doctors Visiting Hospital</h2>
-<form method="POST" action="doctor.php">
-Enter Hospital Name :
-<input type="text" name="hname" required>
-<br><br>
-<input type="submit" value="Show Doctors">
-</form>
-</body>
-</html>
-
-
-PHP File (doctor.php)
-<?php
-$con = mysqli_connect("localhost","root","","hospital_db");
-if(!$con)
-{
- die("Connection failed");
-}
-$hname = $_POST['hname'];
-$sql = "SELECT Doctor.doc_no, Doctor.dname, Doctor.address, Doctor.city, Doctor.area
- FROM Doctor, Hospital
- WHERE Doctor.hosp_no = Hospital.hosp_no
- AND Hospital.hname='$hname'";
-$result = mysqli_query($con,$sql);
-echo "<h2>Doctors Visiting $hname</h2>";
-echo "<table border='1'>";
-echo "<tr>
- <th>Doctor No</th>
- <th>Name</th>
- <th>Address</th>
- <th>City</th>
- <th>Area</th>
- </tr>";
-while($row=mysqli_fetch_assoc($result))
-{
- echo "<tr>";
- echo "<td>".$row['doc_no']."</td>";
- echo "<td>".$row['dname']."</td>";
- echo "<td>".$row['address']."</td>";
- echo "<td>".$row['city']."</td>";
- echo "<td>".$row['area']."</td>";
- echo "</tr>";
-}
-echo "</table>";
-mysqli_close($con);
-?>
-
-14.Consider the following entities and their relationship. Student ( stud_id, name, class)
-Competition (c_no,c_name, type) a) Relationship between student and competition In
-many-many with attributes rank and year. b) Create a RDB in 3NF for above and solve the
-following. c) Using above database write a script in PHP to accept a competition from
-user and display information of student who has secured 1st rank in that competition.
-
-CREATE DATABASE competition_db;
-USE competition_db;
-CREATE TABLE Student(
-stud_id INT PRIMARY KEY,
-name VARCHAR(50),
-class VARCHAR(20)
-);
-CREATE TABLE Competition(
-c_no INT PRIMARY KEY,
-c_name VARCHAR(50),
-type VARCHAR(30)
-);
-CREATE TABLE Participation(
-stud_id INT,
-c_no INT,
-rank INT,
-year INT,
-PRIMARY KEY(stud_id,c_no,year),
-FOREIGN KEY(stud_id) REFERENCES Student(stud_id),
-FOREIGN KEY(c_no) REFERENCES Competition(c_no)
-);
-
-HTML Form (competition.html)
-<html>
-<body>
-<h2>Search First Rank Student</h2>
-<form method="post" action="result.php">
-Enter Competition Name :
-<input type="text" name="cname">
-<br><br>
-<input type="submit" value="Show Result">
-</form>
-</body>
-</html>
-
-PHP Script (result.php)
-
-<?php
-$con = mysqli_connect("localhost","root","","competition_db");
-if(!$con)
-{
-die("Connection failed");
-}
-$cname = $_POST['cname'];
-$sql = "SELECT s.stud_id, s.name, s.class, p.year
- FROM Student s, Competition c, Participation p
- WHERE s.stud_id=p.stud_id
- AND c.c_no=p.c_no
- AND c.c_name='$cname'
- AND p.rank=1";
-$result = mysqli_query($con,$sql);
-echo "<h2>First Rank Student in $cname</h2>";
-echo "<table border=1>";
-echo "<tr>
-<th>Student ID</th>
-<th>Name</th>
-<th>Class</th>
-<th>Year</th>
-</tr>";
-while($row=mysqli_fetch_assoc($result))
-{
-echo "<tr>";
-echo "<td>".$row['stud_id']."</td>";
-echo "<td>".$row['name']."</td>";
-echo "<td>".$row['class']."</td>";
-echo "<td>".$row['year']."</td>";
-echo "</tr>";
-}
-echo "</table>";
-mysqli_close($con);
-?>
+# Print result
+cat("Decimal number:", num, "\n")
+cat("Binary equivalent:", binary)
 
 
 
-Steps To Run Program
-1. Start XAMPP
-2. Open phpMyAdmin
-http://localhost/phpmyadmin
-• Create database: competition_db
-• Run your SQL queries
-3. Save Files
-4. Run Program
- http://localhost/competition.html
-
-
-Practical 6: (JavaScript)
-
-15.Write the JavaScript to do swapping of two values. (For example: if A=100 and B=200,
-after swapping it becomes A=200 and B=100)
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Swap Two Values</title>
-</head>
-<body>
-<h2>Swapping of Two Values</h2>
-<script>
-var A = 100;
-var B = 200;
-document.write("Before Swapping:<br>");
-document.write("A = " + A + "<br>");
-document.write("B = " + B + "<br><br>");
-var temp;
-temp = A;
-A = B;
-B = temp;
-document.write("After Swapping:<br>");
-document.write("A = " + A + "<br>");
-document.write("B = " + B);
-</script>
-</body>
-</html>
-
-
-16.Write the JavaScript to convert temperature from Celsius to Fahrenheit.
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Celsius to Fahrenheit</title>
-</head>
-<body>
-<h2>Temperature Conversion</h2>
-<script>
-var celsius = 30;
-var fahrenheit;
-fahrenheit = (celsius * 9/5) + 32;
-document.write("Temperature in Celsius = " + celsius + "<br>");
-document.write("Temperature in Fahrenheit = " + fahrenheit);
-</script>
-</body>
-</html>
-
-Steps To Run Program
-
-1. Open Text Editor
-2. Save the File
-• Copy your code
-• Save file with .html extension
- 3. Save Location
-You can save it anywhere (Desktop / Documents etc.)
- 4. Open in Browser
-• Go to the file location
-• Double click on temperature.html
-OR right click → Open with browser (Chrome/Firefox)
- 5. Run Program
-
-
-Practical 7: (XML and AJAX)
-
-17.Write a script to create XML file as 'Employee.xml'. The element of this xml file are as
-follows:
-
-<Empdetails>
-<Employee EMPno= Empname=>
-<Salary>--------</Salary>
-<Designation>-------</Designation>
-</Employee>
-</Empdetails>
-<?xml version="1.0" encoding="UTF-8"?>
-<Empdetails>
- <Employee EMPno="101" Empname="Rahul">
- <Salary>25000</Salary>
- <Designation>Manager</Designation>
- </Employee>
- <Employee EMPno="102" Empname="Sneha">
- <Salary>20000</Salary>
- <Designation>Clerk</Designation>
- </Employee>
-</Empdetails>
-
-
-18.Write a PHP script to generate an XML in the following format in php.
-
-<? Xml version='1.0' encoding="ISO-8859-1'?>
-<Book Store>
-<Books>
-<Title> Programming in PHP </ Title>
-<PHP> <PHP>
-<Publication>O'RELLY<Publication>
-</PHP>
-<Title> Beginners PHP</Title>
-<Publication> WORX</Publication>
-</PHP></Books>
-</Book Store>
-<?php
-$xml = new DOMDocument("1.0", "ISO-8859-1");
-// Create root element
-$bookstore = $xml->createElement("BookStore");
-$xml->appendChild($bookstore);
-// Create Books element
-$books = $xml->createElement("Books");
-$bookstore->appendChild($books);
-// First Book
-$php = $xml->createElement("PHP");
-$books->appendChild($php);
-$title1 = $xml->createElement("Title","Programming in PHP");
-$php->appendChild($title1);
-$pub1 = $xml->createElement("Publication","O'REILLY");
-$php->appendChild($pub1);
-// Second Book
-$php2 = $xml->createElement("PHP");
-$books->appendChild($php2);
-$title2 = $xml->createElement("Title","Beginners PHP");
-$php2->appendChild($title2);
-$pub2 = $xml->createElement("Publication","WORX");
-$php2->appendChild($pub2);
-// Display XML
-$xml->formatOutput = true;
-echo $xml->saveXML();
-?>
-
-
-19.Write a AJAX program to search Student name according to the character typed and
-display list using array
-
-HTML + AJAX File (search.html)
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Student Search</title>
-<script>
-function showStudent(str)
-{
- if (str.length == 0)
- {
- document.getElementById("result").innerHTML = "";
- return;
- }
- var xmlhttp = new XMLHttpRequest();
- xmlhttp.onreadystatechange = function()
- {
- if (this.readyState == 4 && this.status == 200)
- {
- document.getElementById("result").innerHTML = this.responseText;
- }
- };
- xmlhttp.open("GET","student.php?q="+str,true);
- xmlhttp.send();
-}
-</script>
-</head>
-<body>
-<h2>Search Student Name</h2>
-Enter Student Name :
-<input type="text" onkeyup="showStudent(this.value)">
-<p>Suggestions:</p>
-<div id="result"></div>
-</body>
-</html>
-
-
-PHP File (student.php)
-
-<?php
-$students = array(
-"Amol","Amit","Anita","Ajay","Bhushan","Bhakti",
-"Chaitali","Chetan","Dipali","Dinesh","Kiran",
-"Komal","Mahesh","Neha","Pooja","Rahul","Rohit",
-"Sonali","Suresh","Vaishali"
-);
-$q = $_GET["q"];
-$hint = "";
-if ($q !== "")
-{
- $q = strtolower($q);
- $len = strlen($q);
- foreach($students as $name)
- {
- if (stristr($q, substr($name,0,$len)))
- {
- if ($hint === "")
- {
- $hint = $name;
- }
- else
- {
- $hint .= "<br>$name";
- }
- }
- }
-}
-echo ($hint === "") ? "No Suggestion" : $hint;
-?>
-
-
-20.Write a AJAX program to print Teacher information from MySQL table Teacher.
-
-Teacher (Tno, Name, Subject, Research area).
-
-CREATE TABLE Teacher (
-Tno INT PRIMARY KEY,
-Name VARCHAR (50),
-Subject VARCHAR (50),
-Research_area VARCHAR (50)
-);
-INSERT INTO Teacher VALUES
-(1,'Amit Patil','DBMS','Data Mining'),
-(2,'Neha Shah','Java','Cloud Computing'),
-(3,'Ravi Kulkarni','PHP','Web Technology');
-HTML + AJAX File (teacher.html)
-<!DOCTYPE html>
-<html>
-<head>
-<title>Teacher Information</title>
-<script>
-function showTeacher()
-{
- var xmlhttp = new XMLHttpRequest();
- xmlhttp.onreadystatechange = function()
- {
- if(this.readyState == 4 && this.status == 200)
- {
- document.getElementById("result").innerHTML = this.responseText;
- }
- };
- xmlhttp.open("GET","teacher.php",true);
- xmlhttp.send();
-}
-</script>
-</head>
-<body>
-<h2>Teacher Information</h2>
-<button onclick="showTeacher()">Show Teachers</button>
-<div id="result"></div>
-</body>
-</html>
-PHP File (teacher.php)
-<?php
-$conn = mysqli_connect("localhost","root","","college");
-if(!$conn)
-{
- die("Connection Failed");
-}
-$sql = "SELECT * FROM Teacher";
-$result = mysqli_query($conn,$sql);
-echo "<table border=1>";
-echo "<tr>
-<th>Tno</th>
-<th>Name</th>
-<th>Subject</th>
-<th>Research Area</th>
-</tr>";
-while($row = mysqli_fetch_assoc($result))
-{
- echo "<tr>";
- echo "<td>".$row['Tno']."</td>";
- echo "<td>".$row['Name']."</td>";
- echo "<td>".$row['Subject']."</td>";
- echo "<td>".$row['Research_area']."</td>";
- echo "</tr>";
-}
-echo "</table>";
-mysqli_close($conn);
-?>
+Assignment 29: Write an R program to convert a given matrix to a list and print list in ascending order.
+Solution:
+# Create a matrix
+m <- matrix(c(9, 4, 7, 2, 5, 1), nrow = 2, ncol = 3)
+# Convert matrix to list
+list_data <- as.list(m)
+# Sort the list in ascending order
+sorted_list <- sort(unlist(list_data))
+# Print matrix
+print("Matrix:")
+print(m)
+# Print list
+print("List:")
+print(list_data)
+# Print sorted list
+print("List in Ascending Order:")
+print(sorted_list)
 
 
 
-Steps to Run AJAX Program
-1. Start XAMPP
-2. Create Database & Table
-Open browser:
-http://localhost/phpmyadmin
-3. Save Files in htdocs
-4. Run the Program
-Open browser:
-http://localhost/teacher.html
+Assignment 30: Write an R program to create a Data frames which contain details of
+5employees and display the details in ascending order.
+Solution:
+# Create a data frame with employee details
+emp <- data.frame(
+ EmpID = c(105, 102, 104, 101, 103),
+ Name = c("Amit", "Neha", "Rahul", "Sneha", "Kiran"),
+Salary = c(45000, 52000, 48000, 40000, 47000)
+)
+# Display original data frame
+print("Employee Details:")
+print(emp)
+# Sort the data frame in ascending order of EmpID
+sorted_emp <- emp[order(emp$EmpID), ]
+# Display sorted data frame
+print("Employee Details in Ascending Order:")
+print(sorted_emp)
+
+
+
+Assignment 31: Consider the inbuilt iris dataset
+i) Create a variable “y” and attach to it the output attribute of the “iris”dataset .
+ii) Create a barplot to breakdown your output attribute.
+iii) Create a density plot matrix for each attribute by class value.
+Solution:
+# Load iris dataset
+data(iris)
+i) # Output attribute (Species)
+y <- iris$Species
+# Display y
+print(y)
+# Count frequency of each species
+species_count <- table(y)
+ii)
+# Create barplot
+barplot(species_count,
+ main = "Distribution of Iris Species",
+ xlab = "Species",
+ ylab = "Count")
+iii)
+# Install package (run once)
+install.packages("lattice")
+# Load library
+library(lattice)
+# Density plot matrix
+splom(~iris[1:4],
+ groups = iris$Species,
+ auto.key = TRUE,
+ main = "Density Plot Matrix of Iris Dataset")
+
+
+
+ Assignment 32: Consider Weather dataset
+i) Selecting using the column number
+ii) Selecting using the column name
+iii) Make a scatter plot to compare Wind speed and temperature.
+Solution:
+# Create a sample Weather dataset
+weather <- data.frame(
+ Day = c("Mon", "Tue", "Wed", "Thu", "Fri"),
+ Temperature = c(30, 32, 28, 31, 29),
+ Humidity = c(70, 65, 80, 75, 85),
+ Wind = c(10, 12, 8, 9, 11)
+)
+print(weather)
+i)
+# Select 1st column
+weather[, 1]
+# Select 2nd and 3rd columns
+weather[, c(2, 3)]
+ii)
+# Select single column
+weather$Temperature
+# Select multiple columns
+weather[, c("Temperature", "Humidity")]
+
+
+
+Assignment 33: Write a script in R to create a list of students and perform the following
+i) Give names to the students in the list.
+ii) Add a student at the end of the list.
+iii) Remove the first Student.
+iv)Update the second last student.
+Solution:
+# Create a list of students
+students <- list("Rahul", "Neha", "Amit", "Sneha")
+# i) Give names to the students in the list
+names(students) <- c("Student1", "Student2", "Student3", "Student4")
+print("List after naming students:")
+print(students)
+# ii) Add a student at the end of the list
+students[[length(students) + 1]] <- "Kiran"
+names(students)[length(students)] <- "Student5"
+print("List after adding a student at the end:")
+print(students)
+# iii) Remove the first student
+students <- students[-1]
+print("List after removing the first student:")
+print(students)
+# iv) Update the second last student
+students[[length(students) - 1]] <- "Priya"
+print("List after updating the second last student:")
+print(students)
