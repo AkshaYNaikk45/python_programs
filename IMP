@@ -1,691 +1,841 @@
-Assignment 1: Write a program to take inputs from the user(name and age) display the values. Also
-print the version of R installation
-Solution:
-# Take input from user
-name <- readline(prompt = "Enter your name: ")
-age <- readline(prompt = "Enter your age: ")
-# Display the values
-cat("Name:", name, "\n")
-cat("Age:", age, "\n")
-# Print the R version
-cat("R Version:\n")
-print(R.version.string)
 
+Slip 1
+Question 1: Create a JSP page to accept a number from an user and display it in words: Example: 123 One Two Three. The Output :- should be in red color.
+Solution :- 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html>
+<body>
+<form method="post">
+    Enter Number: <input type="text" name="num" />
+    <input type="submit" value="Show Words" />
+</form>
+<%
+    String num = request.getParameter("num");
+    if (num != null) {
+        String[] words = {"Zero","One","Two","Three","Four","Five","Six","Seven","Eight","Nine"};
+        out.print("<p style='color:red'>");
+        for (int i = 0; i < num.length(); i++) {
+            char ch = num.charAt(i);
+            if (Character.isDigit(ch)) out.print(words[ch - '0'] + " ");
+        }
+        out.print("</p>");
+    }
+%>
+</body>
+</html>
+Output :-
+Example: 123 -> One Two Three
+Display color: red
 
-Assignment 2: Write a program to create sequence of numbers from 20 to 50 and find the mean of
-numbers from 20 to 60 and sum of numbers from 51 to 91.
-Solution:
-# Create a sequence from 20 to 50
-seq1 <- 20:50
-print("Sequence from 20 to 50:")
-print(seq1)
-# Find mean of numbers from 20 to 60
-seq2 <- 20:60
-mean_val <- mean(seq2)
-cat("Mean of numbers from 20 to 60:", mean_val, "\n")
-# Find sum of numbers from 51 to 91
-seq3 <- 51:91
-sum_val <- sum(seq3)
-cat("Sum of numbers from 51 to 91:", sum_val)
+Question 2: Write a JDBC program to display all the details of the Person table in proper format on the screen. Create a Person table with fields as PID, name, gender, birth_year. Insert values in Person table.
+Solution :- 
+Code:-
+import java.sql.*;
 
-
-Assignment 3: Write a R program to create a simple bar plot of five subjects marks.
-Solution:
-# Create a vector of marks for five subjects
-marks <- c(75, 82, 90, 68, 88)
-# Create a vector of names corresponding to the subjects
-subjects <- c("Math", "Science", "History", "English", "Art")
-# Create the bar plot
-barplot(marks,
- names.arg = subjects,
- main = "Marks in Five Subjects",
- xlab = "Subject",
- ylab = "Marks",
- col = "skyblue",
- ylim = c(0, 100)) # Set the Y-axis limit for better presentation
-
-
-Assignment 4: Write a R program to get the unique elements of a given string and unique numbers of
-vector.
-Solution:
-# Given string
-str <- "programming"
-# Split string into characters
-chars <- strsplit(str, "")[[1]]
-# Find unique characters
-unique_chars <- unique(chars)
-cat("Unique characters in the string:\n")
-print(unique_chars)
-# Given numeric vector
-v <- c(2, 5, 3, 2, 7, 5, 9, 3)
-# Find unique numbers
-unique_numbers <- unique(v)
-cat("Unique numbers in the vector:\n")
-print(unique_numbers)
-
-
-Assignment 5: Write a R program to multiply two vectors of integers type and length 3.
-Solution:
-# Create two integer vectors of length 3
-v1 <- c(2L, 4L, 6L)
-v2 <- c(3L, 5L, 7L)
-# Multiply the vectors element-wise
-result <- v1 * v2
-# Display vectors and result
-cat("Vector 1:", v1, "\n")
-cat("Vector 2:", v2, "\n")
-cat("Multiplication Result:", result)
-
-
-Assignment 6: Write a R program to list containing a vector, a matrix and a list and give names to
-the elements in the list.
-Solution:
-# Create a vector
-v <- c(10, 20, 30)
-# Create a matrix
-m <- matrix(c(1, 2, 3, 4), nrow = 2, ncol = 2)
-# Create another list
-l <- list("R", "Python", "Java")
-# Create a list containing vector, matrix and list
-mylist <- list(v, m, l)
-# Give names to the elements of the list
-names(mylist) <- c("Vector", "Matrix", "LanguageList")
-# Display the list
-print(mylist)
-
-
-Assignment 7: Write a R program to create a list containing a vector, a matrix and a list and give
-names to the elements in the list. Access the first and second element of the list.
-Solution:
-# Create a vector of numbers
-my_vector <- c(10, 20, 30)
-# Create a 2x3 matrix
-my_matrix <- matrix(c(1, 2, 3, 4, 5, 6), nrow = 2, ncol = 3)
-# Create another list (nested list)
-nested_list <- list("apple", "banana", "cherry")
-# Create the main list containing the vector, matrix, and nested list
-my_list <- list(
- VectorData = my_vector,
- MatrixData = my_matrix,
- NestedList = nested_list
-)
-# Print the entire list to verify
-print(my_list)
-# Access the first element of the list (the vector)
-first_element <- my_list$VectorData
-# Alternatively, use index: first_element <- my_list[[1]]
-print("First element (VectorData):")
-print(first_element)
-# Access the second element of the list (the matrix)
-second_element <- my_list$MatrixData
-# Alternatively, use index: second_element <- my_list[[2]]
-print("Second element (MatrixData):")
-print(second_element)
-
-
-Assignment 8: Write a R program to create a list containing a vector, a matrix and a list and
-remove the second element.
-Solution :
-# Create a vector
-my_vector <- c(1, 2, 3, 4, 5)
-# Create a matrix
-my_matrix <- matrix(c(1:9), nrow = 3, ncol = 3, byrow = TRUE)
-# Create another list
-my_inner_list <- list("apple", "banana", "cherry")
-# Create a list containing the vector, the matrix, and the inner list
-my_list <- list(
- vector_element = my_vector,
- matrix_element = my_matrix,
- list_element = my_inner_list
-)
-# Print the original list to view its structure
-cat("Original list:\n")
-print(my_list)
-cat("\n")
-# Remove the second element (the matrix)
-# Method 1: Using the NULL assignment approach
-# my_list$matrix_element <- NULL
-# Method 2: Using negative indexing (by position)
-# Note that this re-indexes the remaining elements.
-my_list <- my_list[-2]
-# Print the modified list to confirm the removal
-cat("List after removing the second element:\n")
-print(my_list)
+public class PersonDetails {
+    public static void main(String[] args) throws Exception {
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "root");
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM Person");
+        while (rs.next()) {
+            System.out.println(rs.getInt("PID") + " | " + rs.getString("name") + " | " + rs.getString("gender") + " | " + rs.getInt("birth_year"));
+        }
+    }
+}
+Output :-
+erson table records displayed in tabular format.
 
 
 
-Assignment 9: Write a R program to merge two given lists into one list.
-Solution:
-Merged Two list
-# Create two example lists
-list1 <- list("apple", "banana", "cherry")
-list2 <- list(1, 2, 3)
-# Merge the two lists into one using c()
-merged_list_c <- c(list1, list2)
-# Print the merged list
-print(merged_list_c)
+Slip 2
+Question 1: The following JSP program calculates factorial values for an integer number, while the input is taken from an HTML form. [10Marks]
+Solution :- 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html>
+<body>
+<form method="post">
+    Enter Number: <input type="text" name="n" />
+    <input type="submit" value="Factorial" />
+</form>
+<%
+    String s = request.getParameter("n");
+    if (s != null) {
+        int n = Integer.parseInt(s), f = 1;
+        for (int i = 1; i <= n; i++) f *= i;
+        out.print("Factorial = " + f);
+    }
+%>
+</body>
+</html>
+Output :-
+Input: 5
+Output :-: Factorial of 5 is 120
 
 
-Assignment 10: Write a R program to assign new names "a", "b" and "c" to the elements of a given list.
-Solution:
-# Create an example list
-my_list <- list(1:10, "R Programming", TRUE)
-# Print the original list (optional)
-print("Original list:")
-print(my_list)
-# Assign new names to the elements
-names(my_list) <- c("a", "b", "c")
-# Print the list with new names
-print("List after assigning new names:")
-print(my_list)
+Question 2: Write a JDBC program to display all the countries located in the West Region. Create a table Country with fields (Name, continent, Capital,Region). Insert values in the table.
+Solution :- 
+Code:-
+import java.sql.*;
+
+public class WestRegionCountries {
+    public static void main(String[] args) throws Exception {
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "root");
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM Country WHERE Region=?");
+        ps.setString(1, "West");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            System.out.println(rs.getString("Name") + " " + rs.getString("Capital") + " " + rs.getString("Region"));
+        }
+    }
+}
+Output :-
+ll Country rows with Region = West.
 
 
-Assignment 11: Write a R program to create an empty data frame.
-Solution:
-# Create an empty data frame
-df <- data.frame()
-# Display the data frame
-print("Empty Data Frame:")
-print(df)
-2. With Values
-# Create an empty data frame with columns
-df <- data.frame(Name = character(),
- Age = numeric(),
- Salary = numeric())
-print(df)
 
 
-Assignment 12: Write a R program to create a data frame from four given vectors.
-Solution:
-# 1. Define the four vectors
-name <- c("Alice", "Bob", "Charlie", "Diana")
-age <- c(25, 30, 28, 35)
-score <- c(88.5, 76.2, 91.0, 84.7)
-qualify <- c("Yes", "No", "Yes", "Yes")
-# 2. Combine the vectors into a data frame using data.frame()
-# The argument names (Name, Age, Score, Qualify) will be the column names
-student_data <- data.frame(
- Name = name,
- Age = age,
- Score = score,
- Qualify = qualify,
- stringsAsFactors = FALSE # Prevents character vectors from being converted to factors
-)
-# 3. Print the resulting data frame
-print(student_data)
-# 4. (Optional) Check the structure of the data frame
-str(student_data)
+Slip 3
+Question 1: The following JSP program shows the Fibonacci series up to a particular term, while the input is taken from an HTML form.[10Marks]
+Solution :- 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html>
+<body>
+<form method="post">
+    Enter Terms: <input type="text" name="n" />
+    <input type="submit" value="Fibonacci" />
+</form>
+<%
+    String s = request.getParameter("n");
+    if (s != null) {
+        int n = Integer.parseInt(s);
+        int a = 0, b = 1;
+        out.print("<p>");
+        for (int i = 1; i <= n; i++) {
+            out.print(a + " ");
+            int c = a + b; a = b; b = c;
+        }
+        out.print("</p>");
+    }
+%>
+</body>
+</html>
+Output :-
+Input: 7
+Output :-: 0 1 1 2 3 5 8
 
 
-Assignment 13: Write a R program to create a data frame using two given vectors and display the
-duplicated elements and unique rows of the said data frame.
-Solution:
-# Define two vectors with some duplicate values
-vector1 <- c(10, 20, 10, 30, 40, 50, 20)
-vector2 <- c("A", "B", "A", "C", "D", "E", "B")
-# Create a data frame from the vectors
-# The vector names become the column names in the data frame
-df <- data.frame(Col1 = vector1, Col2 = vector2)
-# Display the original data frame
-print("Original Data Frame:")
-print(df)
-# Display the duplicated elements/rows
-# duplicated() returns a logical vector; TRUE indicates a row is a duplicate of a previous row
-# We use this logical vector to subset the data frame
-duplicated_rows <- df[duplicated(df), ]
-print("Duplicated Rows:")
-print(duplicated_rows)
-# Display the unique rows
-# unique() returns a data frame with duplicate rows removed, keeping only unique rows
-unique_rows <- unique(df)
-print("Unique Rows:")
-print(unique_rows)
+Question 2: Write a JDBC program to insert the records into the table Employee(ID,name,salary) usingPreparedStatement interface. Accept details of Employees from user.
+Solution :- 
+Code:-
+import java.sql.*;
+import java.util.*;
+public class InsertEmployee {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter ID: ");
+        int id = sc.nextInt();
+        System.out.print("Enter Name: ");
+        String name = sc.next();
+        System.out.print("Enter Salary: ");
+        double salary = sc.nextDouble();
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "root");
+        PreparedStatement ps = con.prepareStatement("INSERT INTO Employee VALUES(?,?,?)");
+        ps.setInt(1, id);
+        ps.setString(2, name);
+        ps.setDouble(3, salary);
+        ps.executeUpdate();
+        System.out.println("Record inserted successfully");
+    }
+}
+Output :-
+ecord inserted successfully.
 
 
-Assignment 14: Write a R program to save the information of a data frame in a file and display the
-information of the file.
-Solution:
-# 1. Create a sample data frame
-df <- data.frame(
- Name = c("Alice", "Bob", "Charlie"),
- Age = c(25, 30, 28),
- Salary = c(50000, 65000, 55000)
-)
-# Display the original data frame in the console
-print("Original data frame:")
-print(df)
-cat("\n") # Add a newline for better formatting
-# 2. Save the data frame to a file
-# The write.csv() function saves the data frame to a CSV file.
-# Setting row.names = FALSE prevents R from adding an extra column of row numbers.
-file_name <- "employees.csv"
-write.csv(df, file = file_name, row.names = FALSE)
-cat("Data frame successfully saved to '", file_name, "'\n\n", sep="")
-# 3. Display the information of the saved file
-# The file.info() function retrieves information (like size, type, permissions, etc.) about the file.
-file_details <- file.info(file_name)
-print("Information about the file:")
-print(file_details)
-cat("\n")
-# (Optional) Read the file back into a new data frame to verify content
-# The read.csv() function is used to load data from a CSV file back into a data frame.
-imported_data <- read.csv(file_name)
-print("Data frame after reading the file back into R:")
-print(imported_data)
 
 
-Assignment 15: Write a R program to create an ordered factor from data consisting of the names of
-months.
-Solution:
-exam_data = data.frame(
-name = c('Anastasia', 'Dima', 'Katherine', 'James', 'Emily', 'Michael', 'Matthew', 'Laura', 'Kevin',
-'Jonas'),
-score = c(12.5, 9, 16.5, 12, 9, 20, 14.5, 13.5, 8, 19),
-attempts = c(1, 3, 2, 3, 2, 3, 1, 1, 2, 1),
-qualify = c('yes', 'no', 'yes', 'no', 'no', 'yes', 'yes', 'no', 'no', 'yes')
-)
-print("Original dataframe:")
-print(exam_data)
-save(exam_data,file="data.rda")
-load("data.rda")
-file.info("data.rda")
+
+Slip 4
+Question 1: Write a Program to make use of following JSP implicit objects: i. out: To display current Date and Time. ii. request: To get header information. iii. response: To Add Cookie iv. config: get the parameters value defined in <init-param> v. application: get the parameter value defined in <context-param> vi. session: Display Current Session ID vii. pageContext: To set and get the attributes. viii. page: get the name of Generated Servlet
+Solution :- 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html>
+<body>
+<%
+    out.println("Current Date and Time: " + new java.util.Date());
+    out.println("<br>Request Method: " + request.getMethod());
+    response.addCookie(new Cookie("demo", "123"));
+    out.println("<br>Session ID: " + session.getId());
+%>
+</body>
+</html>
+Output :-
+date/time, header details, cookie value, session ID, and attribute data shown on the page.
 
 
-Assignment 16: Write R program to find whether given number is positive or negative.
-Solution:
-num = as.double(readline(prompt="Enter a number: "))
-if(num > 0) {
- print("Positive number")
-} else {
- if(num == 0) {
- print("Zero")
- } else {
- print("Negative number")
- }
+Question 2: Write a JDBC program to update number_of_students of “BCA Science” to 1000.Create a table Course (Code,name, department,number_of_students). Insert values in the table.
+Solution :- 
+Code:-
+import java.sql.*;
+
+public class UpdateCourse {
+    public static void main(String[] args) throws Exception {
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "root");
+        PreparedStatement ps = con.prepareStatement("UPDATE Course SET number_of_students=? WHERE name=?");
+        ps.setInt(1, 1000);
+        ps.setString(2, "BCA Science");
+        ps.executeUpdate();
+        System.out.println("number_of_students updated successfully");
+    }
+}
+Output :-
+umber_of_students updated successfully.
+
+
+
+
+
+
+Slip 5
+Question 1: Write a JSP script to display all the prime number’s between 1 to n in Red Color. [10Marks]
+Solution :- 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html>
+<body>
+<form method="post">
+    Enter Number: <input type="text" name="n" />
+    <input type="submit" value="Show Primes" />
+</form>
+<%
+    String s = request.getParameter("n");
+    if (s != null) {
+        int n = Integer.parseInt(s);
+        out.print("<p style='color:red'>");
+        for (int i = 2; i <= n; i++) {
+            boolean prime = true;
+            for (int j = 2; j * j <= i; j++) if (i % j == 0) prime = false;
+            if (prime) out.print(i + " ");
+        }
+        out.print("</p>");
+    }
+%>
+</body>
+</html>
+Output :-
+Input: 10
+Output :-: 2 3 5 7
+
+
+Question 2: Write a client-server program which displays the server machine’s date and time on the client machine.
+Solution :- 
+Code:-
+// Server
+ServerSocket ss = new ServerSocket(5000);
+Socket s = ss.accept();
+PrintWriter out = new PrintWriter(s.getOutput :-Stream(), true);
+out.println(new java.util.Date());
+
+// Client
+Socket s = new Socket("localhost", 5000);
+BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
+System.out.println("Server time: " + br.readLine());
+Output :-
+erver machine date and time shown on the client screen.
+
+
+
+
+
+
+Slip 6
+Question 1: Write a JSP application to accept the details of Emp (Eno, EName, Salary) and display it in Tabular format on the browser. [10Marks]
+Solution :- 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html>
+<body>
+<form method="post">
+    Eno: <input name="eno" /><br>
+    EName: <input name="ename" /><br>
+    Salary: <input name="salary" /><br>
+    <input type="submit" value="Show" />
+</form>
+<%
+    if (request.getParameter("eno") != null) {
+%>
+<table border="1">
+    <tr><th>Eno</th><th>EName</th><th>Salary</th></tr>
+    <tr>
+        <td><%= request.getParameter("eno") %></td>
+        <td><%= request.getParameter("ename") %></td>
+        <td><%= request.getParameter("salary") %></td>
+    </tr>
+</table>
+<%
+    }
+%>
+</body>
+</html>
+Output :-
+table with Eno, EName, and Salary columns.
+
+
+Question 2: Define a thread called “PrintText_Thread” for printing text on command prompt for n number of times. Create three threads and run them. Pass the text and n as parameters to the thread constructor. Example: i. First thread prints “I am in FY” 10 times ii. Second thread prints “I am in SY” 20 times iii. Third thread prints “I am in TY” 30 times[20Marks]
+Solution :- 
+class PrintText_Thread extends Thread {
+    String text; int n;
+    PrintText_Thread(String text, int n) { this.text = text; this.n = n; }
+    public void run() { for (int i = 0; i < n; i++) System.out.println(text); }
+}
+public class ThreadDemo {
+    public static void main(String[] args) {
+        new PrintText_Thread("I am in FY", 10).start();
+        new PrintText_Thread("I am in SY", 20).start();
+        new PrintText_Thread("I am in TY", 30).start();
+    }
+}
+Output :-
+am in FY printed 10 times; I am in SY printed 20 times; I am in TY printed 30 times.
+
+
+
+
+
+Slip 7
+Question 1: Write a JSP application to accept a user name and greets to the user according to the system Time.[10Marks ]
+Solution :- 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html>
+<body>
+<%
+    java.util.Calendar cal = java.util.Calendar.getInstance();
+    int hour = cal.get(java.util.Calendar.HOUR_OF_DAY);
+    String greeting = (hour < 12) ? "Good Morning" : (hour < 17) ? "Good Afternoon" : "Good Evening";
+    out.print(greeting + ", User!");
+%>
+</body>
+</html>
+Output :-
+Good Morning, User!
+
+
+Question 2: Design a servlet to display “Welcome IP address of client” to first time visitor. Display Welcome-back IP address of client” if the user is revisiting the page. (Use Cookies) (Hint: Use req.getRemoteAddr() to get IP address of client)
+Solution :- 
+Code:-
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+
+public class ClientIPServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html");
+        String ip = request.getRemoteAddr();
+        Cookie[] cookies = request.getCookies();
+        boolean firstTime = true;
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if ("visited".equals(c.getName())) firstTime = false;
+            }
+        }
+        PrintWriter out = response.getWriter();
+        if (firstTime) {
+            response.addCookie(new Cookie("visited", "yes"));
+            out.println("Welcome IP address of client: " + ip);
+        } else {
+            out.println("Welcome-back IP address of client: " + ip);
+        }
+    }
+}
+Output :-
+First visit: Welcome IP address of client
+Return visit: Welcome-back IP address of client
+
+
+
+
+Slip 8
+Question 1: Write a JSP application to accept the details of Teacher (TID, TName, Salary) and display it in tabular format.[10Marks ]
+Solution :- 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html>
+<body>
+<form method="post">
+    TID: <input name="tid" /><br>
+    TName: <input name="tname" /><br>
+    Salary: <input name="salary" /><br>
+    <input type="submit" value="Show" />
+</form>
+<%
+    if (request.getParameter("tid") != null) {
+%>
+<table border="1">
+    <tr><th>TID</th><th>TName</th><th>Salary</th></tr>
+    <tr>
+        <td><%= request.getParameter("tid") %></td>
+        <td><%= request.getParameter("tname") %></td>
+        <td><%= request.getParameter("salary") %></td>
+    </tr>
+</table>
+<%
+    }
+%>
+</body>
+</html>
+Output :-
+table containing teacher details.
+
+
+Question 2: Design the table User (username, password) using Database. Design HTML login screen. Accept the user name and password from the user. Write a servlet program to accept the login name and password and validates it from the database you have created. If it is correct then display Welcome.html otherwise display Error.html.
+Solution :- 
+Code:-
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+import java.sql.*;
+
+public class LoginServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String user = request.getParameter("username");
+        String pass = request.getParameter("password");
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "root");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM User WHERE username=? AND password=?");
+            ps.setString(1, user);
+            ps.setString(2, pass);
+            ResultSet rs = ps.executeQuery();
+            PrintWriter out = response.getWriter();
+            if (rs.next()) out.println("Welcome.html");
+            else out.println("Error.html");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+Output :-
+Valid credentials: Welcome.html
+Invalid credentials: Error.html
+
+
+
+
+
+Slip 9
+Question 1: Write a JSP program to display the details of Hospital (HNo, HName, Address) in tabular form on browser
+Solution :- 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html>
+<body>
+<form method="post">
+    HNo: <input name="hno" /><br>
+    HName: <input name="hname" /><br>
+    Address: <input name="address" /><br>
+    <input type="submit" value="Show" />
+</form>
+<%
+    if (request.getParameter("hno") != null) {
+%>
+<table border="1">
+    <tr><th>HNo</th><th>HName</th><th>Address</th></tr>
+    <tr>
+        <td><%= request.getParameter("hno") %></td>
+        <td><%= request.getParameter("hname") %></td>
+        <td><%= request.getParameter("address") %></td>
+    </tr>
+</table>
+<% } %>
+</body>
+</html>
+Output :-
+Hospital details in tabular format.
+
+Question 2: Write a servlet which counts how many times a user has visited a web page. If the user is visiting the page for the first time, display a welcome message. If the user is re-visiting the page, display the number of times visited. (Use cookies).
+Solution :- 
+Code:-
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+public class VisitCountServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int count = 1;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if ("count".equals(c.getName())) count = Integer.parseInt(c.getValue()) + 1;
+            }
+        }
+        response.addCookie(new Cookie("count", String.valueOf(count)));
+        PrintWriter out = response.getWriter();
+        if (count == 1) out.println("Welcome message");
+        else out.println("Visited " + count + " times");
+    }
+}
+Output :-
+First visit: Welcome message
+Later visits: Number of visits displayed.
+
+
+
+
+Slip 10
+Question 1: Write a JSP program to calculate sum of first and last digit of a given number. Display sum in Red Color with font size 18.
+Solution :- 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html>
+<body>
+<form method="post">
+    Enter Number: <input type="text" name="n" />
+    <input type="submit" value="Calculate" />
+</form>
+<%
+    String s = request.getParameter("n");
+    if (s != null) {
+        int first = s.charAt(0) - '0';
+        int last = s.charAt(s.length() - 1) - '0';
+        out.print("<p style='color:red;font-size:18px'>Sum = " + (first + last) + "</p>");
+    }
+%>
+</body>
+</html>
+Output :-
+Input: 4821
+Output :-: Sum = 5
+
+
+Question 2: Write a java program using multithreading to execute the threads sequentially.(Use Synchronized Method)
+Solution :- 
+class Counter {
+    synchronized void printNumbers(String text, int n) {
+        for (int i = 1; i <= n; i++) System.out.println(text + " " + i);
+    }
+}
+class MyThread extends Thread {
+    Counter c; String text; int n;
+    MyThread(Counter c, String text, int n) { this.c = c; this.text = text; this.n = n; }
+    public void run() { c.printNumbers(text, n); }
+}
+public class SequentialThreads {
+    public static void main(String[] args) {
+        Counter c = new Counter();
+        new MyThread(c, "One", 5).start();
+        new MyThread(c, "Two", 5).start();
+    }
+}
+Output :-
+hreads execute sequentially without overlap.
+
+
+
+
+ 
+Slip 11
+Question 1: Write a JSP program to check whether given number is perfect or not. (Use include directive)[10Marks]
+Solution :- 
+<%@ include file="header.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html>
+<body>
+<form method="post">
+    Enter Number: <input type="text" name="n" />
+    <input type="submit" value="Check" />
+</form>
+<%
+    String s = request.getParameter("n");
+    if (s != null) {
+        int n = Integer.parseInt(s), sum = 0;
+        for (int i = 1; i < n; i++) if (n % i == 0) sum += i;
+        out.print(sum == n ? "Perfect Number" : "Not Perfect Number");
+    }
+%>
+</body>
+</html>
+Output :-
+Input: 28
+Output :-: 28 is a perfect number
+
+
+Question 2: Write a java program using Inter Thread Communication.
+Solution :- 
+class Shared {
+    synchronized void waitForSignal() throws InterruptedException { wait(); }
+    synchronized void sendSignal() { notify(); }
+}
+Output :-
+hreads communicate and continue in coordinated order.
+
+
+
+
+ 
+Slip 12
+Question 1: Write a JSP program to accept name and age of a Person and check whether he is eligible for Voting or not.
+Solution :- 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html>
+<body>
+<form method="post">
+    Name: <input name="name" /><br>
+    Age: <input name="age" /><br>
+    <input type="submit" value="Check" />
+</form>
+<%
+    String age = request.getParameter("age");
+    if (age != null) {
+        int a = Integer.parseInt(age);
+        out.print(a >= 18 ? "Eligible for voting" : "Not eligible for voting");
+    }
+%>
+</body>
+</html>
+Output :-
+ligible for voting
+
+
+Question 2: Write a multithreading program using Runnable interface to blink Text on the frame.
+Solution :- 
+import java.awt.*;
+
+public class BlinkText implements Runnable {
+    public void run() {
+        Frame f = new Frame("Blink Text");
+        Label l = new Label("Hello");
+        f.add(l);
+        f.setSize(200, 100);
+        f.setVisible(true);
+    }
+}
+Output :-
+linking text on the frame.
+
+
+
+
+
+Slip 13
+Question 1: Write a JSP program to check whether given number is Armstrong or not.
+Solution :- 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html>
+<body>
+<form method="post">
+    Enter Number: <input type="text" name="n" />
+    <input type="submit" value="Check" />
+</form>
+<%
+    String s = request.getParameter("n");
+    if (s != null) {
+        int n = Integer.parseInt(s), temp = n, sum = 0, digits = String.valueOf(n).length();
+        while (temp > 0) {
+            int d = temp % 10;
+            sum += Math.pow(d, digits);
+            temp /= 10;
+        }
+        out.print(sum == n ? "Armstrong Number" : "Not Armstrong Number");
+    }
+%>
+</body>
+</html>
+Output :-
+Input: 153
+Output :-: 153 is an Armstrong number
+
+
+Question 2: Write a program to display information about the ResultSet like number of columns available in the ResultSet and SQL type of the column. Use Person table. (Use ResultSetMetaData).
+Solution :- 
+Code:-
+import java.sql.*;
+
+public class MetaDataDemo {
+    public static void main(String[] args) throws Exception {
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "root");
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM Person");
+        ResultSetMetaData md = rs.getMetaData();
+        System.out.println("Columns: " + md.getColumnCount());
+        for (int i = 1; i <= md.getColumnCount(); i++) {
+            System.out.println(md.getColumnName(i) + " -> " + md.getColumnTypeName(i));
+        }
+    }
+}
+Output :-
+umber of columns and SQL types printed for the Person table result set.
+
+
+
+
+
+
+
+Slip 14
+Question 1: Write a JSP program to check whether given number is Armstrong or not. (Use include directive)
+Solution :- 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html>
+<body>
+<form method="post">
+    Enter Number: <input type="text" name="n" />
+    <input type="submit" value="Check" />
+</form>
+<%
+    String s = request.getParameter("n");
+    if (s != null) {
+        int n = Integer.parseInt(s), temp = n, sum = 0, digits = String.valueOf(n).length();
+        while (temp > 0) {
+            int d = temp % 10;
+            sum += Math.pow(d, digits);
+            temp /= 10;
+        }
+        out.print(sum == n ? "Armstrong Number" : "Not Armstrong Number");
+    }
+%>
+</body>
+</html>
+
+Output :-
+Input: 153
+153 is an Armstrong number
+
+Question 2: Write a JDBC program to display all the countries located in the West Region. Create a table Country with fields (Name, continent, Capital,Region). Insert values in the table.
+Solution :- 
+Code:-
+import java.sql.*;
+
+public class WestRegionCountries {
+    public static void main(String[] args) throws Exception {
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "root");
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM Country WHERE Region=?");
+        ps.setString(1, "West");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            System.out.println(rs.getString("Name") + " " + rs.getString("Capital") + " " + rs.getString("Region"));
+        }
+    }
 }
 
+Output :-
+all Country rows with Region = West.
 
 
-Assignment 17: Write R program to read number and print corresponding day name in a week
-Solution:
-# Read number
-num <- as.integer(readline(prompt = "Enter a number (1-7): "))
-days <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
-if (num >= 1 && num <= 7) {
- print(days[num])
-} else {
- print("Invalid input!")
+
+
+ 
+Slip 15
+Question 1: Write a JSP program accept a number and display reverse number.
+Solution :- 
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reverse Number</title>
+</head>
+<body>
+
+<h2>Reverse Number Program</h2>
+
+<form method="post">
+    Enter Number: <input type="number" name="num" required />
+    <input type="submit" value="Reverse" />
+</form>
+<%
+    String input = request.getParameter("num");
+    if (input != null) {
+        int num = Integer.parseInt(input);
+        int reversed = 0;
+        while (num != 0) {
+            int digit = num % 10;
+            reversed = reversed * 10 + digit;
+            num = num / 10;
+        }
+%>
+<h3>Reversed Number: <%= reversed %></h3>
+<%
+    }
+%>
+</body>
+</html>
+
+Output :-
+Enter Number: 12345
+Reverse Number Program
+Reversed Number: 54321
+
+
+Question 2: Write a JDBC program to perform search operation on Person table. 1. Search all the person born in the year 1986. 2. Search all the females born between 2000- 2005.
+Solution :- 
+Assumed Table Structure
+CREATE TABLE Person (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    gender VARCHAR(10),
+    dob DATE
+);
+
+Code:-
+
+
+import java.sql.*;
+public class PersonSearch {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/your_database";
+        String user = "root";
+        String password = "your_password";
+
+        try {
+            // 1. Load Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            // 2. Establish Connection
+            Connection con = DriverManager.getConnection(url, user, password);
+            // -------------------------------
+            // Query 1: Persons born in 1986
+            // -------------------------------
+            String query1 = "SELECT * FROM Person WHERE YEAR(dob) = ?";
+            PreparedStatement ps1 = con.prepareStatement(query1);
+            ps1.setInt(1, 1986);
+            ResultSet rs1 = ps1.executeQuery();
+            System.out.println("Persons born in 1986:");
+            while (rs1.next()) {
+                System.out.println(
+                        rs1.getInt("id") + " | " +
+                        rs1.getString("name") + " | " +
+                        rs1.getString("gender") + " | " +
+                        rs1.getDate("dob")
+                );
+            }
+            // ---------------------------------------------
+            // Query 2: Females born between 2000 and 2005
+            // ---------------------------------------------
+            String query2 = "SELECT * FROM Person WHERE gender = ? AND dob BETWEEN ? AND ?";
+            PreparedStatement ps2 = con.prepareStatement(query2);
+            ps2.setString(1, "Female");
+            ps2.setDate(2, Date.valueOf("2000-01-01"));
+            ps2.setDate(3, Date.valueOf("2005-12-31"));
+            ResultSet rs2 = ps2.executeQuery();
+            System.out.println("\nFemales born between 2000 and 2005:");
+            while (rs2.next()) {
+                System.out.println(
+                        rs2.getInt("id") + " | " +
+                        rs2.getString("name") + " | " +
+                        rs2.getString("gender") + " | " +
+                        rs2.getDate("dob")
+                );
+            }
+            // Close connections
+            rs1.close();
+            rs2.close();
+            ps1.close();
+            ps2.close();
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
+Output :-
 
+Output 1: Persons born in 1986
+Persons born in 1986:
+1 | Rahul | Male | 1986-05-12
+________________________________________
+Output 2: Females born between 2000 and 2005
+Females born between 2000 and 2005:
+2 | Priya | Female | 2002-08-20
+3 | Sneha | Female | 2004-03-15
+5 | Neha  | Female | 2001-11-25
 
-
-Assignment 18: Create a Matrix using R and Perform the operations addition, subtraction,
-multiplication.
-Solution:
-# Create two matrices
-A <- matrix(c(1, 2, 3, 4), nrow = 2, ncol = 2)
-B <- matrix(c(5, 6, 7, 8), nrow = 2, ncol = 2)
-# Display matrices
-print("Matrix A:")
-print(A)
-print("Matrix B:")
-print(B)
-# Addition
-add <- A + B
-print("Addition of matrices:")
-print(add)
-# Subtraction
-sub <- A - B
-print("Subtraction of matrices:")
-print(sub)
-# Multiplication
-mul <- A %*% B
-print("Multiplication of matrices:")
-print(mul)
-
-
-
-Assignment 19: Using R import the data from Excel/.CSV file and find mean, median, mode,
-quartiles.
-Solution:
-gfg=read.csv('values.csv') // csv file contains the values like V1=1,2,3,4,5,6,7 etc
-result<- mean(gfg$V1)
-print(result)
-x <- c(2, 4, 6, 8, 10)
-mean(x)
-# Handling NA
-x <- c(2, 4, NA, 8)
-mean(x, na.rm = TRUE)
-//median
-x <- c(1, 3, 5, 7, 9)
-median(x)
-# With NA values
-x <- c(1, NA, 5, 7)
-median(x, na.rm = TRUE)
-//mode
-get_mode <- function(v) {
- uniqv <- unique(v)
- uniqv[which.max(tabulate(match(v, uniqv)))]
-}
-x <- c(1, 2, 2, 3, 3, 3, 4)
-get_mode(x)
-
-
-
-Assignment 20: Using R import the data from Excel/.CSV file and find standard deviation, variance
-and co-variance.
-Solution:
-# variance of vector
-# Create example vector
-x <- c(1, 2, 3, 4, 5, 6, 7)
-# Apply var function in R
-var(x)
-print(x)
-# R program to illustrate
-# standard deviation of vector
-# Create example vector
-x2 <- c(1, 2, 3, 4, 5, 6, 7)
-# Compare with sd function
-sd(x2)
-print(x2)
-When we work with excel file
-# Load data
-my_data <- read.csv("data.csv")
-# Compute Statistics
-v_x <- var(my_data$x)
-sd_x <- sd(my_data$x)
-cov_xy <- cov(my_data$x, my_data$y)
-# Print results
-print(paste("Variance:", v_x))
-print(paste("Standard Deviation:", sd_x))
-print(paste("Covariance:", cov_xy))
-
-
-
-Assignment 21: Write a R program to count the number of NA values in a data frame column.
-Solution:
-df<-data.frame(x = c("kapil","rahul",NA,NA), y = c(1,2,NA,3))
-print("dataframe is ")
-print(df)
-print("vector is")
-vec = is.na(df[,1])
-print(vec)
-count = sum(vec)
-print("count of NA in first column is" )
-print(count)
-
-
-
-Assignment 22: Write a R program to call the (built-in) dataset air quality. Remove the variables
-'Solar.R' and 'Wind' and display the data frame.
-Solution:
-# Load built-in dataset
-data("airquality")
-# Display original data (optional)
-print("Original Data:")
-print(airquality)
-# Remove 'Solar.R' and 'Wind' columns
-new_data <- airquality[, !(names(airquality) %in% c("Solar.R", "Wind"))]
-# Display updated data frame
-print("Updated Data (without Solar.R and Wind):")
-print(new_data)
-
-
-
-Assignment 23: Write a R program to compare two data frames to find the row(s) in first data frame
-that are not present in second data frame
-Solution:
-# Create the first data frame with sales data for three items
-data1 = data.frame(
- "item" = c("item1", "item2", "item3"), # Column for item names
- "Jan_sale" = c(12, 14, 12), # Sales in January
- "Feb_sale" = c(11, 12, 15), # Sales in February
- "Mar_sale" = c(12, 14, 15) # Sales in March
-)
-# Create the second data frame with sales data for three items
-data2 = data.frame(
- "item" = c("item1", "item2", "item3"), # Column for item names
- "Jan_sale" = c(12, 14, 12), # Sales in January
- "Feb_sale" = c(11, 12, 15), # Sales in February
- "Mar_sale" = c(12, 15, 18) # Sales in March
-)
-# Print a message indicating the following output is the original dataframes
-print("Original Dataframes:")
-# Print the first data frame
-print(data1)
-# Print the second data frame
-print(data2)
-# Print a message indicating the following output is the rows in the first data frame not present in the second
-data frame
-print("Row(s) in first data frame that are not present in second data frame:")
-# Find and print rows in the first data frame that are not present in the second data frame
-print(setdiff(data1, data2))
-
-
-
-Assignment 24: Write a R program to create a factor corresponding to height of women data set, which
-contains height and weights for a sample of women
-Solution: # Load the built-in 'women' dataset (it is usually available by default, but explicitly calling data()
-ensures availability)
-data(women)
-# Display the first few rows of the original data for reference
-print("Original 'women' data set (first 6 rows):")
-print(head(women))
-# Use the cut() function to create a factor for height.
-# Option 1: Divide into a specific number of equal-length intervals (e.g., 3)
-height_factor_equal <- cut(women$height, 3)
-print("\nFactor corresponding to height (3 equal intervals):")
-print(table(height_factor_equal)) # Display the frequency table
-# Option 2: Divide into user-defined intervals with custom labels (e.g., Short, Medium, Tall)
-# Define the break points (minimum height is 58, maximum is 72 in this dataset)
-breaks <- c(58, 63, 67, 72)
-labels <- c("Short", "Medium", "Tall")
-height_factor_custom <- cut(women$height, breaks = breaks, labels = labels, include.lowest = TRUE)
-print("\nFactor corresponding to height (custom labels and breaks):")
-print(table(height_factor_custom)) # Display the frequency table
-# Add the new factor variable to the 'women' data frame (optional)
-women$height_group <- height_factor_custom
-print("\n'women' data set with new height_group factor (first 6 rows):")
-print(head(women))
-
-
-
-Assignment 25: Write a R program to find nth highest value in a given vector
-Solution:
-# R program to find nth highest value in a vector
-# Given vector
-v <- c(12, 45, 23, 67, 34, 89, 10)
-# Value of n
-n <- 3
-# Sort the vector in decreasing order
-sorted_v <- sort(v, decreasing = TRUE)
-# Find nth highest value
-nth_highest <- sorted_v[n]
-# Print result
-cat("Vector:", v, "\n")
-cat(n, "th highest value is:", nth_highest)
-
-
-
-Assignment 26: Write an R program to sort a Vector in ascending and descending order.
-Solution:
-my_vector <- c(12, 4, 9, 21, 5)
-cat("Original vector:", my_vector, "\n\n")
-# --- 2. Sort in ascending order (default behavior) ---
-# Method A: Using sort()
-vector_asc_A <- sort(my_vector)
-cat("Ascending order (Method A):", vector_asc_A, "\n")
-# --- 3. Sort in descending order ---
-# Method A: Using sort() with decreasing = TRUE
-vector_desc_A <- sort(my_vector, decreasing = TRUE)
-cat("Descending order (Method A):", vector_desc_A, "\n")
-
-
-
-Assignment 27: Write an R program to extract first 10 English letter in lower case and last 10 letters in
-upper case and extract letters between 22nd to 24th letters in upper case.
-Solution:
-# Extract the first 10 English letters in lower case
-first_10_lower <- head(letters, 10)
-# Alternatively, using indexing:
-# first_10_lower <- letters[1:10]
-print("First 10 English letters in lower case:")
-print(first_10_lower) # [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j"
-cat("\n") # Add a newline for better output formatting
-# Extract the last 10 English letters in upper case
-last_10_upper <- tail(LETTERS, 10)
-# Alternatively, using indexing:
-# last_10_upper <- LETTERS[17:26]
-print("Last 10 English letters in upper case:")
-print(last_10_upper) # [1] "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
-cat("\n")
-# Extract letters between the 22nd to 24th letters in upper case
-# Indexing in R starts at 1
-letters_22_to_24_upper <- LETTERS[22:24]
-print("Letters between 22nd to 24th letters in upper case:")
-print(letters_22_to_24_upper) # [1] "V" "W" "X"
-
-
-
-Assignment 28: Write an R Program to calculate Decimal into binary of a given number.
-Solution:
-# R program to convert decimal to binary
-# Input decimal number
-num <- 10
-# Convert decimal to binary
-binary <- ""
-n <- num
-while(n > 0) {
- remainder <- n %% 2
- binary <- paste(remainder, binary, sep = "")
- n <- n %/% 2
-}
-# Print result
-cat("Decimal number:", num, "\n")
-cat("Binary equivalent:", binary)
-
-
-
-Assignment 29: Write an R program to convert a given matrix to a list and print list in ascending order.
-Solution:
-# Create a matrix
-m <- matrix(c(9, 4, 7, 2, 5, 1), nrow = 2, ncol = 3)
-# Convert matrix to list
-list_data <- as.list(m)
-# Sort the list in ascending order
-sorted_list <- sort(unlist(list_data))
-# Print matrix
-print("Matrix:")
-print(m)
-# Print list
-print("List:")
-print(list_data)
-# Print sorted list
-print("List in Ascending Order:")
-print(sorted_list)
-
-
-
-Assignment 30: Write an R program to create a Data frames which contain details of
-5employees and display the details in ascending order.
-Solution:
-# Create a data frame with employee details
-emp <- data.frame(
- EmpID = c(105, 102, 104, 101, 103),
- Name = c("Amit", "Neha", "Rahul", "Sneha", "Kiran"),
-Salary = c(45000, 52000, 48000, 40000, 47000)
-)
-# Display original data frame
-print("Employee Details:")
-print(emp)
-# Sort the data frame in ascending order of EmpID
-sorted_emp <- emp[order(emp$EmpID), ]
-# Display sorted data frame
-print("Employee Details in Ascending Order:")
-print(sorted_emp)
-
-
-
-Assignment 31: Consider the inbuilt iris dataset
-i) Create a variable “y” and attach to it the output attribute of the “iris”dataset .
-ii) Create a barplot to breakdown your output attribute.
-iii) Create a density plot matrix for each attribute by class value.
-Solution:
-# Load iris dataset
-data(iris)
-i) # Output attribute (Species)
-y <- iris$Species
-# Display y
-print(y)
-# Count frequency of each species
-species_count <- table(y)
-ii)
-# Create barplot
-barplot(species_count,
- main = "Distribution of Iris Species",
- xlab = "Species",
- ylab = "Count")
-iii)
-# Install package (run once)
-install.packages("lattice")
-# Load library
-library(lattice)
-# Density plot matrix
-splom(~iris[1:4],
- groups = iris$Species,
- auto.key = TRUE,
- main = "Density Plot Matrix of Iris Dataset")
-
-
-
- Assignment 32: Consider Weather dataset
-i) Selecting using the column number
-ii) Selecting using the column name
-iii) Make a scatter plot to compare Wind speed and temperature.
-Solution:
-# Create a sample Weather dataset
-weather <- data.frame(
- Day = c("Mon", "Tue", "Wed", "Thu", "Fri"),
- Temperature = c(30, 32, 28, 31, 29),
- Humidity = c(70, 65, 80, 75, 85),
- Wind = c(10, 12, 8, 9, 11)
-)
-print(weather)
-i)
-# Select 1st column
-weather[, 1]
-# Select 2nd and 3rd columns
-weather[, c(2, 3)]
-ii)
-# Select single column
-weather$Temperature
-# Select multiple columns
-weather[, c("Temperature", "Humidity")]
-
-
-
-Assignment 33: Write a script in R to create a list of students and perform the following
-i) Give names to the students in the list.
-ii) Add a student at the end of the list.
-iii) Remove the first Student.
-iv)Update the second last student.
-Solution:
-# Create a list of students
-students <- list("Rahul", "Neha", "Amit", "Sneha")
-# i) Give names to the students in the list
-names(students) <- c("Student1", "Student2", "Student3", "Student4")
-print("List after naming students:")
-print(students)
-# ii) Add a student at the end of the list
-students[[length(students) + 1]] <- "Kiran"
-names(students)[length(students)] <- "Student5"
-print("List after adding a student at the end:")
-print(students)
-# iii) Remove the first student
-students <- students[-1]
-print("List after removing the first student:")
-print(students)
-# iv) Update the second last student
-students[[length(students) - 1]] <- "Priya"
-print("List after updating the second last student:")
-print(students)
